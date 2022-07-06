@@ -296,7 +296,7 @@ namespace SeeSharpTools.JY.GUI
 			// KnobControl
 			// 
 			this.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.Font = new System.Drawing.Font("ËÎÌו", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Resize += new System.EventHandler(this.KnobControl_Resize);
 
 		}

@@ -60,9 +60,6 @@
     <Compile Update="AquaGauge\AquaGauge.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="EasyChart\EasyChart.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
     <Compile Update="GaugeLinear\GaugeLinear.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -82,9 +79,6 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="PressureGauge\PressureGauge.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="StripChart\StripChart.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="SwitchArray\SwitchArray.cs">
@@ -144,7 +138,6 @@
     <EmbeddedResource Include="ButtonSwitch\ButtonSwitch.PNG" />
     <EmbeddedResource Include="ViewController\ViewController.bmp" />
     <EmbeddedResource Include="SwitchArray\SwitchArray.bmp" />
-    <EmbeddedResource Include="StripChart\StripChart.bmp" />
     <EmbeddedResource Include="Thermometer\Thermometer.bmp" />
     <EmbeddedResource Include="KnobControl\KnobControl.bmp" />
     <EmbeddedResource Include="Tank\Tank.bmp" />
@@ -165,7 +158,6 @@
     <EmbeddedResource Include="IndustryLedBright\IndustryLedBright.PNG" />
     <EmbeddedResource Include="LEDArray\LEDArray.bmp" />
     <EmbeddedResource Include="EasyChartX\EasyChartX.bmp" />
-    <EmbeddedResource Include="EasyChart\EasyChart.bmp" />
     <EmbeddedResource Include="GaugeLinear\GaugeLinear.bmp" />
     <EmbeddedResource Include="LedArrow\LedArrow.bmp" />
     <EmbeddedResource Include="Resources\LedMatrixSymbolFile.xml" />
@@ -180,19 +172,13 @@
     <PackageReference Include="Microsoft.DotNet.UpgradeAssistant.Extensions.Default.Analyzers" Version="0.3.330701">
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-    <PackageReference Include="System.Windows.Forms.DataVisualization" Version="1.0.0-prerelease.20110.1" />
+    <PackageReference Include="System.Windows.Forms.DataVisualization" Version="1.0.0-prerelease.20110.1"/>
     <PackageReference Include="Microsoft.Windows.Compatibility" Version="6.0.0" />
+    <PackageReference Include="System.Drawing.Common" Version="6.0.0" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="EasyChartX\EasyChartXUtility\EasyChartXSortDirection.cs" />
-    <Compile Remove="EasyChart\Editor\EasyChartLineSeriesEditor.cs" />
     <Compile Remove="Program.cs" />
-    <Compile Remove="StripChart\AxisViewAdapter.cs" />
-    <Compile Remove="StripChart\Plotter\SparseStripPlotter.cs" />
-    <Compile Remove="StripChart\Property\AppearanceEditor.cs" />
-    <Compile Remove="StripChart\Property\LockedList.cs" />
-    <Compile Remove="StripChart\Property\StripChartApperance.cs" />
-    <Compile Remove="StripChart\Property\StripChartSeries.cs" />
     <Compile Remove="Utility\ControlFactory.cs" />
   </ItemGroup>
   <ItemGroup>
