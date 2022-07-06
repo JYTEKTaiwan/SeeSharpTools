@@ -3,7 +3,6 @@ using System.ComponentModel;
 using System.ComponentModel.Design;
 using System.Drawing;
 using System.Drawing.Design;
-using System.Web.UI;
 using System.Windows.Forms.DataVisualization.Charting;
 using SeeSharpTools.JY.GUI.EasyChartXUtility;
 

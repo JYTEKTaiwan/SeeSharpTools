@@ -10,7 +10,6 @@ using System.Drawing.Design;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Web.UI;
 using SeeSharpTools.JY.GUI.EasyChartComponents;
 using SeeSharpTools.JY.GUI.EasyChartEditor;
 using SeeSharpTools.JY.GUI.EasyChartEvents;
