@@ -1,6 +1,5 @@
 ﻿using System.Drawing;
 using System.Windows.Forms;
-using SeeSharpTools.JY.GUI.EasyChartXMarker.Painters;
 
 namespace SeeSharpTools.JY.GUI.EasyChartXMarker
 {

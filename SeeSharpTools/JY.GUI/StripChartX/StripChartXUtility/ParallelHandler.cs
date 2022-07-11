@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using SeeSharpTools.JY.GUI.StripChartXData;
 
 namespace SeeSharpTools.JY.GUI.StripChartXUtility
 {
@@ -16,7 +14,7 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
         private int _blockSize;
         private int _indexOffset;
 
-//        private readonly PlotBuffer _buffer;
+        //        private readonly PlotBuffer _buffer;
         private object _datas;
         private readonly DataCheckParameters _dataCheckParams;
 
@@ -37,18 +35,18 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
         #endregion
 
         #region Max / Min 计算
-        
+
         private readonly double[] _maxDatas;
         private readonly double[] _minDatas;
         const int MinParallelDataCount = 2000;
         public void GetMaxAndMin<TDataType>(IList<TDataType> datas, out double max, out double min)
         {
             string typeName = typeof(TDataType).FullName;
-            if (typeName.Equals(typeof (double).FullName))
+            if (typeName.Equals(typeof(double).FullName))
             {
                 GetDoubleMaxAndMin(datas, datas.Count, out max, out min);
             }
-            else if (typeName.Equals(typeof (float).FullName))
+            else if (typeName.Equals(typeof(float).FullName))
             {
                 GetFloatMaxAndMin(datas, datas.Count, out max, out min);
             }
@@ -135,7 +133,7 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
         private void FillDoubleMaxAndMinToBuf(int blockIndex)
         {
             IList<double> doubleDatas = this._datas as IList<double>;
-            int startIndex = blockIndex*_blockSize + _indexOffset;
+            int startIndex = blockIndex * _blockSize + _indexOffset;
             int endIndex = startIndex + _blockSize;
             if (endIndex > doubleDatas.Count)
             {
@@ -613,7 +611,7 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
 
         #region No Fit
 
-        public void FillNoneFitPlotData<TDataType>(int startIndex, int sparseRatio, IList<TDataType> dataBuf, 
+        public void FillNoneFitPlotData<TDataType>(int startIndex, int sparseRatio, IList<TDataType> dataBuf,
             IList<TDataType> plotBuf, int plotCount)
         {
             int plotIndex = startIndex;
@@ -633,11 +631,11 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
         private int _sparseRatio;
         private int _plotCount;
 
-        public void FillRangeFitPlotData<TDataType>(int startIndex, int sparseRatio, IList<TDataType> dataBuf, 
+        public void FillRangeFitPlotData<TDataType>(int startIndex, int sparseRatio, IList<TDataType> dataBuf,
             IList<TDataType> plotBuf, int plotCount)
         {
             //将PlotSize的数据分为2*_option.MaxDegreeOfParallelism段，每段最长为_segmentSize
-            _blockSize = GetBlockSize(plotCount/2);
+            _blockSize = GetBlockSize(plotCount / 2);
             this._dataBuf = dataBuf;
             this._plotBuf = plotBuf;
             this._sparseRatio = sparseRatio;
@@ -651,12 +649,12 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
         private void FillRangeFitData<TDataType>(int segmentIndex)
         {
             // 一个拟合对在真是数据中的索引起始位置
-            int start = _blockSize*segmentIndex;
+            int start = _blockSize * segmentIndex;
             // 一个拟合对在真是数据中的索引结束位置，不包含该位置
-            int end = _blockSize*(segmentIndex + 1);
-            if (end > this._plotCount/2)
+            int end = _blockSize * (segmentIndex + 1);
+            if (end > this._plotCount / 2)
             {
-                end = this._plotCount/2;
+                end = this._plotCount / 2;
             }
             string typeName = typeof(TDataType).FullName;
             if (typeName.Equals(typeof(double).FullName))
@@ -697,11 +695,11 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
             for (int dataPairIndex = start; dataPairIndex < end; dataPairIndex++)
             {
                 // 待写入缓存的索引位置
-                int startBufIndex = 2*dataPairIndex;
+                int startBufIndex = 2 * dataPairIndex;
                 // 真实数据的起始索引
-                int pointStartIndex = startBufIndex*_sparseRatio + _indexOffset;
+                int pointStartIndex = startBufIndex * _sparseRatio + _indexOffset;
                 // 真实数据的终止索引位置，不包含该点
-                int pointEndIndex = pointStartIndex + 2*_sparseRatio;
+                int pointEndIndex = pointStartIndex + 2 * _sparseRatio;
                 if (pointEndIndex > yDataBuf.Count)
                 {
                     pointEndIndex = yDataBuf.Count;
@@ -933,7 +931,7 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
                 }
             }
         }
-        
+
         private void FillUShortRangeFitData(int start, int end)
         {
             IList<ushort> yDataBuf = _dataBuf as IList<ushort>;
@@ -982,7 +980,7 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
                 }
             }
         }
-        
+
         private void FillByteRangeFitData(int start, int end)
         {
             IList<byte> yDataBuf = _dataBuf as IList<byte>;
@@ -1031,7 +1029,7 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
                 }
             }
         }
-        
+
         #endregion
 
         #endregion

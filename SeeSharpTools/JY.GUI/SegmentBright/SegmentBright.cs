@@ -1,8 +1,8 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Drawing;
-using System.Windows.Forms;
 using System.Drawing.Drawing2D;
+using System.Windows.Forms;
 
 namespace SeeSharpTools.JY.GUI
 {
@@ -773,9 +773,9 @@ namespace SeeSharpTools.JY.GUI
             mx.Shear(-0.1f, 0);
             PointF[] pathPointCollection = new PointF[6];
             PointF[] pathDotCollection = new PointF[4];
-            for(int i = 0; i < 8; ++i)
+            for (int i = 0; i < 8; ++i)
             {
-                if(m_CachedPaths[i] == null)
+                if (m_CachedPaths[i] == null)
                     m_CachedPaths[i] = new GraphicsPath();
             }
             // top '-'
@@ -794,7 +794,7 @@ namespace SeeSharpTools.JY.GUI
             m_CachedPaths[0].AddPolygon(pathPointCollection);
             m_CachedPaths[0].CloseFigure();
             if (UseItalicStyle) m_CachedPaths[0].Transform(mx);
-            
+
             // upper right '|'
             pathPointCollection[0].X = rectBound.Width - segmentWidth;
             pathPointCollection[0].Y = segmentWidth + segmentInterval;
@@ -1379,7 +1379,7 @@ namespace SeeSharpTools.JY.GUI
                     Invalidate();
                 }
             }
-        } 
+        }
         /// <summary>
         /// Get or set the opaque value of the highlight
         /// </summary>

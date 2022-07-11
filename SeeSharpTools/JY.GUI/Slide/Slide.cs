@@ -1,8 +1,8 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Drawing;
-using System.Windows.Forms;
 using System.Drawing.Text;
+using System.Windows.Forms;
 
 
 namespace SeeSharpTools.JY.GUI
@@ -54,7 +54,7 @@ namespace SeeSharpTools.JY.GUI
     [Designer(typeof(SlideDesigner))]
     [Description("JYTrackBar represents an advanced track bar that is very better than the standard trackbar.")]
     [ToolboxBitmap(typeof(Slide), "Slide.Slide.bmp")]
-   // [Designer(typeof(JYTrackBarDesigner))]
+    // [Designer(typeof(JYTrackBarDesigner))]
     [DefaultProperty("Maximum")]
     [DefaultEvent("ValueChanged")]
     public partial class Slide : UserControl
@@ -70,62 +70,62 @@ namespace SeeSharpTools.JY.GUI
             /// A dashed border.
             /// </summary>
             Dashed, //from ButtonBorderStyle Enumeration
-                    /// <summary>
-                    /// A dotted-line border.
-                    /// </summary>
+            /// <summary>
+            /// A dotted-line border.
+            /// </summary>
             Dotted, //from ButtonBorderStyle Enumeration
-                    /// <summary>
-                    /// A sunken border.
-                    /// </summary>
+            /// <summary>
+            /// A sunken border.
+            /// </summary>
             Inset, //from ButtonBorderStyle Enumeration
-                   /// <summary>
-                   /// A raised border.
-                   /// </summary>
+            /// <summary>
+            /// A raised border.
+            /// </summary>
             Outset, //from ButtonBorderStyle Enumeration
-                    /// <summary>
-                    /// A solid border.
-                    /// </summary>
+            /// <summary>
+            /// A solid border.
+            /// </summary>
             Solid, //from ButtonBorderStyle Enumeration
 
             /// <summary>
             /// The border is drawn outside the specified rectangle, preserving the dimensions of the rectangle for drawing.
             /// </summary>
             Adjust, //from Border3DStyle Enumeration
-                    /// <summary>
-                    /// The inner and outer edges of the border have a raised appearance.
-                    /// </summary>
+            /// <summary>
+            /// The inner and outer edges of the border have a raised appearance.
+            /// </summary>
             Bump, //from Border3DStyle Enumeration
-                  /// <summary>
-                  /// The inner and outer edges of the border have an etched appearance.
-                  /// </summary>
+            /// <summary>
+            /// The inner and outer edges of the border have an etched appearance.
+            /// </summary>
             Etched, //from Border3DStyle Enumeration
-                    /// <summary>
-                    /// The border has no three-dimensional effects.
-                    /// </summary>
+            /// <summary>
+            /// The border has no three-dimensional effects.
+            /// </summary>
             Flat, //from Border3DStyle Enumeration
-                  /// <summary>
-                  /// The border has raised inner and outer edges.
-                  /// </summary>
+            /// <summary>
+            /// The border has raised inner and outer edges.
+            /// </summary>
             Raised, //from Border3DStyle Enumeration
-                    /// <summary>
-                    /// The border has a raised inner edge and no outer edge.
-                    /// </summary>
+            /// <summary>
+            /// The border has a raised inner edge and no outer edge.
+            /// </summary>
             RaisedInner, //from Border3DStyle Enumeration
-                         /// <summary>
-                         /// The border has a raised outer edge and no inner edge.
-                         /// </summary>
+            /// <summary>
+            /// The border has a raised outer edge and no inner edge.
+            /// </summary>
             RaisedOuter, //from Border3DStyle Enumeration
-                         /// <summary>
-                         /// The border has sunken inner and outer edges.
-                         /// </summary>
+            /// <summary>
+            /// The border has sunken inner and outer edges.
+            /// </summary>
             Sunken, //from Border3DStyle Enumeration
-                    /// <summary>
-                    /// The border has a sunken inner edge and no outer edge.
-                    /// </summary>
+            /// <summary>
+            /// The border has a sunken inner edge and no outer edge.
+            /// </summary>
             SunkenInner, //from Border3DStyle Enumeration
-                         /// <summary>
-                         /// The border has a sunken outer edge and no inner edge.
-                         /// </summary>
+            /// <summary>
+            /// The border has a sunken outer edge and no inner edge.
+            /// </summary>
             SunkenOuter //from Border3DStyle Enumeration
         }
 
@@ -144,7 +144,7 @@ namespace SeeSharpTools.JY.GUI
         private MACBorderStyle _borderStyle = MACBorderStyle.None;
         private Color _borderColor = SystemColors.ActiveBorder;
 
-      
+
         private int _indentWidth = 10;
         private int _indentHeight = 10;
 
@@ -165,8 +165,8 @@ namespace SeeSharpTools.JY.GUI
         private bool leftButtonDown = false;
         private float mouseStartPos = -1;
         //修改by 邵天宇
-        private int decimals =3;
-      //  private SlidesTrackerStyle styles = SlidesTrackerStyle.rectangle;
+        private int decimals = 3;
+        //  private SlidesTrackerStyle styles = SlidesTrackerStyle.rectangle;
         private Size _trackerSize = new Size(5, 15);
         private int _interval = 10;
         private int valuedecimals = 3;
@@ -876,7 +876,7 @@ namespace SeeSharpTools.JY.GUI
                         currentTrackerPos = workingRect.Left;
                     else
                         currentTrackerPos = (workingRect.Width - _trackerSize.Width) * (_value - _minimum) / (_maximum - _minimum) + workingRect.Left;
-                    trackerRect = new RectangleF((float)currentTrackerPos,(float) currentUsedPos, _trackerSize.Width, _trackerSize.Height);// Remember this for drawing the Tracker later
+                    trackerRect = new RectangleF((float)currentTrackerPos, (float)currentUsedPos, _trackerSize.Width, _trackerSize.Height);// Remember this for drawing the Tracker later
                     trackerRect.Inflate(0, -1);
                 }
                 else //_orientation == Orientation.Vertical
@@ -1087,7 +1087,7 @@ namespace SeeSharpTools.JY.GUI
             }
         }
         #endregion
-        
+
         #region Public Methods
 
         /// <summary>
@@ -1321,10 +1321,10 @@ namespace SeeSharpTools.JY.GUI
         protected override void OnPaint(System.Windows.Forms.PaintEventArgs e)
         {
             Brush brush;
-            RectangleF rectTemp, drawRect,drawFillRect;
+            RectangleF rectTemp, drawRect, drawFillRect;
             float textAreaSize;
             //如果有问题 则更改这里，显示不够长的话
-            Rectangle workingRect = Rectangle.Inflate(this.ClientRectangle, -_indentWidth-10, -_indentHeight);
+            Rectangle workingRect = Rectangle.Inflate(this.ClientRectangle, -_indentWidth - 10, -_indentHeight);
             float currentUsedPos = 0;
 
             //==========================================================================
@@ -1380,13 +1380,13 @@ namespace SeeSharpTools.JY.GUI
                 else
                     currentTrackerPos = (workingRect.Width - _trackerSize.Width) * (this.Value - _minimum) / (_maximum - _minimum) + workingRect.Left;
                 _trackerRect = new RectangleF((float)currentTrackerPos, currentUsedPos, _trackerSize.Width, _trackerSize.Height);// Remember this for drawing the Tracker later
-                                                                                                                          //_trackerRect.Inflate(0,-1);
+                                                                                                                                 //_trackerRect.Inflate(0,-1);
 
                 //==========================================================================
                 // Draw the Track Line
                 //==========================================================================
                 drawRect = new RectangleF(workingRect.Left, currentUsedPos + _trackerSize.Height / 2 - _trackLineHeight / 2, workingRect.Width, _trackLineHeight);
-              
+
                 DrawTrackLine(e.Graphics, drawRect);
                 if (fill == true)
                 {
@@ -1472,8 +1472,8 @@ namespace SeeSharpTools.JY.GUI
                 else
                     currentTrackerPos = (workingRect.Height - _trackerSize.Width) * (this.Value - _minimum) / (_maximum - _minimum);
 
-                _trackerRect = new RectangleF(currentUsedPos,(float) (workingRect.Bottom - currentTrackerPos - _trackerSize.Width), _trackerSize.Height, _trackerSize.Width);// Remember this for drawing the Tracker later
-                                                                                                                                                                    //_trackerRect.Inflate(-1,0);
+                _trackerRect = new RectangleF(currentUsedPos, (float)(workingRect.Bottom - currentTrackerPos - _trackerSize.Width), _trackerSize.Height, _trackerSize.Width);// Remember this for drawing the Tracker later
+                                                                                                                                                                             //_trackerRect.Inflate(-1,0);
 
                 rectTemp = _trackerRect;//Testing
 
@@ -1485,7 +1485,7 @@ namespace SeeSharpTools.JY.GUI
                 if (fill == true)
                 {
                     double currentValuePos = (workingRect.Height) * (_maximum - Value) / (_maximum - _minimum);
-                    drawFillRect = new RectangleF(currentUsedPos + _trackerSize.Height / 2 - _trackLineHeight / 2, (float)currentValuePos+workingRect.Top , _trackLineHeight, (float)(workingRect.Bottom - currentValuePos - _trackerSize.Width / 2));
+                    drawFillRect = new RectangleF(currentUsedPos + _trackerSize.Height / 2 - _trackLineHeight / 2, (float)currentValuePos + workingRect.Top, _trackLineHeight, (float)(workingRect.Bottom - currentValuePos - _trackerSize.Width / 2));
                     JYDrawStyleHelper.DrawAquaPillSingleLayer(e.Graphics, drawFillRect, fillColor, _orientation);
                 }
                 currentUsedPos += _trackerSize.Height;
@@ -1616,11 +1616,11 @@ namespace SeeSharpTools.JY.GUI
                 for (int i = 0; i <= tickCount; i++)
                 {
                     text = Math.Round(_minimum + tickFrequency * i, decimals).ToString();
-                    g.DrawString(text, font, brush,(float) (drawRect.Left + tickFrequencySize * i), drawRect.Top + drawRect.Height / 2, stringFormat);
+                    g.DrawString(text, font, brush, (float)(drawRect.Left + tickFrequencySize * i), drawRect.Top + drawRect.Height / 2, stringFormat);
 
                 }
                 // Draw last tick text at Maximum
-                text = Math.Round(_maximum,decimals).ToString();
+                text = Math.Round(_maximum, decimals).ToString();
                 g.DrawString(text, font, brush, drawRect.Right, drawRect.Top + drawRect.Height / 2, stringFormat);
 
                 //===============================================================
@@ -1635,7 +1635,7 @@ namespace SeeSharpTools.JY.GUI
                 for (int i = 0; i <= tickCount; i++)
                 {
                     text = Math.Round(_minimum + tickFrequency * i, decimals).ToString();
-                    g.DrawString(text, font, brush, drawRect.Left + drawRect.Width / 2,(float)(drawRect.Bottom - tickFrequencySize * i), stringFormat);
+                    g.DrawString(text, font, brush, drawRect.Left + drawRect.Width / 2, (float)(drawRect.Bottom - tickFrequencySize * i), stringFormat);
                 }
                 // Draw last tick text at Maximum
                 text = Math.Round(_maximum, decimals).ToString();
@@ -1680,7 +1680,7 @@ namespace SeeSharpTools.JY.GUI
                 // Draw each tick
                 for (int i = 0; i <= tickCount; i++)
                 {
-                    g.DrawLine(pen,(float) (drawRect.Left + tickFrequencySize * i), drawRect.Top,(float) (drawRect.Left + tickFrequencySize * i), drawRect.Bottom);
+                    g.DrawLine(pen, (float)(drawRect.Left + tickFrequencySize * i), drawRect.Top, (float)(drawRect.Left + tickFrequencySize * i), drawRect.Bottom);
                 }
                 // Draw last tick at Maximum
                 g.DrawLine(pen, drawRect.Right, drawRect.Top, drawRect.Right, drawRect.Bottom);
@@ -1695,7 +1695,7 @@ namespace SeeSharpTools.JY.GUI
                 // Draw each tick
                 for (int i = 0; i <= tickCount; i++)
                 {
-                    g.DrawLine(pen, drawRect.Left,(float) (drawRect.Bottom - tickFrequencySize * i), drawRect.Right, (float)(drawRect.Bottom - tickFrequencySize * i));
+                    g.DrawLine(pen, drawRect.Left, (float)(drawRect.Bottom - tickFrequencySize * i), drawRect.Right, (float)(drawRect.Bottom - tickFrequencySize * i));
                 }
                 // Draw last tick at Maximum
                 g.DrawLine(pen, drawRect.Left, drawRect.Top, drawRect.Right, drawRect.Top);
@@ -1860,24 +1860,24 @@ namespace SeeSharpTools.JY.GUI
                             else if (currentPoint.X - mouseStartPos <= _indentWidth)
                                 offsetValue = 0;
                             else
-                            //offsetValue = (double)(((currentPoint.X - mouseStartPos - _indentWidth) * (_maximum - _minimum)) / (this.Width - 2 * _indentWidth - _trackerSize.Width) + 0.5);
+                                //offsetValue = (double)(((currentPoint.X - mouseStartPos - _indentWidth) * (_maximum - _minimum)) / (this.Width - 2 * _indentWidth - _trackerSize.Width) + 0.5);
                                 offsetValue =
                                     (double)
-                                        (((currentPoint.X - mouseStartPos - _indentWidth)*(_maximum - _minimum))/
-                                         (this.Width - 2*_indentWidth - _trackerSize.Width));
+                                        (((currentPoint.X - mouseStartPos - _indentWidth) * (_maximum - _minimum)) /
+                                         (this.Width - 2 * _indentWidth - _trackerSize.Width));
                             break;
 
                         case Orientation.Vertical:
-                            if (currentPoint.Y + _trackerSize.Width/2 >= this.Height - _indentHeight)
+                            if (currentPoint.Y + _trackerSize.Width / 2 >= this.Height - _indentHeight)
                                 offsetValue = 0;
-                            else if (currentPoint.Y + _trackerSize.Width/2 <= _indentHeight)
+                            else if (currentPoint.Y + _trackerSize.Width / 2 <= _indentHeight)
                                 offsetValue = _maximum - _minimum;
                             else
-                            //offsetValue = (double)(((this.Height - currentPoint.Y + _trackerSize.Width / 2 - mouseStartPos - _indentHeight) * (_maximum - _minimum)) / (this.Height - 2 * _indentHeight) + 0.5);
+                                //offsetValue = (double)(((this.Height - currentPoint.Y + _trackerSize.Width / 2 - mouseStartPos - _indentHeight) * (_maximum - _minimum)) / (this.Height - 2 * _indentHeight) + 0.5);
                                 offsetValue =
                                     (double)
-                                        (((this.Height - currentPoint.Y + _trackerSize.Width/2 - mouseStartPos -
-                                           _indentHeight)*(_maximum - _minimum))/(this.Height - 2*_indentHeight));
+                                        (((this.Height - currentPoint.Y + _trackerSize.Width / 2 - mouseStartPos -
+                                           _indentHeight) * (_maximum - _minimum)) / (this.Height - 2 * _indentHeight));
                             break;
                     }
                     SetValueWithChangingEvent(_minimum + offsetValue);

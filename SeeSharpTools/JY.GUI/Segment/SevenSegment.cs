@@ -1,8 +1,8 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Drawing;
-using System.Windows.Forms;
 using System.Drawing.Drawing2D;
+using System.Windows.Forms;
 
 namespace SeeSharpTools.JY.GUI
 {
@@ -36,13 +36,13 @@ namespace SeeSharpTools.JY.GUI
         /// </summary>
         [Description("Background color of the LED array.")]
         [Category("Appearance")]
-        public  Color BackgroundColor { get { return colorBackground; } set { colorBackground = value; UpdateSegments(); } }
+        public Color BackgroundColor { get { return colorBackground; } set { colorBackground = value; UpdateSegments(); } }
 
 
         [Browsable(false)]
         public override Color BackColor
         {
-            set { } 
+            set { }
         }
 
 
@@ -125,22 +125,22 @@ namespace SeeSharpTools.JY.GUI
         {
             InitializeComponent();
             this.SuspendLayout();
-            this.Size = new System.Drawing.Size(200,100);
+            this.Size = new System.Drawing.Size(200, 100);
             this.Resize += new System.EventHandler(this.SevenSegmentArray_Resize);
             this.ResumeLayout(false);
             this.italicFactor = (float)-0.08;
             this.TabStop = false;
-         //   this.BackColor = Color.Black;
+            //   this.BackColor = Color.Black;
             elementPadding = new Padding(4, 4, 4, 4);
             RecreateSegments(4);
         }
 
 
         #endregion
-        
+
         #region Public Methods
         #endregion
-        
+
         #region Private Methods
         /// <summary>
         /// Change the number of elements in our LED array. This destroys
@@ -164,7 +164,7 @@ namespace SeeSharpTools.JY.GUI
                 segments[i].Height = this.Height;
                 segments[i].Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
                 segments[i].Visible = true;
-               // segments[i].BackColor = this.BackColor;
+                // segments[i].BackColor = this.BackColor;
             }
 
             ResizeSegments();
@@ -194,7 +194,7 @@ namespace SeeSharpTools.JY.GUI
         {
             for (int i = 0; i < segments.Length; i++)
             {
-                segments[i].ColorBackground = colorBackground;;
+                segments[i].ColorBackground = colorBackground; ;
                 segments[i].ColorDark = colorDark;
                 segments[i].ColorLight = colorLight;
                 segments[i].ElementWidth = elementWidth;
@@ -244,8 +244,8 @@ namespace SeeSharpTools.JY.GUI
             private int gridWidth = 48;
             private int elementWidth = 10;
             private float italicFactor = 0.0F;
-            private Color colorBackground ;
-            private Color colorDark ;
+            private Color colorBackground;
+            private Color colorDark;
             private Color colorLight;
             private string theValue = null;
             private int customPattern = 0;

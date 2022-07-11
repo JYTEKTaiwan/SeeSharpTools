@@ -1,8 +1,8 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Drawing;
-using System.Windows.Forms;
 using System.Drawing.Drawing2D;
+using System.Windows.Forms;
 
 
 namespace SeeSharpTools.JY.GUI
@@ -78,7 +78,7 @@ namespace SeeSharpTools.JY.GUI
             get { return maximum; }
             set
             {
-                if (value >0&&value>minimum)
+                if (value > 0 && value > minimum)
                 {
                     maximum = value;
                 }
@@ -376,7 +376,7 @@ namespace SeeSharpTools.JY.GUI
                 pe.Graphics.SmoothingMode = smoothingMode;
 
                 //Draw bar
-            //    if (currentValue != 0)
+                //    if (currentValue != 0)
                 {
                     var darkColor = ControlPaint.Dark(barColor);
 
@@ -386,7 +386,7 @@ namespace SeeSharpTools.JY.GUI
 
                         if (orientation == Orientation.Vertical)
                         {
-                            float scaledHeight = (float) ((this.Height/(maximum - minimum))*(currentValue - minimum));
+                            float scaledHeight = (float)((this.Height / (maximum - minimum)) * (currentValue - minimum));
                             float yPos = this._reversed ? 0 : this.Height - scaledHeight;
                             //    
 
@@ -407,13 +407,13 @@ namespace SeeSharpTools.JY.GUI
                             if (styles == TankStyles.Dashed)
                             {
                                 int sepWidth = this.Height / 10;
-                                int sepCount = (int)((((double)this.Height / (maximum-minimum)) * (currentValue-minimum)) / sepWidth);
+                                int sepCount = (int)((((double)this.Height / (maximum - minimum)) * (currentValue - minimum)) / sepWidth);
                                 Color sepColor = ControlPaint.LightLight(barColor);
                                 // Draw each separator line
                                 for (int i = 1; i <= sepCount; i++)
                                 {
                                     pe.Graphics.DrawLine(new Pen(sepColor, 1),
-                                        0, this.Height-sepWidth * i, this.Width, Height - sepWidth * i);
+                                        0, this.Height - sepWidth * i, this.Width, Height - sepWidth * i);
                                 }
                             }
                         }
@@ -433,7 +433,7 @@ namespace SeeSharpTools.JY.GUI
                                 pe.Graphics.FillRectangle(brush, xPos, 0, scaledWidth, this.Height);
                             }
 
- 
+
 
                             //如果选择Dolid模式，同时应该画线
                             if (styles == TankStyles.Dashed)
@@ -481,7 +481,7 @@ namespace SeeSharpTools.JY.GUI
                             {
                                 txt = this.Text;
                             }
-                            
+
                             if (txt != null)
                             {
                                 TextRenderer.DrawText(pe.Graphics, txt, font, new Rectangle(0, 0, this.Width, this.Height), textColor, flags);
@@ -506,10 +506,10 @@ namespace SeeSharpTools.JY.GUI
             }
             catch (Exception ex)
             {
-                errorLog += "Error in OnPaint event\n " + 
-                    "Message: " + ex.Message + "\n" + 
+                errorLog += "Error in OnPaint event\n " +
+                    "Message: " + ex.Message + "\n" +
                     "Type: " + ex.GetType().ToString() + "\n";
-                
+
                 hasErrors = true;
             }
 
@@ -547,10 +547,10 @@ namespace SeeSharpTools.JY.GUI
         private CompositingMode CompositingMode
         {
             get { return compositingMode; }
-            set 
-            { 
-                compositingMode = value; 
-                this.Invalidate(); 
+            set
+            {
+                compositingMode = value;
+                this.Invalidate();
             }
         }
         /// <summary>
@@ -619,7 +619,7 @@ namespace SeeSharpTools.JY.GUI
             {
                 if (value != SmoothingMode.Invalid)
                 {
-                    smoothingMode = value; 
+                    smoothingMode = value;
                     this.Invalidate();
                 }
             }

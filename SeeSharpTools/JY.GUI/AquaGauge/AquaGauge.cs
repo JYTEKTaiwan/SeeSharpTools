@@ -1,8 +1,8 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Drawing;
-using System.Windows.Forms;
 using System.Drawing.Drawing2D;
+using System.Windows.Forms;
 
 namespace SeeSharpTools.JY.GUI
 {
@@ -91,7 +91,7 @@ namespace SeeSharpTools.JY.GUI
                 this.Refresh();
             };
             this.requiresRedraw = true;
-            this.Size = new Size(215,215);
+            this.Size = new Size(215, 215);
             this.Max = 100;
             this.BackColor = Color.Silver;
         }
@@ -376,8 +376,8 @@ namespace SeeSharpTools.JY.GUI
                 //Draw Threshold
                 colorPen = new Pen(Color.FromArgb(200, Color.LawnGreen), this.Width / 50);
                 rectg = new Rectangle(rectImg.X + gap, rectImg.Y + gap, rectImg.Width - gap * 2, rectImg.Height - gap * 2);
-                float val =(float) (Max - Min);
-                val =(float) (100 * (this.recommendedValue - Min)) / val;
+                float val = (float)(Max - Min);
+                val = (float)(100 * (this.recommendedValue - Min)) / val;
                 val = ((toAngle - fromAngle) * val) / 100;
                 val += fromAngle;
                 float stAngle = val - ((270 * threshold) / 200);
@@ -552,7 +552,7 @@ namespace SeeSharpTools.JY.GUI
 
             Pen thickPen = new Pen(Color.Black, Width / 50);
             Pen thinPen = new Pen(Color.Black, Width / 100);
-            float rulerValue =(float) Min;
+            float rulerValue = (float)Min;
             for (int i = 0; i <= noOfParts; i++)
             {
                 //Draw Thick Line

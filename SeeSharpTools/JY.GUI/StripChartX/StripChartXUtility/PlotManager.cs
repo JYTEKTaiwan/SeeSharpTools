@@ -1,13 +1,12 @@
-﻿using System;
+﻿using SeeSharpTools.JY.GUI.StripChartXData;
+using SeeSharpTools.JY.GUI.StripChartXData.DataEntities;
+using SeeSharpTools.JY.GUI.StripChartXEditor;
+using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms.DataVisualization.Charting;
-using SeeSharpTools.JY.GUI.StripChartXData;
-using SeeSharpTools.JY.GUI.StripChartXData.DataEntities;
-using SeeSharpTools.JY.GUI.StripChartXEditor;
 
 namespace SeeSharpTools.JY.GUI.StripChartXUtility
 {
@@ -90,7 +89,7 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
 
         public int SeriesCount
         {
-            get { return _plotSeriesCount;}
+            get { return _plotSeriesCount; }
             set
             {
                 if (_plotSeriesCount == value)
@@ -101,7 +100,7 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
                 _parentChart?.AdaptPlotSeriesAndChartView();
             }
         }
-        
+
 
         public bool IsPlotting { get; private set; }
         private readonly StripChartX _parentChart;
@@ -136,7 +135,7 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
             DataEntityInfo dataEntityInfo = new DataEntityInfo()
             {
                 Capacity = this.DisplayPoints,
-                DataType = typeof (TDataType),
+                DataType = typeof(TDataType),
                 LineCount = lineCount,
                 XType = XDataType
             };
@@ -217,7 +216,7 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
             if (isNeedRefreshPlot)
             {
                 IList xDataBuf = dataEntity.GetXData();
-                
+
                 for (int seriesIndex = 0; seriesIndex < dataEntity.DataInfo.LineCount; seriesIndex++)
                 {
                     IList yDataBuf = dataEntity.GetYData()[seriesIndex] as IList;
@@ -292,17 +291,17 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
             }
         }
 
-//        internal void AdaptPlotSeriesAndDataEntity()
-//        {
-//            //            if (_isPlot)
-//            //            {
-//            //                AdaptSeriesCount();
-//            //                AdaptPlotDatasCount(0);
-//            //            }
-//            AdaptSeriesCount();
-//            AdaptPlotDatasCount(0);
-//        }
-        
+        //        internal void AdaptPlotSeriesAndDataEntity()
+        //        {
+        //            //            if (_isPlot)
+        //            //            {
+        //            //                AdaptSeriesCount();
+        //            //                AdaptPlotDatasCount(0);
+        //            //            }
+        //            AdaptSeriesCount();
+        //            AdaptPlotDatasCount(0);
+        //        }
+
         // 清空绘图
         internal void Clear()
         {
@@ -339,7 +338,7 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
             return 1;
         }
 
-        public void GetMaxAndMinYValue(StripChartXPlotArea plotArea, out double maxYValue, out double minYValue, 
+        public void GetMaxAndMinYValue(StripChartXPlotArea plotArea, out double maxYValue, out double minYValue,
             int seriesIndex)
         {
             maxYValue = double.NaN;
@@ -387,7 +386,7 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
             }
         }
 
-        public void GetMaxAndMinY2Value(StripChartXPlotArea plotArea, out double maxYValue, out double minYValue, 
+        public void GetMaxAndMinY2Value(StripChartXPlotArea plotArea, out double maxYValue, out double minYValue,
             int seriesIndex)
         {
             maxYValue = double.NaN;
@@ -432,7 +431,7 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
 
         public bool HasSeriesInXAxis(StripChartXAxis.PlotAxis plotAxis, StripChartXPlotArea plotArea)
         {
-            return PlotSeries.Any(item => item.ChartArea.Equals(plotArea.Name) && item.XAxisType == (AxisType) plotAxis);
+            return PlotSeries.Any(item => item.ChartArea.Equals(plotArea.Name) && item.XAxisType == (AxisType)plotAxis);
         }
 
         public bool HasSeriesInYAxis(StripChartXPlotArea plotArea, StripChartXAxis.PlotAxis plotAxis)

@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-using System;
 
 /// <summary>
 /// 修改日期：2017.06.24
@@ -39,7 +39,7 @@ namespace SeeSharpTools.JY.GUI
             _controls = new List<IndustrySwitch>();
             _model = new IndustrySwitch();
             Dimension = 1;
-            
+
             ControlWidth = 80;
             ControlHeight = 30;
             Direction = true;
@@ -47,7 +47,7 @@ namespace SeeSharpTools.JY.GUI
             flpanel.AutoScroll = true;
             flpanel.FlowDirection = FlowDirection.TopDown;
             flpanel.WrapContents = false;
-            
+
         }
 
 
@@ -219,13 +219,13 @@ namespace SeeSharpTools.JY.GUI
             {
                 for (int i = 0; i < Dimension; i++)
                 {
-                    if (_controls.ElementAt(i).Value!= values[i])
+                    if (_controls.ElementAt(i).Value != values[i])
                     {
                         _controls.ElementAt(i).Value = values[i];
-                        ValueChangedEventArgs arg = new ValueChangedEventArgs(i,values[i]);
+                        ValueChangedEventArgs arg = new ValueChangedEventArgs(i, values[i]);
                         SendEvent(arg);
                     }
-                    
+
 
                 }
             }
@@ -237,10 +237,10 @@ namespace SeeSharpTools.JY.GUI
                     if (_controls.ElementAt(i).Value != values[i])
                     {
                         _controls.ElementAt(i).Value = values[i];
-                        ValueChangedEventArgs arg = new ValueChangedEventArgs(i,values[i]);
+                        ValueChangedEventArgs arg = new ValueChangedEventArgs(i, values[i]);
                         SendEvent(arg);
                     }
-                    
+
 
                 }
             }
@@ -304,8 +304,8 @@ namespace SeeSharpTools.JY.GUI
 
         private void Item_ValueChanged1(object sender, EventArgs e)
         {
-            int index=_controls.IndexOf((IndustrySwitch)sender);
-            ValueChangedEventArgs arg = new ValueChangedEventArgs(index,Value[index]);
+            int index = _controls.IndexOf((IndustrySwitch)sender);
+            ValueChangedEventArgs arg = new ValueChangedEventArgs(index, Value[index]);
             SendEvent(arg);
         }
 

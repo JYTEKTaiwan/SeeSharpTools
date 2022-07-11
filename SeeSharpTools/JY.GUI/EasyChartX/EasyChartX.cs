@@ -1,19 +1,18 @@
-﻿using System;
-using System.ComponentModel;
-using System.Drawing;
-using System.Windows.Forms;
-using System.Windows.Forms.DataVisualization.Charting;
+﻿using SeeSharpTools.JY.GUI.Common.i18n;
+using SeeSharpTools.JY.GUI.EasyChartXData;
+using SeeSharpTools.JY.GUI.EasyChartXEditor;
+using SeeSharpTools.JY.GUI.EasyChartXUtility;
+using SeeSharpTools.JY.GUI.TabCursorUtility;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.Design;
+using System.Drawing;
 using System.Drawing.Design;
 using System.IO;
 using System.Linq;
-using System.Text;
-using SeeSharpTools.JY.GUI.Common.i18n;
-using SeeSharpTools.JY.GUI.EasyChartXData;
-using SeeSharpTools.JY.GUI.EasyChartXEditor;
-using SeeSharpTools.JY.GUI.TabCursorUtility;
-using SeeSharpTools.JY.GUI.EasyChartXUtility;
+using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 using Control = System.Windows.Forms.Control;
 using UserControl = System.Windows.Forms.UserControl;
 
@@ -55,7 +54,7 @@ namespace SeeSharpTools.JY.GUI
         [
             Browsable(true),
             Category("Appearance"),
-            Description("Set the BackColor of ChartArea.")      
+            Description("Set the BackColor of ChartArea.")
         ]
         public Color ChartAreaBackColor
         {
@@ -94,7 +93,7 @@ namespace SeeSharpTools.JY.GUI
                 _chartViewManager.IsSplitView = value;
             }
         }
-        
+
         /// <summary>
         /// Get or specify whether enable cumulative.
         /// </summary>
@@ -309,7 +308,7 @@ namespace SeeSharpTools.JY.GUI
             }
             set
             {
-                _chart.BackGradientStyle = (GradientStyle) value;
+                _chart.BackGradientStyle = (GradientStyle)value;
             }
         }
 
@@ -436,7 +435,7 @@ namespace SeeSharpTools.JY.GUI
         [
             Browsable(true),
             Bindable(true),
-            Editor(typeof (ArrayEditor), typeof (UITypeEditor)),
+            Editor(typeof(ArrayEditor), typeof(UITypeEditor)),
             Category("Design"),
             Description("Specify or get the attribute of X and Y Axis."),
             EditorBrowsable(EditorBrowsableState.Never),
@@ -493,7 +492,7 @@ namespace SeeSharpTools.JY.GUI
         [
             Browsable(true),
             Bindable(BindableSupport.Yes, BindingDirection.TwoWay),
-            Editor(typeof (ArrayEditor), typeof (UITypeEditor)),
+            Editor(typeof(ArrayEditor), typeof(UITypeEditor)),
             Category("Design"),
             Description("Specify or get the attribute of X and Y Axis."),
             EditorBrowsable(EditorBrowsableState.Never),
@@ -504,8 +503,8 @@ namespace SeeSharpTools.JY.GUI
             get { return _cursors; }
             set
             {
-                XCursor = value[0]; 
-                YCursor = value[1]; 
+                XCursor = value[0];
+                YCursor = value[1];
             }
         }
 
@@ -515,7 +514,7 @@ namespace SeeSharpTools.JY.GUI
         [
             Browsable(true),
             DesignerSerializationVisibility(DesignerSerializationVisibility.Content),
-            Editor(typeof (EasyChartXLineSeriesEditor), typeof (UITypeEditor)),
+            Editor(typeof(EasyChartXLineSeriesEditor), typeof(UITypeEditor)),
             Category("Design"),
             Description("Specify or get the attribute of all series."),
             EditorBrowsable(EditorBrowsableState.Never)
@@ -528,7 +527,7 @@ namespace SeeSharpTools.JY.GUI
         [
             Browsable(false),
             DesignerSerializationVisibility(DesignerSerializationVisibility.Content),
-            Editor(typeof (EasyChartXLineSeriesEditor), typeof (UITypeEditor)),
+            Editor(typeof(EasyChartXLineSeriesEditor), typeof(UITypeEditor)),
             Category("Design"),
             Description("Specify or get the attribute of all series."),
             EditorBrowsable(EditorBrowsableState.Always)
@@ -667,7 +666,7 @@ namespace SeeSharpTools.JY.GUI
 
         internal void OnBeforePlot(bool isClearOperation)
         {
-            BeforePlot?.Invoke(this, new EasyChartXPlotEventArgs() {ParentChart = this, IsClear = isClearOperation});
+            BeforePlot?.Invoke(this, new EasyChartXPlotEventArgs() { ParentChart = this, IsClear = isClearOperation });
         }
 
         /// <summary>
@@ -723,10 +722,10 @@ namespace SeeSharpTools.JY.GUI
             this.BackColor = _chart.BackColor;
             this.BackColorChanged += (sender, args) => { _chart.BackColor = this.BackColor; };
             // 字体和字体颜色与坐标轴的字体和字体颜色绑定
-            this.ForeColorChanged += (sender, args) => { _chartViewManager.SetAxisLabelStyle();};
-            this.FontChanged += (sender, args) => { _chartViewManager.SetAxisLabelStyle();};
+            this.ForeColorChanged += (sender, args) => { _chartViewManager.SetAxisLabelStyle(); };
+            this.FontChanged += (sender, args) => { _chartViewManager.SetAxisLabelStyle(); };
         }
-        
+
         private void AddEasyChartXEvents()
         {
             // 触发用户鼠标点击事件
@@ -1038,56 +1037,56 @@ namespace SeeSharpTools.JY.GUI
 
         // TODO IList模板类接口暂时屏蔽
         #region Template IList interface
-/*
+        /*
 
-        /// <summary>
-        /// Plot one or more line data with xIncrement x
-        /// </summary>
-        /// <param name="yData">Y datas to plot</param>
-        /// <param name="xStart">offset value for generating x sequence using "offset + (xIncrement * i)"</param>
-        /// <param name="xIncrement">xIncrement value for generating x sequence using "offset + (xIncrement * i)"</param>
-        /// <param name="xSize">X data size, when xSize smaller than 1 means only one line in yData</param>
-        public void Plot<TDataType>(IList<TDataType> yData, double xStart = 0, double xIncrement = 1, int xSize = 0)
-        {
-            int lastSeriesCount = _plotManager.SeriesCount;
-            if (xSize <= 0)
-            {
-                xSize = yData.Count;
-            }
-            _plotManager.AddPlotData(xStart, xIncrement, yData, xSize, yData.Count);
-            AdaptPlotSeriesAndChartView(_plotManager.SeriesCount != lastSeriesCount);
-            _chartViewManager.RefreshAxesAndCursors();
-            PlotDataInRange();
-        }
+                /// <summary>
+                /// Plot one or more line data with xIncrement x
+                /// </summary>
+                /// <param name="yData">Y datas to plot</param>
+                /// <param name="xStart">offset value for generating x sequence using "offset + (xIncrement * i)"</param>
+                /// <param name="xIncrement">xIncrement value for generating x sequence using "offset + (xIncrement * i)"</param>
+                /// <param name="xSize">X data size, when xSize smaller than 1 means only one line in yData</param>
+                public void Plot<TDataType>(IList<TDataType> yData, double xStart = 0, double xIncrement = 1, int xSize = 0)
+                {
+                    int lastSeriesCount = _plotManager.SeriesCount;
+                    if (xSize <= 0)
+                    {
+                        xSize = yData.Count;
+                    }
+                    _plotManager.AddPlotData(xStart, xIncrement, yData, xSize, yData.Count);
+                    AdaptPlotSeriesAndChartView(_plotManager.SeriesCount != lastSeriesCount);
+                    _chartViewManager.RefreshAxesAndCursors();
+                    PlotDataInRange();
+                }
 
-        /// <summary>
-        /// Plot x[] and y[] pair on chart.
-        /// </summary>
-        /// <param name="xData"> x sequence to plot</param>
-        /// <param name="yData"> y sequence to plot</param>
-        public void Plot<TDataType>(IList<TDataType> xData, IList<TDataType> yData)
-        {
-            int lastSeriesCount = _plotManager.SeriesCount;
-            _plotManager.AddPlotData(xData, yData, yData.Count, yData.Count);
-            AdaptPlotSeriesAndChartView(_plotManager.SeriesCount != lastSeriesCount);
-            _chartViewManager.RefreshAxesAndCursors();
-            PlotDataInRange();
-        }
+                /// <summary>
+                /// Plot x[] and y[] pair on chart.
+                /// </summary>
+                /// <param name="xData"> x sequence to plot</param>
+                /// <param name="yData"> y sequence to plot</param>
+                public void Plot<TDataType>(IList<TDataType> xData, IList<TDataType> yData)
+                {
+                    int lastSeriesCount = _plotManager.SeriesCount;
+                    _plotManager.AddPlotData(xData, yData, yData.Count, yData.Count);
+                    AdaptPlotSeriesAndChartView(_plotManager.SeriesCount != lastSeriesCount);
+                    _chartViewManager.RefreshAxesAndCursors();
+                    PlotDataInRange();
+                }
 
-        /// <summary>
-        /// Plot MutiDimension x and y data on chart.
-        /// </summary>
-        /// <param name="xData"> x sequences to plot</param>
-        /// <param name="yData"> y sequences to plot</param>
-        public void Plot<TDataType>(IList<IList<TDataType>> xData, IList<IList<TDataType>> yData)
-        {
-            int lastSeriesCount = _plotManager.SeriesCount;
-            _plotManager.AddPlotData(xData, yData);
-            AdaptPlotSeriesAndChartView(_plotManager.SeriesCount != lastSeriesCount);
-            _chartViewManager.RefreshAxesAndCursors();
-            PlotDataInRange();
-        }
-*/
+                /// <summary>
+                /// Plot MutiDimension x and y data on chart.
+                /// </summary>
+                /// <param name="xData"> x sequences to plot</param>
+                /// <param name="yData"> y sequences to plot</param>
+                public void Plot<TDataType>(IList<IList<TDataType>> xData, IList<IList<TDataType>> yData)
+                {
+                    int lastSeriesCount = _plotManager.SeriesCount;
+                    _plotManager.AddPlotData(xData, yData);
+                    AdaptPlotSeriesAndChartView(_plotManager.SeriesCount != lastSeriesCount);
+                    _chartViewManager.RefreshAxesAndCursors();
+                    PlotDataInRange();
+                }
+        */
 
         #endregion
 
@@ -1096,7 +1095,7 @@ namespace SeeSharpTools.JY.GUI
         /// </summary>
         public void Clear()
         {
-//            BindPlotSeriesAndChartView();
+            //            BindPlotSeriesAndChartView();
             this._dataMarkerManager.Hide();
             OnBeforePlot(true);
             _plotManager.Clear();
@@ -1114,7 +1113,7 @@ namespace SeeSharpTools.JY.GUI
         /// <param name="markerType">标记的类型</param>
         /// <param name="xAxis">标记对应的X坐标轴：主坐标轴/副坐标轴</param>
         /// <param name="yAxis">标记对应的Y坐标轴：主坐标轴/副坐标轴</param>
-        public void AddDataMarker(IList<double> xValue, IList<double> yValue, Color markerColor, DataMarkerType markerType = DataMarkerType.Square, 
+        public void AddDataMarker(IList<double> xValue, IList<double> yValue, Color markerColor, DataMarkerType markerType = DataMarkerType.Square,
             EasyChartXAxis.PlotAxis xAxis = EasyChartXAxis.PlotAxis.Primary, EasyChartXAxis.PlotAxis yAxis = EasyChartXAxis.PlotAxis.Primary)
         {
             this._dataMarkerManager.Show(xValue, yValue, markerColor, markerType, xAxis, yAxis);
@@ -1197,7 +1196,7 @@ namespace SeeSharpTools.JY.GUI
         #endregion
 
         #region Event Handler
-        
+
         private void Chart_AxisViewChanged(object sender, ViewEventArgs viewEventArgs)
         {
             if (null == viewEventArgs || null == viewEventArgs.ChartArea)
@@ -1454,16 +1453,16 @@ namespace SeeSharpTools.JY.GUI
             RefreshDynamicCursorMenuItems();
             //显示菜单栏
             EasyChartXFunctionMenu.Show(_chart, eventArgs.Location);
-            
+
         }
-        
+
         private void RefreshContextMenuItems()
         {
             // 配置未绘图情况下部分菜单项不使能
             bool isPlotting = IsPlotting();
             ToolStripMenuItem_xAxisZoom.Enabled = isPlotting;
             ToolStripMenuItem_yAxisZoom.Enabled = isPlotting;
-            ToolStripMenuItem_windowZoom.Enabled =isPlotting;
+            ToolStripMenuItem_windowZoom.Enabled = isPlotting;
             ToolStripMenuItem_zoomReset.Enabled = isPlotting;
             ToolStripMenuItem_showValue.Enabled = isPlotting;
             ToolStripMenuItem_saveAsPicture.Enabled = isPlotting;
@@ -1482,11 +1481,11 @@ namespace SeeSharpTools.JY.GUI
             toolStripMenuItem_splitView.Checked = _chartViewManager.IsSplitView;
             ToolStripMenuItem_legendVisible.Checked = LegendVisible;
             ToolStripMenuItem_yAxisAutoScale.Checked = _hitPlotArea.AxisY.AutoScale;
-            
+
             // 分区视图隐藏CursorSeries
-//            ToolStripMenuItem_showSeriesParent.Visible = !_chartViewManager.IsSplitView;
+            //            ToolStripMenuItem_showSeriesParent.Visible = !_chartViewManager.IsSplitView;
             ToolStripMenuItem_cursorSeriesParent.Visible = (!_chartViewManager.IsSplitView && IsCursorMode(_hitPlotArea));
-//            toolStripSeparator_range.Visible = !_chartViewManager.IsSplitView;
+            //            toolStripSeparator_range.Visible = !_chartViewManager.IsSplitView;
         }
 
         private void RefreshEnableSeriesMenuItems()
@@ -1670,7 +1669,7 @@ namespace SeeSharpTools.JY.GUI
                 MessageBox.Show(ex.Message);
             }
         }
-        
+
         /// <summary>
         /// 事件内容，是否显示LegendItem
         /// </summary>
@@ -1738,7 +1737,7 @@ namespace SeeSharpTools.JY.GUI
                 _hitPlotArea.XCursor.Mode = EasyChartXCursor.CursorMode.Zoom;
                 _hitPlotArea.YCursor.Mode = EasyChartXCursor.CursorMode.Disabled;
             }
-//            RefreshCursorSeriesMenuItems();
+            //            RefreshCursorSeriesMenuItems();
         }
 
         /// <summary>
@@ -1769,7 +1768,7 @@ namespace SeeSharpTools.JY.GUI
                 _hitPlotArea.XCursor.Mode = EasyChartXCursor.CursorMode.Disabled;
                 _hitPlotArea.YCursor.Mode = EasyChartXCursor.CursorMode.Zoom;
             }
-//            RefreshCursorSeriesMenuItems();
+            //            RefreshCursorSeriesMenuItems();
         }
         /// <summary>
         /// 点击ToolStripMenu  ZoomWindows状态的变化
@@ -1797,7 +1796,7 @@ namespace SeeSharpTools.JY.GUI
                 _hitPlotArea.XCursor.Mode = EasyChartXCursor.CursorMode.Zoom;
                 _hitPlotArea.YCursor.Mode = EasyChartXCursor.CursorMode.Zoom;
             }
-//            RefreshCursorSeriesMenuItems();
+            //            RefreshCursorSeriesMenuItems();
         }
 
         /// <summary>
@@ -1832,7 +1831,7 @@ namespace SeeSharpTools.JY.GUI
             _hitPlotArea?.AxisX.ZoomReset();
             _hitPlotArea?.AxisY.ZoomReset();
             // 暂时屏蔽，会影响正常轴的缩放
-//            _hitPlotArea?.AxisX2.ZoomReset();
+            //            _hitPlotArea?.AxisX2.ZoomReset();
             _hitPlotArea?.AxisY2.ZoomReset();
         }
 
@@ -1862,7 +1861,7 @@ namespace SeeSharpTools.JY.GUI
             {
                 item.Checked = false;
             }
-            ((ToolStripMenuItem) sender).Checked = true;
+            ((ToolStripMenuItem)sender).Checked = true;
             _hitPlotArea?.BindCursorToAxis();
         }
 
@@ -2121,7 +2120,7 @@ namespace SeeSharpTools.JY.GUI
         private void ChartViewOnPostPaint(object sender, ChartPaintEventArgs eventArgs)
         {
             // 如果不是分区视图、如果是手动强制刷新UI元素、如果图例相关参数未变化、如果视图管理器未完成视图匹配则不更新视图
-            if (!_chartViewManager.IsSplitView || _isRefreshPaint || !IsLegendParamChanged() || 
+            if (!_chartViewManager.IsSplitView || _isRefreshPaint || !IsLegendParamChanged() ||
                 _chartViewManager.SplitPlotAreas.Count != _plotManager.SeriesCount)
             {
                 return;
@@ -2129,7 +2128,7 @@ namespace SeeSharpTools.JY.GUI
             // 绘图时先绘制ChartArea再绘制Legend最后绘制Chart
             // 如果使能Legend,绘制完Legend后强制更新绘图区并刷新整个绘图
             // 如果不使能Legend，绘制完Chart后更新绘图区并强制更新绘图区
-            if ((LegendVisible && ReferenceEquals(eventArgs.ChartElement.GetType(), typeof(Legend))) || 
+            if ((LegendVisible && ReferenceEquals(eventArgs.ChartElement.GetType(), typeof(Legend))) ||
                 (!LegendVisible && ReferenceEquals(eventArgs.ChartElement.GetType(), typeof(Chart))))
             {
                 _chartViewManager.ArrangeSplitPlotAreas();
@@ -2216,6 +2215,6 @@ namespace SeeSharpTools.JY.GUI
         }
         #endregion
 
-        
+
     }
 }

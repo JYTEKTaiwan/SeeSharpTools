@@ -2,7 +2,7 @@
 using System.Windows.Forms;
 
 namespace SeeSharpTools.JY.GUI
-{    
+{
     internal partial class SlideProperty : Form
     {
         private Slide _changedCtrl;
@@ -101,7 +101,7 @@ namespace SeeSharpTools.JY.GUI
                 numericUpDown_TrackerHeight.Value = numericUpDown_TrackerWidth.Value;
             }
 
-            
+
         }
 
         private void numericUpDown_TrackerWidth_ValueChanged(object sender, EventArgs e)
@@ -142,7 +142,7 @@ namespace SeeSharpTools.JY.GUI
 
         private void numericUpDown_TickWidth_ValueChanged(object sender, EventArgs e)
         {
-            _changedCtrl.TickWidth=(int)numericUpDown_TickWidth.Value;
+            _changedCtrl.TickWidth = (int)numericUpDown_TickWidth.Value;
         }
 
         private void button_TickColor_Click(object sender, EventArgs e)
@@ -198,7 +198,7 @@ namespace SeeSharpTools.JY.GUI
         private void button_Confirm_Click(object sender, EventArgs e)
         {
             windowCloseButton = true;
-            this.Close();   
+            this.Close();
         }
 
         private void button_Cancel_Click(object sender, EventArgs e)

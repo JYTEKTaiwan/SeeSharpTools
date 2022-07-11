@@ -28,7 +28,7 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
         public const double ClearXInterval = 200;
         // Clear时Y轴主网格间隔
         public const double ClearYInterval = 0.5;
-//        public const string DefaultTimeFormat = "hh:mm:ss:fff";
+        //        public const string DefaultTimeFormat = "hh:mm:ss:fff";
         // 非对数绘图时X轴主网格的个数
         public const int MaxXGridCount = 10;
         // 非对数绘图时Y轴主网格的个数
@@ -74,7 +74,7 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
         // Y轴不取消缩放时最大支持的范围差比例
         public const double MaxDiffToKeepYScaleview = 5;
         // 最小的float差
-        public const float MinFloatDiff = (float) 1E-20;
+        public const float MinFloatDiff = (float)1E-20;
         // 默认的Y轴最大最小值
         public const double DefaultYMax = 3.5;
         public const double DefaultYMin = 0.5;
@@ -93,13 +93,13 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
         static Constants()
         {
             ValidDataType = new HashSet<Type>();
-            ValidDataType.Add(typeof (double));
-            ValidDataType.Add(typeof (float));
-            ValidDataType.Add(typeof (int));
-            ValidDataType.Add(typeof (uint));
-            ValidDataType.Add(typeof (short));
-            ValidDataType.Add(typeof (ushort));
-            ValidDataType.Add(typeof (byte));
+            ValidDataType.Add(typeof(double));
+            ValidDataType.Add(typeof(float));
+            ValidDataType.Add(typeof(int));
+            ValidDataType.Add(typeof(uint));
+            ValidDataType.Add(typeof(short));
+            ValidDataType.Add(typeof(ushort));
+            ValidDataType.Add(typeof(byte));
         }
     }
 }

@@ -16,7 +16,7 @@ namespace SeeSharpTools.JY.GUI.StripChartXData
         public int BufSize { get; }
         // 是否已经开始覆盖的标识位
         public bool IsOverLap { get; private set; }
-        private DataEnumerator<TDataType> _enumerator; 
+        private DataEnumerator<TDataType> _enumerator;
 
         public OverLapWrapBuffer(int bufSize)
         {
@@ -45,20 +45,20 @@ namespace SeeSharpTools.JY.GUI.StripChartXData
             if (_endIndex + copySize > BufSize)
             {
                 int firstCopySize = BufSize - _endIndex;
-                Buffer.BlockCopy(data, offSet * _typeSize, _dataBuf, _endIndex*_typeSize, 
-                    firstCopySize*_typeSize);
-                Buffer.BlockCopy(data, (firstCopySize + offSet) * _typeSize, _dataBuf, 0, 
-                    (copySize - firstCopySize)*_typeSize);
+                Buffer.BlockCopy(data, offSet * _typeSize, _dataBuf, _endIndex * _typeSize,
+                    firstCopySize * _typeSize);
+                Buffer.BlockCopy(data, (firstCopySize + offSet) * _typeSize, _dataBuf, 0,
+                    (copySize - firstCopySize) * _typeSize);
             }
             else
             {
-                Buffer.BlockCopy(data, offSet * _typeSize, _dataBuf, _endIndex * _typeSize, 
+                Buffer.BlockCopy(data, offSet * _typeSize, _dataBuf, _endIndex * _typeSize,
                     copySize * _typeSize);
             }
-            _endIndex = (_endIndex + copySize)%BufSize;
+            _endIndex = (_endIndex + copySize) % BufSize;
             UpdateOverLapStatus();
         }
-        
+
         public void ReadData(int readLength, ICollection<TDataType> buf)
         {
             if (readLength > DataSize)
@@ -78,7 +78,7 @@ namespace SeeSharpTools.JY.GUI.StripChartXData
                 removeSize = DataSize;
             }
             DataSize -= removeSize;
-            _startIndex = (_startIndex + removeSize)%BufSize;
+            _startIndex = (_startIndex + removeSize) % BufSize;
             UpdateOverLapStatus();
             return removeSize;
         }
@@ -86,7 +86,7 @@ namespace SeeSharpTools.JY.GUI.StripChartXData
         public TDataType Dequeue()
         {
             int index = _startIndex;
-            _startIndex = (_startIndex + 1)%BufSize;
+            _startIndex = (_startIndex + 1) % BufSize;
             DataSize--;
             return _dataBuf[index];
         }
@@ -97,13 +97,13 @@ namespace SeeSharpTools.JY.GUI.StripChartXData
             {
                 return 0;
             }
-            int maxCount = (DataSize - offSet - 1)/step + 1;
+            int maxCount = (DataSize - offSet - 1) / step + 1;
             if (maxCount < readLength || readLength <= 0)
             {
                 readLength = maxCount;
             }
-            int readIndex = (_startIndex + offSet)%BufSize;
-            while (readLength -- > 0)
+            int readIndex = (_startIndex + offSet) % BufSize;
+            while (readLength-- > 0)
             {
                 buf.Add(_dataBuf[readIndex]);
                 readIndex = (readIndex + step) % BufSize;
@@ -178,17 +178,17 @@ namespace SeeSharpTools.JY.GUI.StripChartXData
 
         public IEnumerator<TDataType> GetEnumerator()
         {
-//            for (int i = 0; i < DataSize; i++)
-//            {
-//                yield return _dataBuf[(_startIndex + i)%BufSize];
-//            }
-//            _enumerator.Reset();
+            //            for (int i = 0; i < DataSize; i++)
+            //            {
+            //                yield return _dataBuf[(_startIndex + i)%BufSize];
+            //            }
+            //            _enumerator.Reset();
             return _enumerator;
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-//            _enumerator.Reset();
+            //            _enumerator.Reset();
             return _enumerator;
         }
 
@@ -336,7 +336,7 @@ namespace SeeSharpTools.JY.GUI.StripChartXData
             {
                 readLength = maxCount;
             }
-            int readIndex = (_startIndex + offSet)% BufSize;
+            int readIndex = (_startIndex + offSet) % BufSize;
             while (readLength-- > 0)
             {
                 buf.Add(_dataBuf[readIndex]);
@@ -399,13 +399,13 @@ namespace SeeSharpTools.JY.GUI.StripChartXData
 
         public IEnumerator<string> GetEnumerator()
         {
-//            _enumerator.Reset();
+            //            _enumerator.Reset();
             return _enumerator;
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-//            _enumerator.Reset();
+            //            _enumerator.Reset();
             return _enumerator;
         }
 
@@ -447,7 +447,7 @@ namespace SeeSharpTools.JY.GUI.StripChartXData
         {
             this._data = data;
             this._pos = -1;
-        } 
+        }
 
         public bool MoveNext()
         {
@@ -460,7 +460,8 @@ namespace SeeSharpTools.JY.GUI.StripChartXData
             _pos = -1;
         }
 
-        public object Current {
+        public object Current
+        {
             get
             {
                 try

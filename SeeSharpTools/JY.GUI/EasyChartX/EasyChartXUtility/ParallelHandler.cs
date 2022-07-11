@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Concurrent;
+﻿using SeeSharpTools.JY.GUI.EasyChartXData;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using SeeSharpTools.JY.GUI.EasyChartXData;
 
 namespace SeeSharpTools.JY.GUI.EasyChartXUtility
 {
@@ -32,7 +31,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
             this._dataCheckParams = dataCheckParams;
             // 计算限制型配置并行度为内核个数
             _option.MaxDegreeOfParallelism = Environment.ProcessorCount;
-//            _option.MaxDegreeOfParallelism = 1;
+            //            _option.MaxDegreeOfParallelism = 1;
 
             this._maxDatas = new double[_option.MaxDegreeOfParallelism];
             this._minDatas = new double[_option.MaxDegreeOfParallelism];
@@ -40,7 +39,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
 
         #region Invalid Data Check
 
-        private Dictionary<int, double> _invalidBuf; 
+        private Dictionary<int, double> _invalidBuf;
         public void InvalidDataCheck(IList<double> checkData, Dictionary<int, double> invalidBuf)
         {
             if (_dataCheckParams.IsCheckDisabled() || null == checkData || 0 == checkData.Count)
@@ -76,7 +75,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
         // 过滤越界数据，将其替换为Nan(空点)
         private void CheckDataExceedRange(int blockIndex)
         {
-            int start = blockIndex*_blockSize + _indexOffset;
+            int start = blockIndex * _blockSize + _indexOffset;
             int end = start + _blockSize;
             if (start >= _datas.Count)
             {
@@ -115,7 +114,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
             {
                 end = _datas.Count;
             }
-            for(int index = start; index < end; index++)
+            for (int index = start; index < end; index++)
             {
                 double originalValue = _datas[index];
                 if (double.IsNaN(originalValue))
@@ -199,7 +198,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
 
 
         #region Max / Min /Interval计算
-        
+
         private readonly double[] _maxDatas;
         private readonly double[] _minDatas;
 
@@ -300,7 +299,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
         #endregion
 
         #region Fill Function
-        
+
         #region No Fit
 
         public void FillNoneFitPlotData(int startIndex, bool isLogView)
@@ -330,8 +329,8 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
                         startXValue = Constants.MinPositiveDoubleValue;
                     }
                     double axisValue = Math.Log10(startXValue);
-                    double axisEndValue = Math.Log10(startXValue + _buffer.SparseRatio*_buffer.PlotSize*_dataEntity.XIncrement);
-                    double stepRatio = (axisEndValue - axisValue)/_buffer.PlotSize;
+                    double axisEndValue = Math.Log10(startXValue + _buffer.SparseRatio * _buffer.PlotSize * _dataEntity.XIncrement);
+                    double stepRatio = (axisEndValue - axisValue) / _buffer.PlotSize;
                     for (int index = 0; index < _buffer.PlotSize; index++)
                     {
                         int pointIndex = (int)Math.Round(Math.Pow(10, axisValue));
@@ -375,16 +374,16 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
             _blockSize = GetBlockSize(this._dataEntity.PlotBuf.PlotSize / 2);
             if (isLogView)
             {
-                double startXValue = _dataEntity.XStart + indexOffset*_dataEntity.XIncrement;
+                double startXValue = _dataEntity.XStart + indexOffset * _dataEntity.XIncrement;
                 if (startXValue < Constants.MinPositiveDoubleValue)
                 {
                     startXValue = Constants.MinPositiveDoubleValue;
                 }
                 double axisStartValue = Math.Log10(startXValue);
                 // 因为按块稀疏点，导致最后一个段不会被计算到，所以需要给PlotSize+1
-                double axisEndValue = Math.Log10(startXValue + _buffer.SparseRatio*(_buffer.PlotSize + 1)*_dataEntity.XIncrement);
+                double axisEndValue = Math.Log10(startXValue + _buffer.SparseRatio * (_buffer.PlotSize + 1) * _dataEntity.XIncrement);
                 // 多加一个常数，减少因为误差导致的点数少计算的问题
-                this._logBlockSize = (axisEndValue - axisStartValue)/_option.MaxDegreeOfParallelism + Constants.MinDoubleValue;
+                this._logBlockSize = (axisEndValue - axisStartValue) / _option.MaxDegreeOfParallelism + Constants.MinDoubleValue;
             }
             this._indexOffset = indexOffset;
             if (XDataInputType.Increment == this._dataEntity.DataInfo.XDataInputType)
@@ -410,29 +409,29 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
             IList<IList<double>> yDataBuf = _buffer.YPlotBuffer;
 
             // 一个拟合对在真是数据中的索引起始位置
-            int start = _blockSize*segmentIndex;
+            int start = _blockSize * segmentIndex;
             // 一个拟合对在真是数据中的索引结束位置，不包含该位置
-            int end = _blockSize*(segmentIndex + 1);
-            if (end > this._buffer.PlotSize/2)
+            int end = _blockSize * (segmentIndex + 1);
+            if (end > this._buffer.PlotSize / 2)
             {
-                end = this._buffer.PlotSize/2;
+                end = this._buffer.PlotSize / 2;
             }
             // 两个相邻的数据作为拟合对。
             for (int dataPairIndex = start; dataPairIndex < end; dataPairIndex++)
             {
                 // 待写入缓存的索引位置
-                int startBufIndex = 2*dataPairIndex;
+                int startBufIndex = 2 * dataPairIndex;
                 // 真实数据的起始索引
-                int pointStartIndex = startBufIndex*_buffer.SparseRatio + _indexOffset;
+                int pointStartIndex = startBufIndex * _buffer.SparseRatio + _indexOffset;
                 // 真实数据的终止索引位置，不包含该点
-                int pointEndIndex = pointStartIndex + 2*_buffer.SparseRatio;
+                int pointEndIndex = pointStartIndex + 2 * _buffer.SparseRatio;
                 if (pointEndIndex > _dataEntity.DataInfo.Size)
                 {
                     pointEndIndex = _dataEntity.DataInfo.Size;
                 }
 
-                xDataBuf[startBufIndex] = _dataEntity.XStart + pointStartIndex*_dataEntity.XIncrement;
-                xDataBuf[startBufIndex + 1] = _dataEntity.XStart + (pointStartIndex+_buffer.SparseRatio) * _dataEntity.XIncrement; ;
+                xDataBuf[startBufIndex] = _dataEntity.XStart + pointStartIndex * _dataEntity.XIncrement;
+                xDataBuf[startBufIndex + 1] = _dataEntity.XStart + (pointStartIndex + _buffer.SparseRatio) * _dataEntity.XIncrement; ;
 
                 int lineIndexOffset = 0;
                 for (int lineIndex = 0; lineIndex < _dataEntity.DataInfo.LineNum; lineIndex++)
@@ -484,7 +483,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
             IList<double> xDataBuf = _buffer.XPlotBuffer;
             IList<IList<double>> yDataBuf = _buffer.YPlotBuffer;
 
-            double axisOffset = Math.Log10(_dataEntity.XStart + this._indexOffset * _dataEntity.XIncrement) + _logBlockSize*blockIndex;
+            double axisOffset = Math.Log10(_dataEntity.XStart + this._indexOffset * _dataEntity.XIncrement) + _logBlockSize * blockIndex;
             double startXValue, endXValue;
             int startXIndex, endXIndex;
             endXValue = Math.Round(Math.Pow(10, axisOffset));
@@ -494,10 +493,10 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
             for (int plotIndex = start; plotIndex < end; plotIndex++)
             {
                 // 待写入缓存的索引位置
-                int bufIndex = plotIndex*2;
+                int bufIndex = plotIndex * 2;
                 startXValue = endXValue;
-                endXValue = Math.Round(Math.Pow(10, axisOffset + (pairIndex + 1)*_logBlockSize/pairCount));
-                double middleXValue = Math.Round(Math.Pow(10, axisOffset + (pairIndex + 0.5)*_logBlockSize/pairCount));
+                endXValue = Math.Round(Math.Pow(10, axisOffset + (pairIndex + 1) * _logBlockSize / pairCount));
+                double middleXValue = Math.Round(Math.Pow(10, axisOffset + (pairIndex + 0.5) * _logBlockSize / pairCount));
                 pairIndex++;
                 // 真实数据的起始索引
                 startXIndex = (int)Math.Round((startXValue - _dataEntity.XStart) / _dataEntity.XIncrement);
@@ -552,8 +551,8 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
                     lineIndexOffset += _dataEntity.DataInfo.Size;
                 }
             }
-            int startBufIndex = 2*start;
-            int endBufIndex = 2*end;
+            int startBufIndex = 2 * start;
+            int endBufIndex = 2 * end;
 
             // 如果相邻三个点的值不同，则认为该数据无需执行拟合操作
             if (Math.Abs(xDataBuf[startBufIndex + 1] - xDataBuf[startBufIndex]) < Constants.MinPositiveDoubleValue ||
@@ -612,7 +611,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
         {
             double startValue = plotBuf[startIndex];
             double endValue = plotBuf[endIndex];
-            double step = (endValue - startValue)/(endIndex - startIndex);
+            double step = (endValue - startValue) / (endIndex - startIndex);
             double value = startValue;
             for (int i = startIndex + 1; i < endIndex; i++)
             {
@@ -627,22 +626,22 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
             IList<IList<double>> yDataBuf = _buffer.YPlotBuffer;
 
             // 一个拟合对在真是数据中的索引起始位置
-            int start = _blockSize*segmentIndex;
+            int start = _blockSize * segmentIndex;
             // 一个拟合对在真是数据中的索引结束位置，不包含该位置
-            int end = _blockSize*(segmentIndex + 1);
-            if (end > this._buffer.PlotSize/2)
+            int end = _blockSize * (segmentIndex + 1);
+            if (end > this._buffer.PlotSize / 2)
             {
-                end = this._buffer.PlotSize/2;
+                end = this._buffer.PlotSize / 2;
             }
             // 两个相邻的数据作为拟合对。
             for (int dataPairIndex = start; dataPairIndex < end; dataPairIndex++)
             {
                 // 待写入缓存的索引位置
-                int startBufIndex = 2*dataPairIndex;
+                int startBufIndex = 2 * dataPairIndex;
                 // 真实数据的起始索引
-                int pointStartIndex = startBufIndex*_buffer.SparseRatio + _indexOffset;
+                int pointStartIndex = startBufIndex * _buffer.SparseRatio + _indexOffset;
                 // 真实数据的终止索引，不包含该点
-                int pointEndIndex = pointStartIndex + 2*_buffer.SparseRatio;
+                int pointEndIndex = pointStartIndex + 2 * _buffer.SparseRatio;
                 if (pointEndIndex > _dataEntity.DataInfo.Size)
                 {
                     pointEndIndex = _dataEntity.DataInfo.Size;
@@ -723,7 +722,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
 
         private void TransposeSingleBlock(int blockIndex, object state)
         {
-            int startRowIndex = blockIndex*_blockSize;
+            int startRowIndex = blockIndex * _blockSize;
             int endRowIndex = startRowIndex + _blockSize;
             int sampleCount = _transposeSrc.GetLength(0);
             if (endRowIndex > sampleCount)

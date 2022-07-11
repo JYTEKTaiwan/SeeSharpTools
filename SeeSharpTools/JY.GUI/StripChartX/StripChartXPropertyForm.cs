@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+﻿using SeeSharpTools.JY.GUI.StripChartXUtility;
+using System;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-using System.Windows.Forms.DataVisualization.Charting;
-using SeeSharpTools.JY.GUI.StripChartXUtility;
 
 namespace SeeSharpTools.JY.GUI
 {
@@ -62,7 +56,7 @@ namespace SeeSharpTools.JY.GUI
             }
             else
                 checkBox_AreaTransparent.Checked = false;
-            
+
             if (_changedCtrl.LegendBackColor == Color.Transparent)
             {
                 checkBox_LegendTransparent.Checked = true;
@@ -70,10 +64,10 @@ namespace SeeSharpTools.JY.GUI
             else
                 checkBox_LegendTransparent.Checked = false;
 
-            comboBox_GradientStyle.SelectedText =  _changedCtrl.GradientStyle.ToString();
+            comboBox_GradientStyle.SelectedText = _changedCtrl.GradientStyle.ToString();
             //update X&Y Logarithmic
-//            checkBox_XAxisLogarithmic.Checked = _changedCtrl.XAxisLogarithmic;
-//            checkBox_YAxisLogarithmic.Checked = _changedCtrl.YAxisLogarithmic;
+            //            checkBox_XAxisLogarithmic.Checked = _changedCtrl.XAxisLogarithmic;
+            //            checkBox_YAxisLogarithmic.Checked = _changedCtrl.YAxisLogarithmic;
         }
 
         private void numericUpDown_Height_ValueChanged(object sender, EventArgs e)
@@ -158,12 +152,12 @@ namespace SeeSharpTools.JY.GUI
 
         private void comboBox_GradientStyle_SelectedIndexChanged(object sender, EventArgs e)
         {
-            _changedCtrl.GradientStyle =  (StripChartX.ChartGradientStyle)Enum.Parse(typeof(StripChartX.ChartGradientStyle), comboBox_GradientStyle.Text, true);
+            _changedCtrl.GradientStyle = (StripChartX.ChartGradientStyle)Enum.Parse(typeof(StripChartX.ChartGradientStyle), comboBox_GradientStyle.Text, true);
         }
 
         private void checkBox_XAxisLogarithmic_CheckedChanged(object sender, EventArgs e)
         {
-//            _changedCtrl.XAxisLogarithmic = checkBox_XAxisLogarithmic.Checked;
+            //            _changedCtrl.XAxisLogarithmic = checkBox_XAxisLogarithmic.Checked;
         }
 
         private void checkBox_YAxisLogarithmic_CheckedChanged(object sender, EventArgs e)

@@ -1,8 +1,5 @@
-﻿using System.Drawing;
-using System.Windows.Forms;
-using System.ComponentModel;
-using System;
-using System.Collections.Generic;
+﻿using System.ComponentModel;
+using System.Drawing;
 
 namespace SeeSharpTools.JY.GUI
 {
@@ -15,7 +12,7 @@ namespace SeeSharpTools.JY.GUI
 
         private Color m_Color;
 
-    
+
         public double Start
         {
             get

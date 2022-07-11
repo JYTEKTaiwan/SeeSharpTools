@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Windows.Forms;
-using System.IO;
 using System.ComponentModel;
 using System.Drawing;
+using System.IO;
+using System.Windows.Forms;
 
 /// <summary>
 /// PathControl
@@ -86,7 +86,7 @@ namespace SeeSharpTools.JY.GUI
             switch (mode)
             {
                 case PathMode.Folder:
-                    if (folderBrowserDialog1.ShowDialog()==DialogResult.OK)
+                    if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
                     {
                         Path = folderBrowserDialog1.SelectedPath;
                     }
@@ -105,7 +105,7 @@ namespace SeeSharpTools.JY.GUI
                     {
                         if (openFileDialog1.CheckFileExists)
                         {
-                            Path= openFileDialog1.FileName;
+                            Path = openFileDialog1.FileName;
                         }
                         else
                         {
@@ -151,8 +151,8 @@ namespace SeeSharpTools.JY.GUI
                 if (files != null && files.Length != 0)
                 {
                     FileAttributes fa = File.GetAttributes(files[0]);
-                    
-                    if ((fa & FileAttributes.Directory) == FileAttributes.Directory )
+
+                    if ((fa & FileAttributes.Directory) == FileAttributes.Directory)
                     {
                         if (mode == PathMode.Folder)
                         {
@@ -165,9 +165,9 @@ namespace SeeSharpTools.JY.GUI
                     }
                     else
                     {
-                        if (mode == PathMode.File )
+                        if (mode == PathMode.File)
                         {
-                            if (new FileInfo(files[0]).Extension == "." + extFileType||extFileType=="")
+                            if (new FileInfo(files[0]).Extension == "." + extFileType || extFileType == "")
                             {
                                 e.Effect = DragDropEffects.All;
                             }
@@ -206,7 +206,7 @@ namespace SeeSharpTools.JY.GUI
             //check 
             //1. if path exists
             //2. if the path is file or folder      
-            if (path!="")
+            if (path != "")
             {
                 fi = new FileInfo(path);
                 if ((fi.Attributes & FileAttributes.Directory) == FileAttributes.Directory)
@@ -225,7 +225,7 @@ namespace SeeSharpTools.JY.GUI
             {
                 return path;
             }
-            
+
             if (isPathValid)
             {
                 switch (mode)

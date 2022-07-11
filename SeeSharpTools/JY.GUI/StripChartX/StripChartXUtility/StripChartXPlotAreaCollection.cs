@@ -1,7 +1,7 @@
-﻿using System.Collections;
+﻿using SeeSharpTools.JY.GUI.StripChartXUtility;
+using System.Collections;
 using System.Collections.Generic;
 using System.Windows.Forms.DataVisualization.Charting;
-using SeeSharpTools.JY.GUI.StripChartXUtility;
 
 namespace SeeSharpTools.JY.GUI
 {
@@ -9,7 +9,7 @@ namespace SeeSharpTools.JY.GUI
     {
         private readonly StripChartX _parentChart;
         private readonly ChartAreaCollection _chartAreas;
-        private readonly List<StripChartXPlotArea> _plotAreas = new List<StripChartXPlotArea>(Constants.DefaultMaxSeriesCount); 
+        private readonly List<StripChartXPlotArea> _plotAreas = new List<StripChartXPlotArea>(Constants.DefaultMaxSeriesCount);
 
         public StripChartXPlotAreaCollection(StripChartX parentChart, ChartAreaCollection chartAreas)
         {

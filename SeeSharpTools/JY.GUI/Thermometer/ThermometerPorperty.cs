@@ -45,12 +45,12 @@ namespace SeeSharpTools.JY.GUI
             numericUp_DownDivisions.Value = _changedCtrl.NumberOfDivisions;
             numericUpDown_TextDecimals.Value = _changedCtrl.TextDecimals;
 
-            
+
         }
 
         private void numericUpDown_BallSize_ValueChanged(object sender, EventArgs e)
         {
-            _changedCtrl.BallSize =(int)numericUpDown_BallSize.Value;
+            _changedCtrl.BallSize = (int)numericUpDown_BallSize.Value;
         }
 
         private void button_ForeColor_Click(object sender, EventArgs e)
@@ -94,7 +94,7 @@ namespace SeeSharpTools.JY.GUI
             {
                 button_TickColor.BackColor = BorderColor.Color;
                 _changedCtrl.TickColor = BorderColor.Color;
-            }            
+            }
         }
 
         private void numericUpDown_LineWidth_ValueChanged(object sender, EventArgs e)
@@ -124,7 +124,7 @@ namespace SeeSharpTools.JY.GUI
 
         private void numericUpDown_Maximun_ValueChanged(object sender, EventArgs e)
         {
-            _changedCtrl.Max =(int) numericUpDown_Maximun.Value;
+            _changedCtrl.Max = (int)numericUpDown_Maximun.Value;
         }
 
         private void numericUpDown_Minimun_ValueChanged(object sender, EventArgs e)

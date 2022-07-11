@@ -10,11 +10,11 @@ namespace SeeSharpTools.JY.GUI
         //标志位，判断是由于调用this.close()完成的窗口关闭(true)，还是由于鼠标按下导致的窗口关闭(false)
         private bool windowCloseButton;
 
-        public EasyButtonProperty(EasyButton _ctrl )
+        public EasyButtonProperty(EasyButton _ctrl)
         {
             InitializeComponent();
             _beforeCtrl = ControlFactory.CloneCtrl(_ctrl);
-            _changedCtrl = _ctrl;    
+            _changedCtrl = _ctrl;
         }
 
 
@@ -48,7 +48,7 @@ namespace SeeSharpTools.JY.GUI
 
             //update groupbox of Size
             numericUpDown_Height.Value = _changedCtrl.Size.Height;
-            numericUpDown_Width.Value  = _changedCtrl.Size.Width;
+            numericUpDown_Width.Value = _changedCtrl.Size.Width;
             //update groupbox of Image
             foreach (EasyButton.ButtonPresetImage buttonStyle in Enum.GetValues(typeof(EasyButton.ButtonPresetImage)))
             {
@@ -73,12 +73,12 @@ namespace SeeSharpTools.JY.GUI
             button_Backcolor.BackColor = _changedCtrl.BackColor;
             button_Textcolor.BackColor = _changedCtrl.ForeColor;
             //update Font of Color
-            fontDialog1.Font = _changedCtrl.Font ;
+            fontDialog1.Font = _changedCtrl.Font;
 
         }
         private void numericUpDown_Height_ValueChanged(object sender, EventArgs e)
         {
-            _changedCtrl.Size = new System.Drawing.Size(_changedCtrl.Width,(int)numericUpDown_Height.Value);
+            _changedCtrl.Size = new System.Drawing.Size(_changedCtrl.Width, (int)numericUpDown_Height.Value);
         }
         private void numericUpDown_Width_ValueChanged(object sender, EventArgs e)
         {
@@ -89,7 +89,7 @@ namespace SeeSharpTools.JY.GUI
             if (fontDialog1.ShowDialog() == DialogResult.OK)
             {
                 _changedCtrl.Font = fontDialog1.Font;
-            }            
+            }
         }
 
         private void presentImageCombox_SelectedIndexChanged(object sender, EventArgs e)
@@ -100,7 +100,7 @@ namespace SeeSharpTools.JY.GUI
         private void radioButton_Image_CheckedChanged(object sender, EventArgs e)
         {
             if (radioButton_Imageleft.Checked == true)
-                _changedCtrl.ImageAlign =  System.Drawing.ContentAlignment.MiddleLeft;
+                _changedCtrl.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             if (radioButton_ImageMiddle.Checked == true)
                 _changedCtrl.ImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             if (radioButton_Imageright.Checked == true)

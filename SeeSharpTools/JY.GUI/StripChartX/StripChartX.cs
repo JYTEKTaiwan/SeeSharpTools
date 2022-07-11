@@ -1,19 +1,16 @@
-﻿using System;
+﻿using SeeSharpTools.JY.GUI.Common.i18n;
+using SeeSharpTools.JY.GUI.StripChartXEditor;
+using SeeSharpTools.JY.GUI.StripChartXUtility;
+using SeeSharpTools.JY.GUI.StripTabCursorUtility;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.Design;
 using System.Drawing;
+using System.Drawing.Design;
+using System.Linq;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
-using System.Collections.Generic;
-using System.ComponentModel.Design;
-using System.Drawing.Design;
-using System.IO;
-using System.Linq;
-using System.Text;
-using SeeSharpTools.JY.GUI.Common.i18n;
-using SeeSharpTools.JY.GUI.StripChartXData;
-using SeeSharpTools.JY.GUI.StripChartXEditor;
-using SeeSharpTools.JY.GUI.StripTabCursorUtility;
-using SeeSharpTools.JY.GUI.StripChartXUtility;
 using Control = System.Windows.Forms.Control;
 using UserControl = System.Windows.Forms.UserControl;
 
@@ -57,7 +54,7 @@ namespace SeeSharpTools.JY.GUI
         [
             Browsable(true),
             Category("Appearance"),
-            Description("Set the BackColor of ChartArea.")      
+            Description("Set the BackColor of ChartArea.")
         ]
         public Color ChartAreaBackColor
         {
@@ -96,7 +93,7 @@ namespace SeeSharpTools.JY.GUI
                 _chartViewManager.IsSplitView = value;
             }
         }
-        
+
         /// <summary>
         /// Get plot areas in split view.
         /// </summary>
@@ -205,7 +202,7 @@ namespace SeeSharpTools.JY.GUI
             }
             set
             {
-                _chart.BackGradientStyle = (GradientStyle) value;
+                _chart.BackGradientStyle = (GradientStyle)value;
             }
         }
 
@@ -306,7 +303,7 @@ namespace SeeSharpTools.JY.GUI
         [
             Browsable(true),
             Bindable(true),
-            Editor(typeof (ArrayEditor), typeof (UITypeEditor)),
+            Editor(typeof(ArrayEditor), typeof(UITypeEditor)),
             Category("Design"),
             Description("Specify or get the attribute of X and Y Axis."),
             EditorBrowsable(EditorBrowsableState.Never),
@@ -363,7 +360,7 @@ namespace SeeSharpTools.JY.GUI
         [
             Browsable(true),
             Bindable(BindableSupport.Yes, BindingDirection.TwoWay),
-            Editor(typeof (ArrayEditor), typeof (UITypeEditor)),
+            Editor(typeof(ArrayEditor), typeof(UITypeEditor)),
             Category("Design"),
             Description("Specify or get the attribute of X and Y Axis."),
             EditorBrowsable(EditorBrowsableState.Never),
@@ -374,8 +371,8 @@ namespace SeeSharpTools.JY.GUI
             get { return _cursors; }
             set
             {
-                XCursor = value[0]; 
-                YCursor = value[1]; 
+                XCursor = value[0];
+                YCursor = value[1];
             }
         }
 
@@ -385,7 +382,7 @@ namespace SeeSharpTools.JY.GUI
         [
             Browsable(true),
             DesignerSerializationVisibility(DesignerSerializationVisibility.Content),
-            Editor(typeof (StripChartXLineSeriesEditor), typeof (UITypeEditor)),
+            Editor(typeof(StripChartXLineSeriesEditor), typeof(UITypeEditor)),
             Category("Design"),
             Description("Specify or get the attribute of all series."),
             EditorBrowsable(EditorBrowsableState.Never)
@@ -398,7 +395,7 @@ namespace SeeSharpTools.JY.GUI
         [
             Browsable(false),
             DesignerSerializationVisibility(DesignerSerializationVisibility.Content),
-            Editor(typeof (StripChartXLineSeriesEditor), typeof (UITypeEditor)),
+            Editor(typeof(StripChartXLineSeriesEditor), typeof(UITypeEditor)),
             Category("Design"),
             Description("Specify or get the attribute of all series."),
             EditorBrowsable(EditorBrowsableState.Always)
@@ -482,7 +479,7 @@ namespace SeeSharpTools.JY.GUI
             {
                 if (value < Constants.MinDisplayPoints || value > Constants.MaxDisplayPoints)
                 {
-                    throw new ArgumentOutOfRangeException(i18n.GetFStr("ParamCheck.InvalidRange", "DisplayPoints", Constants.MinDisplayPoints, 
+                    throw new ArgumentOutOfRangeException(i18n.GetFStr("ParamCheck.InvalidRange", "DisplayPoints", Constants.MinDisplayPoints,
                         Constants.MaxDisplayPoints));
                 }
                 if (IsPlotting())
@@ -514,7 +511,7 @@ namespace SeeSharpTools.JY.GUI
                 _plotManager.XDataType = value;
             }
         }
-        
+
         /// <summary>
         /// Time stamp format
         /// 时间戳格式
@@ -586,7 +583,7 @@ namespace SeeSharpTools.JY.GUI
                 {
                     throw new InvalidOperationException(i18n.GetFStr("Runtime.NotSetInRunTime", "StartIndex"));
                 }
-                _plotManager.StartIndex = value; 
+                _plotManager.StartIndex = value;
             }
         }
 
@@ -698,7 +695,7 @@ namespace SeeSharpTools.JY.GUI
 
         internal void OnBeforePlot(bool isClearOperation)
         {
-            BeforePlot?.Invoke(this, new StripChartXPlotEventArgs() {ParentChart = this, IsClear = isClearOperation});
+            BeforePlot?.Invoke(this, new StripChartXPlotEventArgs() { ParentChart = this, IsClear = isClearOperation });
         }
 
         /// <summary>
@@ -753,10 +750,10 @@ namespace SeeSharpTools.JY.GUI
             this.BackColor = _chart.BackColor;
             this.BackColorChanged += (sender, args) => { _chart.BackColor = this.BackColor; };
             // 字体和字体颜色与坐标轴的字体和字体颜色绑定
-            this.ForeColorChanged += (sender, args) => { _chartViewManager.SetAxisLabelStyle();};
-            this.FontChanged += (sender, args) => { _chartViewManager.SetAxisLabelStyle();};
+            this.ForeColorChanged += (sender, args) => { _chartViewManager.SetAxisLabelStyle(); };
+            this.FontChanged += (sender, args) => { _chartViewManager.SetAxisLabelStyle(); };
         }
-        
+
         private void AddChartEvents()
         {
             // 触发用户鼠标点击事件
@@ -802,7 +799,7 @@ namespace SeeSharpTools.JY.GUI
             {
                 InitPlotManagerAndViewManager<TDataType>(seriesCount, xLabels.Length, true);
             }
-            CheckYData(seriesCount, typeof (TDataType));
+            CheckYData(seriesCount, typeof(TDataType));
             _plotManager.DataEntity.AddPlotData(xLabels, lineData);
             _chartViewManager.RefreshAxesAndCursors();
             PlotDataInRange();
@@ -821,7 +818,7 @@ namespace SeeSharpTools.JY.GUI
             {
                 InitPlotManagerAndViewManager<TDataType>(seriesCount, xLabels.Length, true);
             }
-            CheckYData(seriesCount, typeof (TDataType));
+            CheckYData(seriesCount, typeof(TDataType));
             _plotManager.DataEntity.AddPlotData(xLabels, lineData);
             _chartViewManager.RefreshAxesAndCursors();
             PlotDataInRange();
@@ -840,7 +837,7 @@ namespace SeeSharpTools.JY.GUI
             {
                 InitPlotManagerAndViewManager<TDataType>(seriesCount, xLabels.Length, true);
             }
-            CheckYData(seriesCount, typeof (TDataType));
+            CheckYData(seriesCount, typeof(TDataType));
             _plotManager.DataEntity.AddPlotData(xLabels, lineData);
             _chartViewManager.RefreshAxesAndCursors();
             PlotDataInRange();
@@ -854,12 +851,12 @@ namespace SeeSharpTools.JY.GUI
         public void Plot<TDataType>(TDataType[] lineData, DateTime[] xLabels)
         {
             CheckXData(XAxisDataType.TimeStamp);
-            int seriesCount = lineData.Length/xLabels.Length;
+            int seriesCount = lineData.Length / xLabels.Length;
             if (!_plotManager.IsPlotting)
             {
                 InitPlotManagerAndViewManager<TDataType>(seriesCount, xLabels.Length, true);
             }
-            CheckYData(seriesCount, typeof (TDataType));
+            CheckYData(seriesCount, typeof(TDataType));
             _plotManager.DataEntity.AddPlotData(xLabels, lineData);
             _chartViewManager.RefreshAxesAndCursors();
             PlotDataInRange();
@@ -877,7 +874,7 @@ namespace SeeSharpTools.JY.GUI
             {
                 InitPlotManagerAndViewManager<TDataType>(seriesCount, lineData.GetLength(1), false);
             }
-            CheckYData(seriesCount, typeof (TDataType));
+            CheckYData(seriesCount, typeof(TDataType));
             _plotManager.DataEntity.AddPlotData(lineData, lineData.GetLength(1));
             _chartViewManager.RefreshAxesAndCursors();
             PlotDataInRange();
@@ -895,7 +892,7 @@ namespace SeeSharpTools.JY.GUI
             {
                 InitPlotManagerAndViewManager<TDataType>(seriesCount, lineData.Length, false);
             }
-            CheckYData(seriesCount, typeof (TDataType));
+            CheckYData(seriesCount, typeof(TDataType));
             _plotManager.DataEntity.AddPlotData(lineData, lineData.Length);
             _chartViewManager.RefreshAxesAndCursors();
             PlotDataInRange();
@@ -918,8 +915,8 @@ namespace SeeSharpTools.JY.GUI
             {
                 InitPlotManagerAndViewManager<TDataType>(seriesCount, 1, true);
             }
-            CheckYData(seriesCount, typeof (TDataType));
-            _plotManager.DataEntity.AddPlotData(new string[] {xLabel}, lineData);
+            CheckYData(seriesCount, typeof(TDataType));
+            _plotManager.DataEntity.AddPlotData(new string[] { xLabel }, lineData);
             _chartViewManager.RefreshAxesAndCursors();
             PlotDataInRange();
         }
@@ -937,8 +934,8 @@ namespace SeeSharpTools.JY.GUI
             {
                 InitPlotManagerAndViewManager<TDataType>(seriesCount, 1, true);
             }
-            CheckYData(seriesCount, typeof (TDataType));
-            _plotManager.DataEntity.AddPlotData(new DateTime[] {xLabel}, lineData);
+            CheckYData(seriesCount, typeof(TDataType));
+            _plotManager.DataEntity.AddPlotData(new DateTime[] { xLabel }, lineData);
             _chartViewManager.RefreshAxesAndCursors();
             PlotDataInRange();
         }
@@ -955,7 +952,7 @@ namespace SeeSharpTools.JY.GUI
             {
                 InitPlotManagerAndViewManager<TDataType>(seriesCount, 1, true);
             }
-            CheckYData(seriesCount, typeof (TDataType));
+            CheckYData(seriesCount, typeof(TDataType));
             _plotManager.DataEntity.AddPlotData(lineData, 1);
             _chartViewManager.RefreshAxesAndCursors();
             PlotDataInRange();
@@ -1042,7 +1039,7 @@ namespace SeeSharpTools.JY.GUI
 
         private void InitPlotManagerAndViewManager<TDataType>(int newSeriesCount, int sampleCount, bool singleSampleMode)
         {
-            Type dataType = typeof (TDataType);
+            Type dataType = typeof(TDataType);
             if (!Constants.ValidDataType.Contains(dataType))
             {
                 throw new ArgumentException(i18n.GetFStr("RunTime.InvalidDataType", dataType.Name));
@@ -1059,7 +1056,7 @@ namespace SeeSharpTools.JY.GUI
         /// </summary>
         public void Clear()
         {
-//            BindPlotSeriesAndChartView();
+            //            BindPlotSeriesAndChartView();
             OnBeforePlot(true);
             _plotManager.Clear();
             _chartViewManager.Clear();
@@ -1136,7 +1133,7 @@ namespace SeeSharpTools.JY.GUI
         #endregion
 
         #region Event Handler
-        
+
         private void Chart_AxisViewChanged(object sender, ViewEventArgs viewEventArgs)
         {
             if (null == viewEventArgs || null == viewEventArgs.ChartArea)
@@ -1171,7 +1168,7 @@ namespace SeeSharpTools.JY.GUI
                         changedAxis = _chartViewManager.SplitPlotAreas[seriesIndex].AxisX;
                         changedAxis.RefreshGridsAndLabels();
                         _plotManager.PlotDataInRange(axis.ScaleView.ViewMinimum, axis.ScaleView.ViewMaximum, seriesIndex, false);
-                        
+
                     }
                 }
             }
@@ -1305,15 +1302,15 @@ namespace SeeSharpTools.JY.GUI
                 return dispText;
             }
             double xNearValue = xCursor.Value;
-//            double yValue = yCursor.Value;
+            //            double yValue = yCursor.Value;
             if (hitPlotArea.AxisX.IsLogarithmic)
             {
                 xNearValue = Math.Pow(10, xNearValue);
             }
-//            if (hitPlotArea.AxisY.IsLogarithmic)
-//            {
-//                yValue = Math.Pow(10, yValue);
-//            }
+            //            if (hitPlotArea.AxisY.IsLogarithmic)
+            //            {
+            //                yValue = Math.Pow(10, yValue);
+            //            }
             int xIndex = ViewAdapter.GetVerifiedIndex(xNearValue);
             string xValue = _plotManager.DataEntity.GetXValue(xIndex);
             double yValue = (double)_plotManager.DataEntity.GetYValue(xIndex, seriesIndex);
@@ -1344,16 +1341,16 @@ namespace SeeSharpTools.JY.GUI
             RefreshDynamicCursorMenuItems();
             //显示菜单栏
             ChartFunctionMenu.Show(_chart, eventArgs.Location);
-            
+
         }
-        
+
         private void RefreshContextMenuItems()
         {
             // 配置未绘图情况下部分菜单项不使能
             bool isPlotting = IsPlotting();
             ToolStripMenuItem_xAxisZoom.Enabled = isPlotting;
             ToolStripMenuItem_yAxisZoom.Enabled = isPlotting;
-            ToolStripMenuItem_windowZoom.Enabled =isPlotting;
+            ToolStripMenuItem_windowZoom.Enabled = isPlotting;
             ToolStripMenuItem_zoomReset.Enabled = isPlotting;
             ToolStripMenuItem_showValue.Enabled = isPlotting;
             ToolStripMenuItem_saveAsPicture.Enabled = isPlotting;
@@ -1372,11 +1369,11 @@ namespace SeeSharpTools.JY.GUI
             toolStripMenuItem_splitView.Checked = _chartViewManager.IsSplitView;
             ToolStripMenuItem_legendVisible.Checked = LegendVisible;
             ToolStripMenuItem_yAxisAutoScale.Checked = _hitPlotArea.AxisY.AutoScale;
-            
+
             // 分区视图隐藏CursorSeries
-//            ToolStripMenuItem_showSeriesParent.Visible = !_chartViewManager.IsSplitView;
+            //            ToolStripMenuItem_showSeriesParent.Visible = !_chartViewManager.IsSplitView;
             ToolStripMenuItem_cursorSeriesParent.Visible = (!_chartViewManager.IsSplitView && IsCursorMode(_hitPlotArea));
-//            toolStripSeparator_range.Visible = !_chartViewManager.IsSplitView;
+            //            toolStripSeparator_range.Visible = !_chartViewManager.IsSplitView;
         }
 
         private void RefreshEnableSeriesMenuItems()
@@ -1560,7 +1557,7 @@ namespace SeeSharpTools.JY.GUI
                 MessageBox.Show(ex.Message);
             }
         }
-        
+
         /// <summary>
         /// 事件内容，是否显示LegendItem
         /// </summary>
@@ -1628,7 +1625,7 @@ namespace SeeSharpTools.JY.GUI
                 _hitPlotArea.XCursor.Mode = StripChartXCursor.CursorMode.Zoom;
                 _hitPlotArea.YCursor.Mode = StripChartXCursor.CursorMode.Disabled;
             }
-//            RefreshCursorSeriesMenuItems();
+            //            RefreshCursorSeriesMenuItems();
         }
 
         /// <summary>
@@ -1659,7 +1656,7 @@ namespace SeeSharpTools.JY.GUI
                 _hitPlotArea.XCursor.Mode = StripChartXCursor.CursorMode.Disabled;
                 _hitPlotArea.YCursor.Mode = StripChartXCursor.CursorMode.Zoom;
             }
-//            RefreshCursorSeriesMenuItems();
+            //            RefreshCursorSeriesMenuItems();
         }
         /// <summary>
         /// 点击ToolStripMenu  ZoomWindows状态的变化
@@ -1687,7 +1684,7 @@ namespace SeeSharpTools.JY.GUI
                 _hitPlotArea.XCursor.Mode = StripChartXCursor.CursorMode.Zoom;
                 _hitPlotArea.YCursor.Mode = StripChartXCursor.CursorMode.Zoom;
             }
-//            RefreshCursorSeriesMenuItems();
+            //            RefreshCursorSeriesMenuItems();
         }
 
         /// <summary>
@@ -1722,7 +1719,7 @@ namespace SeeSharpTools.JY.GUI
             _hitPlotArea?.AxisX.ZoomReset();
             _hitPlotArea?.AxisY.ZoomReset();
             // 暂时屏蔽，会影响正常轴的缩放
-//            _hitPlotArea?.AxisX2.ZoomReset();
+            //            _hitPlotArea?.AxisX2.ZoomReset();
             _hitPlotArea?.AxisY2.ZoomReset();
         }
 
@@ -1752,7 +1749,7 @@ namespace SeeSharpTools.JY.GUI
             {
                 item.Checked = false;
             }
-            ((ToolStripMenuItem) sender).Checked = true;
+            ((ToolStripMenuItem)sender).Checked = true;
             _hitPlotArea?.BindCursorToAxis();
         }
 
@@ -1973,7 +1970,7 @@ namespace SeeSharpTools.JY.GUI
         private void ChartViewOnPostPaint(object sender, ChartPaintEventArgs eventArgs)
         {
             // 如果不是分区视图、如果是手动强制刷新UI元素、如果图例相关参数未变化、如果视图管理器未完成视图匹配则不更新视图
-            if (!_chartViewManager.IsSplitView || _isRefreshPaint || !IsLegendParamChanged() || 
+            if (!_chartViewManager.IsSplitView || _isRefreshPaint || !IsLegendParamChanged() ||
                 _chartViewManager.SplitPlotAreas.Count != _plotManager.SeriesCount)
             {
                 return;
@@ -1981,7 +1978,7 @@ namespace SeeSharpTools.JY.GUI
             // 绘图时先绘制ChartArea再绘制Legend最后绘制Chart
             // 如果使能Legend,绘制完Legend后强制更新绘图区并刷新整个绘图
             // 如果不使能Legend，绘制完Chart后更新绘图区并强制更新绘图区
-            if ((LegendVisible && ReferenceEquals(eventArgs.ChartElement.GetType(), typeof(Legend))) || 
+            if ((LegendVisible && ReferenceEquals(eventArgs.ChartElement.GetType(), typeof(Legend))) ||
                 (!LegendVisible && ReferenceEquals(eventArgs.ChartElement.GetType(), typeof(Chart))))
             {
                 _chartViewManager.ArrangeSplitPlotAreas();
@@ -2125,6 +2122,6 @@ namespace SeeSharpTools.JY.GUI
         };
 
         #endregion
-        
+
     }
 }

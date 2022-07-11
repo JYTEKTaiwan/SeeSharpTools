@@ -30,7 +30,7 @@ namespace SeeSharpTools.JY.GUI
         private int decimals;
         private int barsBetweenNumbers = defaultBarsBetweenNumbers;
         private Brush textureBrush;
-        private int numberofDevision =10;
+        private int numberofDevision = 10;
         private float glossinessAlpha = 60;
 
 
@@ -113,8 +113,8 @@ namespace SeeSharpTools.JY.GUI
                     Value = max;
                 }
 
-                Interval =(float)(max - min) / numberofDevision;
-                NumberSpacing = (270 /(double) numberofDevision);
+                Interval = (float)(max - min) / numberofDevision;
+                NumberSpacing = (270 / (double)numberofDevision);
 
 
                 Invalidate();
@@ -267,7 +267,7 @@ namespace SeeSharpTools.JY.GUI
             get { return barsBetweenNumbers; }
             set
             {
-                if (value > 1 && value <=10)
+                if (value > 1 && value <= 10)
                     barsBetweenNumbers = value;
                 Invalidate();
             }
@@ -299,10 +299,10 @@ namespace SeeSharpTools.JY.GUI
                     }
 
 
-                    Interval =(float) (max - min) / numberofDevision;
+                    Interval = (float)(max - min) / numberofDevision;
                     NumberSpacing = (270 / (double)numberofDevision);
 
-                   
+
                 }
                 Invalidate();
 
@@ -623,7 +623,7 @@ namespace SeeSharpTools.JY.GUI
         protected virtual void PaintNumbers(Graphics g)
         {
             double tmpAngle = StartAngle;
-            for (double d = Min; d <= Max+ Interval/2/(max-min); d += Interval)
+            for (double d = Min; d <= Max + Interval / 2 / (max - min); d += Interval)
             {
                 String text = Math.Round(d, Decimals).ToString();
                 PointF p = CalcTextPosition(tmpAngle, MeasureText(g, text, Font, (int)numberRect.Width));
@@ -647,7 +647,7 @@ namespace SeeSharpTools.JY.GUI
         protected virtual void PaintBars(Graphics g)
         {
             double tmpAngle = StartAngle;
-            for (double d = Min; d < Max+ Interval / 2/(max - min); d += Interval)
+            for (double d = Min; d < Max + Interval / 2 / (max - min); d += Interval)
             {
                 PaintBar(g, bar2Rect, bar3Rect, tmpAngle, defaultBarWidth, barColor);
                 if (ClockWise)
@@ -658,7 +658,7 @@ namespace SeeSharpTools.JY.GUI
             if (ClockWise)
             {
                 //原始代码 d<= StartAngle，为防止由于位数不统一造成的少计算，特别多了用<进行弥补
-                for (double d = tmpAngle + numberSpacing; d < StartAngle+ (float)numberSpacing / (NumberOfSubDivisons + 1); d += (float)numberSpacing / NumberOfSubDivisons)
+                for (double d = tmpAngle + numberSpacing; d < StartAngle + (float)numberSpacing / (NumberOfSubDivisons + 1); d += (float)numberSpacing / NumberOfSubDivisons)
                     PaintBar(g, bar1Rect, bar2Rect, d, .5f, barColor);
             }
             else

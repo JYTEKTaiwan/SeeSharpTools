@@ -12,7 +12,7 @@ namespace SeeSharpTools.JY.GUI.Common.i18n
     /// </summary>
     internal class I18nEntity : IDisposable
     {
-        private static ConcurrentDictionary<string, I18nEntity> _targetNameToInst = 
+        private static ConcurrentDictionary<string, I18nEntity> _targetNameToInst =
             new ConcurrentDictionary<string, I18nEntity>();
         private static readonly Assembly Assembly = Assembly.GetExecutingAssembly();
         private static string _languageType = "";
@@ -107,7 +107,7 @@ namespace SeeSharpTools.JY.GUI.Common.i18n
             catch (Exception ex)
             {
                 // ignore
-//                JYLog.Print("Format exception in {0}", ex.StackTrace);
+                //                JYLog.Print("Format exception in {0}", ex.StackTrace);
             }
             return labelFormat;
         }
@@ -183,7 +183,7 @@ namespace SeeSharpTools.JY.GUI.Common.i18n
             }
             catch (Exception ex)
             {
-//                JYLog.Print("Read label from resource {0} failed: {1}.", _resourceName, ex.Message);
+                //                JYLog.Print("Read label from resource {0} failed: {1}.", _resourceName, ex.Message);
                 return labelKey;
             }
             finally
@@ -224,7 +224,7 @@ namespace SeeSharpTools.JY.GUI.Common.i18n
             catch (Exception ex)
             {
                 // ignore
-//                JYLog.Print("Release {0} failed: {1}", resource.GetType().Name, ex.Message);
+                //                JYLog.Print("Release {0} failed: {1}", resource.GetType().Name, ex.Message);
             }
         }
 

@@ -1,14 +1,13 @@
 ﻿using System;
+using System.ComponentModel;
 using System.ComponentModel.Design;
 using System.Windows.Forms;
 using System.Windows.Forms.Design;
-using SeeSharpTools.JY.GUI;
-using System.ComponentModel;
 
 namespace SeeSharpTools.JY.GUI
 {
     [System.Security.Permissions.PermissionSet(System.Security.Permissions.SecurityAction.Demand, Name = "FullTrust")]
-   internal class EasyButtonDesigner : ParentControlDesigner
+    internal class EasyButtonDesigner : ParentControlDesigner
     {
         #region Fields
 

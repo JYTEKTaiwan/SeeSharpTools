@@ -140,11 +140,11 @@ namespace SeeSharpTools.JY.GUI
 
                         if (ToggleSwitch.OnSideAlignment == ButtonSwitch.ToggleSwitchAlignment.Center)
                         {
-                            textXPos = (float) fullRectangle.X + (((float) fullRectangle.Width - (float) textSize.Width)/2);
+                            textXPos = (float)fullRectangle.X + (((float)fullRectangle.Width - (float)textSize.Width) / 2);
                         }
                         else if (ToggleSwitch.OnSideAlignment == ButtonSwitch.ToggleSwitchAlignment.Near)
                         {
-                            textXPos = (float) fullRectangle.X + (float)fullRectangle.Width - (float) textSize.Width;
+                            textXPos = (float)fullRectangle.X + (float)fullRectangle.Width - (float)textSize.Width;
                         }
 
                         RectangleF textRectangle = new RectangleF(textXPos, (float)fullRectangle.Y + (((float)fullRectangle.Height - (float)textSize.Height) / 2), textSize.Width, textSize.Height);

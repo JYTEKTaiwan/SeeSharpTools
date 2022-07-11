@@ -1,8 +1,8 @@
 ﻿using System;
-using System.ComponentModel.Design;
-using System.Windows.Forms.Design;
-using System.Drawing;
 using System.ComponentModel;
+using System.ComponentModel.Design;
+using System.Drawing;
+using System.Windows.Forms.Design;
 
 namespace SeeSharpTools.JY.GUI
 {
@@ -99,8 +99,8 @@ namespace SeeSharpTools.JY.GUI
             }
             set
             {
-                if(value<=100&value>=0)
-                GetPropertyByName("Glossiness").SetValue(colUserControl, value);
+                if (value <= 100 & value >= 0)
+                    GetPropertyByName("Glossiness").SetValue(colUserControl, value);
             }
         }
         public double Value

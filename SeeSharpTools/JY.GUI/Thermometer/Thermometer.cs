@@ -1,15 +1,15 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Drawing;
-using System.Windows.Forms;
 using System.Drawing.Text;
+using System.Windows.Forms;
 
 
 namespace SeeSharpTools.JY.GUI
 {
 
     [Designer(typeof(ThermometerDesigner))]
- 
+
     [ToolboxBitmap(typeof(Slide), "Thermometer.Thermometer.bmp")]
     [DefaultProperty("Maximum")]
     [DefaultEvent("ValueChanged")]
@@ -33,7 +33,7 @@ namespace SeeSharpTools.JY.GUI
         private int _indentHeight = 10;
 
         private int _tickHeight = 2;
-        
+
         private Color _tickColor = Color.Black;
         private TickStyle _tickStyle = TickStyle.BottomRight;
         private TickStyle _textTickStyle = TickStyle.BottomRight;
@@ -51,7 +51,7 @@ namespace SeeSharpTools.JY.GUI
         private int decimals = 3;
         //  private SlidesTrackerStyle styles = SlidesTrackerStyle.rectangle;
         private int ballSize = 15;
-        private Size _trackerSize = new Size(15,15);
+        private Size _trackerSize = new Size(15, 15);
         private int _interval = 10;
         //tickFrequency = (max -min )/10
         private double _tickFrequency = 10;
@@ -87,7 +87,7 @@ namespace SeeSharpTools.JY.GUI
             _tickColor = Color.FromArgb(148, 146, 148);
             _tickHeight = 4;
 
-            _trackerSize = new Size(15,15);
+            _trackerSize = new Size(15, 15);
             _indentWidth = 6;
             _indentHeight = 6;
 
@@ -112,9 +112,9 @@ namespace SeeSharpTools.JY.GUI
             if (this._autoSize)
             {
                 // Calculate the Position for children controls
-              
-                    this.Width = FitSize.Width;
-              
+
+                this.Width = FitSize.Width;
+
                 //=================================================
             }
         }
@@ -590,7 +590,7 @@ namespace SeeSharpTools.JY.GUI
 
                 trackerRect = new RectangleF((float)currentUsedPos, (float)(workingRect.Bottom - currentTrackerPos - _trackerSize.Width), _trackerSize.Height, _trackerSize.Width);// Remember this for drawing the Tracker later
                 trackerRect.Inflate(-1, 0);
-                
+
                 // Clean up the Graphics object.
                 g.Dispose();
 
@@ -959,99 +959,99 @@ namespace SeeSharpTools.JY.GUI
 
             //==========================================================================
 
-             //_orientation == Orientation.Vertical
-            
-                currentUsedPos = _indentWidth;
+            //_orientation == Orientation.Vertical
+
+            currentUsedPos = _indentWidth;
+            //==========================================================================
+
+            // Get Width of Text Area
+            textAreaSize = e.Graphics.MeasureString(_maximum.ToString(), this.Font).Width;
+
+            if (_textTickStyle == TickStyle.TopLeft || _textTickStyle == TickStyle.Both)
+            {
                 //==========================================================================
-
-                // Get Width of Text Area
-                textAreaSize = e.Graphics.MeasureString(_maximum.ToString(), this.Font).Width;
-
-                if (_textTickStyle == TickStyle.TopLeft || _textTickStyle == TickStyle.Both)
-                {
-                    //==========================================================================
-                    // Draw the 1st Text Line.
-                    //==========================================================================
-                    // Get Height of Text Area
-                    drawRect = new RectangleF(currentUsedPos, workingRect.Top, textAreaSize, workingRect.Height);
-                    drawRect.Inflate(0, -_trackerSize.Width / 2);
-                    currentUsedPos += textAreaSize;
-
-                    DrawTickTextLine(e.Graphics, drawRect, _tickFrequency, _minimum, _maximum, this.ForeColor, this.Font, Orientation.Vertical);
-                    //==========================================================================
-                }
-
-                if (_tickStyle == TickStyle.TopLeft || _tickStyle == TickStyle.Both)
-                {
-                    //==========================================================================
-                    // Draw the 1st Tick Line.
-                    //==========================================================================
-                    drawRect = new RectangleF(currentUsedPos, workingRect.Top, _tickHeight, workingRect.Height);
-                    drawRect.Inflate(0, -_trackerSize.Width / 2);
-                    currentUsedPos += _tickHeight + 1;
-
-                    DrawTickLine(e.Graphics, drawRect, _tickFrequency, _minimum, _maximum, _tickColor, Orientation.Vertical);
-                    //==========================================================================
-                }
-
+                // Draw the 1st Text Line.
                 //==========================================================================
-                // Caculate the Tracker's rectangle
+                // Get Height of Text Area
+                drawRect = new RectangleF(currentUsedPos, workingRect.Top, textAreaSize, workingRect.Height);
+                drawRect.Inflate(0, -_trackerSize.Width / 2);
+                currentUsedPos += textAreaSize;
+
+                DrawTickTextLine(e.Graphics, drawRect, _tickFrequency, _minimum, _maximum, this.ForeColor, this.Font, Orientation.Vertical);
                 //==========================================================================
-                double currentTrackerPos;
-                currentTrackerPos = 0;
+            }
 
-                _trackerRect = new RectangleF(currentUsedPos, (float)(workingRect.Bottom - currentTrackerPos - _trackerSize.Width), _trackerSize.Height, _trackerSize.Width);// Remember this for drawing the Tracker later
-                                                                                                                                                                             //_trackerRect.Inflate(-1,0);
+            if (_tickStyle == TickStyle.TopLeft || _tickStyle == TickStyle.Both)
+            {
+                //==========================================================================
+                // Draw the 1st Tick Line.
+                //==========================================================================
+                drawRect = new RectangleF(currentUsedPos, workingRect.Top, _tickHeight, workingRect.Height);
+                drawRect.Inflate(0, -_trackerSize.Width / 2);
+                currentUsedPos += _tickHeight + 1;
 
-                rectTemp = _trackerRect;//Testing
+                DrawTickLine(e.Graphics, drawRect, _tickFrequency, _minimum, _maximum, _tickColor, Orientation.Vertical);
+                //==========================================================================
+            }
+
+            //==========================================================================
+            // Caculate the Tracker's rectangle
+            //==========================================================================
+            double currentTrackerPos;
+            currentTrackerPos = 0;
+
+            _trackerRect = new RectangleF(currentUsedPos, (float)(workingRect.Bottom - currentTrackerPos - _trackerSize.Width), _trackerSize.Height, _trackerSize.Width);// Remember this for drawing the Tracker later
+                                                                                                                                                                         //_trackerRect.Inflate(-1,0);
+
+            rectTemp = _trackerRect;//Testing
 
             //==========================================================================
             // Draw the Track Line
             //==========================================================================
 
 
-                drawRect = new RectangleF(currentUsedPos + _trackerSize.Height / 2 - _trackLineHeight / 2, workingRect.Top, _trackLineHeight, workingRect.Height);      
-                
-                DrawTrackLine(e.Graphics, drawRect);
+            drawRect = new RectangleF(currentUsedPos + _trackerSize.Height / 2 - _trackLineHeight / 2, workingRect.Top, _trackLineHeight, workingRect.Height);
+
+            DrawTrackLine(e.Graphics, drawRect);
+            drawRect = new RectangleF(currentUsedPos, workingRect.Top, _tickHeight, workingRect.Height);
+            drawRect.Inflate(0, -_trackerSize.Width / 2);
+
+            double currentValuePos = drawRect.Height * (Value - _minimum) / (_maximum - _minimum);
+            //    drawFillRect = new RectangleF(currentUsedPos + _trackerSize.Height / 2 - _trackLineHeight / 2, drawRect.Bottom -(float) currentValuePos, _trackLineHeight, (float)( currentValuePos - _trackerSize.Width / 2));
+            drawFillRect = new RectangleF(currentUsedPos + _trackerSize.Height / 2 - _trackLineHeight / 2, drawRect.Bottom - (float)currentValuePos, _trackLineHeight, (float)(currentValuePos - _trackerSize.Width / 4));
+
+            JYDrawStyleHelper.DrawAquaPillSingleLayer(e.Graphics, drawFillRect, ForeColor, Orientation.Vertical);
+            currentUsedPos += _trackerSize.Height;
+            //==========================================================================
+
+            if (_tickStyle == TickStyle.BottomRight || _tickStyle == TickStyle.Both)
+            {
+                //==========================================================================
+                // Draw the 2st Tick Line.
+                //==========================================================================
+                currentUsedPos += 1;
                 drawRect = new RectangleF(currentUsedPos, workingRect.Top, _tickHeight, workingRect.Height);
                 drawRect.Inflate(0, -_trackerSize.Width / 2);
+                currentUsedPos += _tickHeight;
 
-                double currentValuePos = drawRect.Height * (Value - _minimum) / (_maximum - _minimum);
-            //    drawFillRect = new RectangleF(currentUsedPos + _trackerSize.Height / 2 - _trackLineHeight / 2, drawRect.Bottom -(float) currentValuePos, _trackLineHeight, (float)( currentValuePos - _trackerSize.Width / 2));
-                drawFillRect = new RectangleF(currentUsedPos + _trackerSize.Height / 2 - _trackLineHeight / 2, drawRect.Bottom - (float)currentValuePos, _trackLineHeight, (float)(currentValuePos - _trackerSize.Width / 4));
-
-                JYDrawStyleHelper.DrawAquaPillSingleLayer(e.Graphics, drawFillRect,ForeColor, Orientation.Vertical);
-                currentUsedPos += _trackerSize.Height;
+                DrawTickLine(e.Graphics, drawRect, _tickFrequency, _minimum, _maximum, _tickColor, Orientation.Vertical);
                 //==========================================================================
+            }
 
-                if (_tickStyle == TickStyle.BottomRight || _tickStyle == TickStyle.Both)
-                {
-                    //==========================================================================
-                    // Draw the 2st Tick Line.
-                    //==========================================================================
-                    currentUsedPos += 1;
-                    drawRect = new RectangleF(currentUsedPos, workingRect.Top, _tickHeight, workingRect.Height);
-                    drawRect.Inflate(0, -_trackerSize.Width / 2);
-                    currentUsedPos += _tickHeight;
+            if (_textTickStyle == TickStyle.BottomRight || _textTickStyle == TickStyle.Both)
+            {
+                //==========================================================================
+                // Draw the 2st Text Line.
+                //==========================================================================
+                // Get Height of Text Area
+                drawRect = new RectangleF(currentUsedPos, workingRect.Top, textAreaSize, workingRect.Height);
+                drawRect.Inflate(0, -_trackerSize.Width / 2);
+                currentUsedPos += textAreaSize;
 
-                    DrawTickLine(e.Graphics, drawRect, _tickFrequency, _minimum, _maximum, _tickColor, Orientation.Vertical);
-                    //==========================================================================
-                }
+                DrawTickTextLine(e.Graphics, drawRect, _tickFrequency, _minimum, _maximum, this.ForeColor, this.Font, Orientation.Vertical);
+                //==========================================================================
+            }
 
-                if (_textTickStyle == TickStyle.BottomRight || _textTickStyle == TickStyle.Both)
-                {
-                    //==========================================================================
-                    // Draw the 2st Text Line.
-                    //==========================================================================
-                    // Get Height of Text Area
-                    drawRect = new RectangleF(currentUsedPos, workingRect.Top, textAreaSize, workingRect.Height);
-                    drawRect.Inflate(0, -_trackerSize.Width / 2);
-                    currentUsedPos += textAreaSize;
-
-                    DrawTickTextLine(e.Graphics, drawRect, _tickFrequency, _minimum, _maximum, this.ForeColor, this.Font, Orientation.Vertical);
-                    //==========================================================================
-                }
-            
 
             //==========================================================================
             // Draw the Tracker
@@ -1073,7 +1073,7 @@ namespace SeeSharpTools.JY.GUI
         /// <param name="drawRect"></param>
         private void DrawTrackLine(Graphics g, RectangleF drawRect)
         {
-            JYDrawStyleHelper.DrawAquaPillSingleLayer(g, drawRect, _trackLineColor,  Orientation.Vertical);
+            JYDrawStyleHelper.DrawAquaPillSingleLayer(g, drawRect, _trackLineColor, Orientation.Vertical);
         }
 
         /// <summary>

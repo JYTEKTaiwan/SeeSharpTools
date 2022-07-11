@@ -225,11 +225,11 @@ namespace SeeSharpTools.JY.GUI
 
         #region Public Methods
         #endregion
-        
+
         #region Private Methods
 
         #endregion
-        
+
         #region Threading
 
         #endregion

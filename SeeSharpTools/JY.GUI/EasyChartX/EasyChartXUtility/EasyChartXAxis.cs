@@ -1,9 +1,9 @@
-﻿using System;
+﻿using SeeSharpTools.JY.GUI.EasyChartXUtility;
+using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms.DataVisualization.Charting;
-using SeeSharpTools.JY.GUI.EasyChartXUtility;
 
 namespace SeeSharpTools.JY.GUI
 {
@@ -45,7 +45,7 @@ namespace SeeSharpTools.JY.GUI
             this._parentChart = baseEasyChart;
             this._parentPlotArea = basePlotArea;
             this._baseAxis = baseAxis;
-            
+
             this._viewMax = baseAxis.ScaleView.ViewMaximum;
             this._viewMin = baseAxis.ScaleView.ViewMinimum;
 
@@ -62,7 +62,7 @@ namespace SeeSharpTools.JY.GUI
             else
             {
                 this._maxData = Constants.DefaultYMax;
-                this._minData = IsLogarithmic ? Constants.DefaultMinLogarithmic :Constants.DefaultYMin;
+                this._minData = IsLogarithmic ? Constants.DefaultMinLogarithmic : Constants.DefaultYMin;
                 this._specifiedMax = _maxData;
                 this._specifiedMin = _minData;
                 this.ViewMaximum = _maxData;
@@ -90,7 +90,7 @@ namespace SeeSharpTools.JY.GUI
             // 为了避免在未绘图时重新绘图因为Interval==0导致的异常
             if (IsXAxis())
             {
-//                _baseAxis.Interval = Constants.ClearXInterval;
+                //                _baseAxis.Interval = Constants.ClearXInterval;
             }
             else if (IsYAxis())
             {
@@ -111,7 +111,7 @@ namespace SeeSharpTools.JY.GUI
             Description("Get the name of axis.")
         ]
         public string Name { get; private set; }
-        
+
         private bool _autoScale;
         /// <summary>
         /// Specify whether auto scale enabled
@@ -125,7 +125,7 @@ namespace SeeSharpTools.JY.GUI
         {
             get
             {
-                bool isMaxAndMinValid = (!double.IsNaN(_specifiedMax) && !double.IsNaN(_specifiedMin) && 
+                bool isMaxAndMinValid = (!double.IsNaN(_specifiedMax) && !double.IsNaN(_specifiedMin) &&
                     (_specifiedMax - _specifiedMin > Constants.MinLegalInterval));
                 return _autoScale || !isMaxAndMinValid;
             }
@@ -607,7 +607,7 @@ namespace SeeSharpTools.JY.GUI
         private int _majorGridCount;
         public int MajorGridCount
         {
-            get { return _majorGridCount;}
+            get { return _majorGridCount; }
             set
             {
                 // 值不对或X轴，该值不生效
@@ -960,7 +960,7 @@ namespace SeeSharpTools.JY.GUI
                 _baseAxis.IntervalOffset = Math.Ceiling(min / interval) * interval - min;
                 SetLabelFormat(viewMin);
             }
-//            _baseAxis.CustomLabels.Clear();
+            //            _baseAxis.CustomLabels.Clear();
         }
 
         private bool IsXAxis(params PlotAxis[] axis)

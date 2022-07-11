@@ -1,7 +1,6 @@
-﻿using System;
+﻿using SeeSharpTools.JY.GUI.TabCursorUtility;
 using System.Drawing;
 using System.Windows.Forms;
-using SeeSharpTools.JY.GUI.TabCursorUtility;
 
 namespace SeeSharpTools.JY.GUI.EasyChartXMarker.Painters
 {
@@ -10,7 +9,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXMarker.Painters
         private SolidBrush _brush;
         private Point[] _points;
 
-        public DiamondMarkerPainter(PositionAdapter adapter, Color color, Control.ControlCollection container) : 
+        public DiamondMarkerPainter(PositionAdapter adapter, Color color, Control.ControlCollection container) :
             base(DataMarkerType.Diamond, adapter, color, container)
         {
             this._points = new Point[4];
@@ -26,7 +25,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXMarker.Painters
             {
                 this._brush = new SolidBrush(color);
             }
-            int middlePoint = (MarkerSize - 1)/2;
+            int middlePoint = (MarkerSize - 1) / 2;
             _points[0].X = middlePoint;
             _points[0].Y = -1;
 

@@ -1,5 +1,5 @@
-﻿using System.ComponentModel;
-using SeeSharpTools.JY.GUI.TabCursorUtility;
+﻿using SeeSharpTools.JY.GUI.TabCursorUtility;
+using System.ComponentModel;
 
 namespace SeeSharpTools.JY.GUI.EasyChartXUtility
 {
@@ -232,7 +232,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
         private readonly ChartViewManager _viewManager;
         private readonly DataMarkerManager _markerManager;
 
-        internal MiscellaneousConfiguration(EasyChartX parentChart, ChartViewManager viewManager, PlotManager plotManager, 
+        internal MiscellaneousConfiguration(EasyChartX parentChart, ChartViewManager viewManager, PlotManager plotManager,
             DataMarkerManager markerManager)
         {
             this._parentChart = parentChart;

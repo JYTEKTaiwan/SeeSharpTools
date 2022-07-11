@@ -1,7 +1,7 @@
-﻿using System;
+﻿using SeeSharpTools.JY.GUI.StripChartXUtility;
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using SeeSharpTools.JY.GUI.StripChartXUtility;
 
 namespace SeeSharpTools.JY.GUI.StripChartXData.DataEntities
 {
@@ -36,8 +36,8 @@ namespace SeeSharpTools.JY.GUI.StripChartXData.DataEntities
             }
             else
             {
-                _timeStamps = new List<DateTime>(dataInfo.Capacity/sampleCount);
-                _blockCounts = new List<int>(dataInfo.Capacity/sampleCount);
+                _timeStamps = new List<DateTime>(dataInfo.Capacity / sampleCount);
+                _blockCounts = new List<int>(dataInfo.Capacity / sampleCount);
                 _isEven = true;
             }
 
@@ -157,8 +157,8 @@ namespace SeeSharpTools.JY.GUI.StripChartXData.DataEntities
             if (_isEven)
             {
                 int eachBlockSize = _blockCounts[_blockCounts.Count - 1];
-                blockIndex = xIndex/eachBlockSize;
-                posOffset = xIndex - blockIndex*eachBlockSize;
+                blockIndex = xIndex / eachBlockSize;
+                posOffset = xIndex - blockIndex * eachBlockSize;
             }
             // 否则迭代计算需要删除的位置
             else
@@ -188,14 +188,14 @@ namespace SeeSharpTools.JY.GUI.StripChartXData.DataEntities
                     posOffset = _blockCounts[blockIndex] - (count - xIndex);
                 }
             }
-            DateTime time = _timeStamps[blockIndex]+TimeSpan.FromMilliseconds(posOffset*ParentManager.TimeInterval.TotalMilliseconds);
+            DateTime time = _timeStamps[blockIndex] + TimeSpan.FromMilliseconds(posOffset * ParentManager.TimeInterval.TotalMilliseconds);
             return time.ToString(ParentManager.TimeStampFormat);
-            
+
         }
 
         public override object GetYValue(int xIndex, int seriesIndex)
         {
-            return  _yBuffers[seriesIndex][xIndex];
+            return _yBuffers[seriesIndex][xIndex];
         }
 
         private void RefreshIsEvenFlag(int newBlockSize)
@@ -208,7 +208,7 @@ namespace SeeSharpTools.JY.GUI.StripChartXData.DataEntities
             // 如果block个数大于2，则新的和上一个不同视为不均等
             // 如果block个数为1，且上一个block小于最大显示点数，且和新的不相等，则视为不均等
             int count = _blockCounts.Count;
-            this._isEven = _isEven && !((count >= 2 &&  _blockCounts[count - 1] != newBlockSize) || 
+            this._isEven = _isEven && !((count >= 2 && _blockCounts[count - 1] != newBlockSize) ||
                 (1 == count && _blockCounts[0] < ParentManager.DisplayPoints && _blockCounts[0] != newBlockSize));
         }
 
@@ -244,14 +244,14 @@ namespace SeeSharpTools.JY.GUI.StripChartXData.DataEntities
             if (_isEven)
             {
                 int eachBlockSize = _blockCounts[_blockCounts.Count - 1];
-                removedStampCount = samplesToRemove/eachBlockSize;
-                offset = samplesToRemove - removedStampCount*eachBlockSize;
+                removedStampCount = samplesToRemove / eachBlockSize;
+                offset = samplesToRemove - removedStampCount * eachBlockSize;
             }
             // 否则迭代计算需要删除的位置
             else
             {
                 // 写入点数比较多，从后面开始计算
-                if (samplesToRemove > displayPoints/2)
+                if (samplesToRemove > displayPoints / 2)
                 {
                     int count = 0;
                     int index = stampCount;
@@ -279,7 +279,7 @@ namespace SeeSharpTools.JY.GUI.StripChartXData.DataEntities
             _timeStamps.RemoveRange(0, removedStampCount);
             _blockCounts.RemoveRange(0, removedStampCount);
 
-            _timeStamps[0] += TimeSpan.FromMilliseconds(ParentManager.TimeInterval.TotalMilliseconds*offset);
+            _timeStamps[0] += TimeSpan.FromMilliseconds(ParentManager.TimeInterval.TotalMilliseconds * offset);
             _blockCounts[0] -= offset;
         }
 

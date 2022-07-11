@@ -1,7 +1,7 @@
-﻿using System.Collections;
+﻿using SeeSharpTools.JY.GUI.EasyChartXUtility;
+using System.Collections;
 using System.Collections.Generic;
 using System.Windows.Forms.DataVisualization.Charting;
-using SeeSharpTools.JY.GUI.EasyChartXUtility;
 
 namespace SeeSharpTools.JY.GUI
 {
@@ -9,7 +9,7 @@ namespace SeeSharpTools.JY.GUI
     {
         private readonly EasyChartX _parentChart;
         private readonly ChartAreaCollection _chartAreas;
-        private readonly List<EasyChartXPlotArea> _plotAreas = new List<EasyChartXPlotArea>(Constants.DefaultMaxSeriesCount); 
+        private readonly List<EasyChartXPlotArea> _plotAreas = new List<EasyChartXPlotArea>(Constants.DefaultMaxSeriesCount);
 
         public EasyChartXPlotAreaCollection(EasyChartX parentChart, ChartAreaCollection chartAreas)
         {

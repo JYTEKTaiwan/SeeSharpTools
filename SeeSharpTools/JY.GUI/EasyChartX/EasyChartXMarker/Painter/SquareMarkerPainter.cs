@@ -1,7 +1,6 @@
-﻿using System;
+﻿using SeeSharpTools.JY.GUI.TabCursorUtility;
 using System.Drawing;
 using System.Windows.Forms;
-using SeeSharpTools.JY.GUI.TabCursorUtility;
 
 namespace SeeSharpTools.JY.GUI.EasyChartXMarker.Painters
 {
@@ -10,7 +9,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXMarker.Painters
         private SolidBrush _brush;
         private Rectangle _rectangle;
 
-        public SquareMarkerPainter(PositionAdapter adapter, Color color, Control.ControlCollection container) : 
+        public SquareMarkerPainter(PositionAdapter adapter, Color color, Control.ControlCollection container) :
             base(DataMarkerType.Square, adapter, color, container)
         {
             this._rectangle = new Rectangle(0, 0, 0, 0);

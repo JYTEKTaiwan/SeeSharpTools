@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-using System;
 
 /// <summary>
 /// 修改日期：2017.06.24
@@ -16,7 +16,7 @@ using System;
 /// </summary>
 
 namespace SeeSharpTools.JY.GUI
-{    
+{
     [Designer(typeof(LEDArrayDesigner))]
     [ToolboxItem(true)]
     [ToolboxBitmap(typeof(LEDArray), "LEDArray.LEDArray.bmp")]
@@ -256,7 +256,7 @@ namespace SeeSharpTools.JY.GUI
                     if (_controls.ElementAt(i).Value != values[i])
                     {
                         _controls.ElementAt(i).Value = values[i];
-                        ValueChangedEventArgs arg = new ValueChangedEventArgs(i,values[i]);
+                        ValueChangedEventArgs arg = new ValueChangedEventArgs(i, values[i]);
                         SendEvent(arg);
 
 
@@ -273,7 +273,7 @@ namespace SeeSharpTools.JY.GUI
                     if (_controls.ElementAt(i).Value != values[i])
                     {
                         _controls.ElementAt(i).Value = values[i];
-                        ValueChangedEventArgs arg = new ValueChangedEventArgs(i,values[i]);
+                        ValueChangedEventArgs arg = new ValueChangedEventArgs(i, values[i]);
                         SendEvent(arg);
 
                     }

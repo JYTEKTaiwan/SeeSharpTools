@@ -30,7 +30,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXEditor
             {
                 (fileinfo.GetValue(frm) as System.Windows.Forms.PropertyGrid).HelpVisible = true;
             }
-             return frm;
+            return frm;
         }
     }
 }

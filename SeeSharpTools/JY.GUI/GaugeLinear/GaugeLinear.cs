@@ -1,8 +1,8 @@
-﻿using System.Drawing;
-using System.Windows.Forms;
-using System.ComponentModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace SeeSharpTools.JY.GUI
 {
@@ -95,8 +95,8 @@ namespace SeeSharpTools.JY.GUI
         /// <summary>
         /// 滑块大小
         /// </summary>
-       // private int m_trackerSize.Width;
-       //  private int m_PointerHeight;
+        // private int m_trackerSize.Width;
+        //  private int m_PointerHeight;
         /// <summary>
         /// Tick Text最大高度
         /// </summary>
@@ -108,11 +108,11 @@ namespace SeeSharpTools.JY.GUI
         /// <summary>
         /// 最小值设定
         /// </summary>
-        private double m_Minimum =0;
+        private double m_Minimum = 0;
         /// <summary>
         /// 最大值设定
         /// </summary>
-        private double m_Maximum =100;
+        private double m_Maximum = 100;
         /// <summary>
         /// 当前Value
         /// </summary>
@@ -246,7 +246,7 @@ namespace SeeSharpTools.JY.GUI
 
             set
             {
-              //  m_Value = value;
+                //  m_Value = value;
                 if (m_Value != value)
                 {
                     if (value < m_Minimum)
@@ -360,7 +360,7 @@ namespace SeeSharpTools.JY.GUI
                     m_Minimum = m_Maximum;
 
                 m_Maximum = value;
-              //  this.Invalidate();
+                //  this.Invalidate();
             }
         }
         [Category("JYTek")]
@@ -436,8 +436,8 @@ namespace SeeSharpTools.JY.GUI
             m_TickMinorLength = 3;
 
 
-            m_trackerSize = new Size(20,10);
-           // m_PointerHeight = 20;
+            m_trackerSize = new Size(20, 10);
+            // m_PointerHeight = 20;
 
             m_TickColor = Color.Black;
 
@@ -470,7 +470,7 @@ namespace SeeSharpTools.JY.GUI
             {
                 return;
             }
-            if(m_Orientation == Orientation.Vertical)
+            if (m_Orientation == Orientation.Vertical)
                 this.Value = ValueClamped(PixelsToValue(e.Y));
             else
                 this.Value = ValueClamped(PixelsToValue(e.X));
@@ -528,8 +528,8 @@ namespace SeeSharpTools.JY.GUI
                 GetMaxTicks = 1;
             }
             this.m_MaxTicks = GetMaxTicks;
-                        
-            int num = (int)(Math.Log10(m_Maximum-m_Minimum) - 1.0 - Math.Log10((double)GetMaxTicks));
+
+            int num = (int)(Math.Log10(m_Maximum - m_Minimum) - 1.0 - Math.Log10((double)GetMaxTicks));
             while (true)
             {
                 double num2 = Math.Pow(10.0, (double)num);
@@ -549,7 +549,7 @@ namespace SeeSharpTools.JY.GUI
             }
 
             int MinorCount = 4;
-            double MinorStepSize =(double)  (m_MajorStepSize / (double)(MinorCount + 1));
+            double MinorStepSize = (double)(m_MajorStepSize / (double)(MinorCount + 1));
 
 
             double startValue = this.GetStartValue();
@@ -564,10 +564,10 @@ namespace SeeSharpTools.JY.GUI
 
                     m_ListTickMajor.Add(new TickMajor()
                     {
-                        LocationValue =   Math.Round(startValue, m_decimals),
+                        LocationValue = Math.Round(startValue, m_decimals),
                         Length = m_TickMajorLength,
                         TextSize = new Size((int)Math.Ceiling((double)sizeF.Width) + 1, (int)Math.Ceiling((double)sizeF.Height) + 1)
-                });
+                    });
                 }
                 if (startValue >= stopValue)
                 {
@@ -583,7 +583,7 @@ namespace SeeSharpTools.JY.GUI
                         {
                             LocationValue = startValue,
                             Length = m_TickMinorLength,
-                            
+
                         });
                     }
                 }
@@ -611,7 +611,7 @@ namespace SeeSharpTools.JY.GUI
                     tempStacking = item.TextSize.Width;
                 int tempHigh = item.TextSize.Height;
                 int tempWidth = item.TextSize.Width;
-                if (m_MaxTickStackingDepth<tempStacking)
+                if (m_MaxTickStackingDepth < tempStacking)
                 {
                     m_MaxTickStackingDepth = tempStacking;
                 }
@@ -623,7 +623,7 @@ namespace SeeSharpTools.JY.GUI
                 {
                     m_MaxTickTextWidth = tempWidth;
                 }
-            }       
+            }
 
         }
 
@@ -640,7 +640,7 @@ namespace SeeSharpTools.JY.GUI
             {
                 m_PixelsHigh = this.Size.Width - 1;
             }
-            
+
             m_PixelsLow = 0;
 
             m_ClipLow = m_PixelsLow;
@@ -659,19 +659,19 @@ namespace SeeSharpTools.JY.GUI
             {
                 if (m_Direction == SideDirection.LeftToRight)
                 {
-      
+
                     Pen TickPen = new Pen(m_TickColor, 1);
 
-                    var r4 = new Rectangle(this.Width-m_Margin - 4 - (m_trackerSize.Width - 8), m_PixelsLow, m_trackerSize.Width - 8, m_PixelsHigh - m_PixelsLow);
+                    var r4 = new Rectangle(this.Width - m_Margin - 4 - (m_trackerSize.Width - 8), m_PixelsLow, m_trackerSize.Width - 8, m_PixelsHigh - m_PixelsLow);
                     p.Graphics.FillRectangle(new SolidBrush(m_trackLineColor), r4);
                     BorderSimple.Draw(p, r4, BorderStyleSimple.Sunken, Color.Gray);
                     //p.Graphics.DrawLine(TickPen, m_Margin + m_TickMajorLength+m_PointerSize, m_PixelsHigh, m_Margin + m_TickMajorLength+ m_PointerSize, m_PixelsLow);
 
                     //Draw Pointer
-                    var r3 = new Rectangle(this.Width - m_Margin- m_trackerSize.Width, m_ClipHigh - ValueToPixels(m_Value) - m_trackerSize.Height/2, m_trackerSize.Width, m_trackerSize.Height);
+                    var r3 = new Rectangle(this.Width - m_Margin - m_trackerSize.Width, m_ClipHigh - ValueToPixels(m_Value) - m_trackerSize.Height / 2, m_trackerSize.Width, m_trackerSize.Height);
                     var points = GetPointerPoints(r3, Direction.Right);
                     p.Graphics.FillRectangle(new SolidBrush(m_trackerColor), r3);
-                    BorderSimple.Draw(p, r3, BorderStyleSimple.Raised, m_trackerColor);  
+                    BorderSimple.Draw(p, r3, BorderStyleSimple.Raised, m_trackerColor);
 
 
 
@@ -679,17 +679,17 @@ namespace SeeSharpTools.JY.GUI
                     {
                         p.Graphics.DrawLine(TickPen, this.Width - m_Margin - m_TickMajorLength - m_trackerSize.Width, ValueToPixels(item.LocationValue), this.Width - m_Margin - m_trackerSize.Width, ValueToPixels(item.LocationValue));
 
-                      //  var r = new Rectangle(this.Width - m_Margin -m_trackerSize.Width - m_TickMajorLength - m_LabelSpace - m_MaxTickTextWidth, m_ClipHigh - ValueToPixels(item.LocationValue) - m_MaxTickTextHeight / 2, m_MaxTickTextWidth, m_MaxTickTextHeight);
+                        //  var r = new Rectangle(this.Width - m_Margin -m_trackerSize.Width - m_TickMajorLength - m_LabelSpace - m_MaxTickTextWidth, m_ClipHigh - ValueToPixels(item.LocationValue) - m_MaxTickTextHeight / 2, m_MaxTickTextWidth, m_MaxTickTextHeight);
                         var r = new Rectangle(this.Width - m_Margin - m_trackerSize.Width - m_TickMajorLength - m_LabelSpace - m_MaxTickTextWidth, m_ClipHigh - ValueToPixels(item.LocationValue) - m_MaxTickTextHeight / 2, m_MaxTickTextWidth, m_MaxTickTextHeight);
 
-                        p.Graphics.DrawString( Math.Round(item.LocationValue, m_decimals).ToString("F"+m_decimals.ToString()), this.Font, new SolidBrush(m_TextColor), r);
-                      //  p.Graphics.DrawString("0.000", this.Font, new SolidBrush(m_TextColor), r);
+                        p.Graphics.DrawString(Math.Round(item.LocationValue, m_decimals).ToString("F" + m_decimals.ToString()), this.Font, new SolidBrush(m_TextColor), r);
+                        //  p.Graphics.DrawString("0.000", this.Font, new SolidBrush(m_TextColor), r);
                     }
 
 
                     foreach (var item in m_ListTickMinor)
                     {
-                        p.Graphics.DrawLine(TickPen, this.Width  - m_trackerSize.Width - m_Margin, ValueToPixels(item.LocationValue), this.Width  - m_trackerSize.Width - m_Margin - m_TickMinorLength, ValueToPixels(item.LocationValue));
+                        p.Graphics.DrawLine(TickPen, this.Width - m_trackerSize.Width - m_Margin, ValueToPixels(item.LocationValue), this.Width - m_trackerSize.Width - m_Margin - m_TickMinorLength, ValueToPixels(item.LocationValue));
                     }
                 }
                 else
@@ -724,16 +724,16 @@ namespace SeeSharpTools.JY.GUI
                 }
             }
             //水平状态下的内容
-            else  
+            else
             {
                 if (m_Direction == SideDirection.LeftToRight)
                 {
-                    var r4 = new Rectangle(m_PixelsLow, m_Margin+4, m_PixelsHigh - m_PixelsLow, m_trackerSize.Height - 8);
+                    var r4 = new Rectangle(m_PixelsLow, m_Margin + 4, m_PixelsHigh - m_PixelsLow, m_trackerSize.Height - 8);
                     p.Graphics.FillRectangle(new SolidBrush(m_trackLineColor), r4);
                     BorderSimple.Draw(p, r4, BorderStyleSimple.Sunken, Color.Gray);
 
                     //Draw Pointer
-                    var r3 = new Rectangle(ValueToPixels(m_Value) - m_trackerSize.Width / 2, m_Margin , m_trackerSize.Width, m_trackerSize.Height);
+                    var r3 = new Rectangle(ValueToPixels(m_Value) - m_trackerSize.Width / 2, m_Margin, m_trackerSize.Width, m_trackerSize.Height);
                     var points = GetPointerPoints(r3, Direction.Right);
                     p.Graphics.FillRectangle(new SolidBrush(m_trackerColor), r3);
                     BorderSimple.Draw(p, r3, BorderStyleSimple.Raised, m_trackerColor);
@@ -747,9 +747,9 @@ namespace SeeSharpTools.JY.GUI
 
                     foreach (var item in m_ListTickMajor)
                     {
-                        p.Graphics.DrawLine(TickPen, ValueToPixels(item.LocationValue), m_Margin +m_trackerSize.Height, ValueToPixels(item.LocationValue), m_Margin +m_trackerSize.Height + m_TickMajorLength);
+                        p.Graphics.DrawLine(TickPen, ValueToPixels(item.LocationValue), m_Margin + m_trackerSize.Height, ValueToPixels(item.LocationValue), m_Margin + m_trackerSize.Height + m_TickMajorLength);
 
-                        var r = new Rectangle(ValueToPixels(item.LocationValue) - item.TextSize.Width / 4, m_Margin+ m_trackerSize.Height + m_TickMajorLength + m_LabelSpace , item.TextSize.Width, item.TextSize.Height);
+                        var r = new Rectangle(ValueToPixels(item.LocationValue) - item.TextSize.Width / 4, m_Margin + m_trackerSize.Height + m_TickMajorLength + m_LabelSpace, item.TextSize.Width, item.TextSize.Height);
 
                         p.Graphics.DrawString(Math.Round(item.LocationValue, m_decimals).ToString("F" + m_decimals.ToString()), this.Font, new SolidBrush(m_TextColor), r);
                     }
@@ -762,12 +762,12 @@ namespace SeeSharpTools.JY.GUI
                 }
                 else
                 {
-                    var r4 = new Rectangle(m_PixelsLow,this.Height-(m_Margin + m_trackerSize.Height - 4 ), m_PixelsHigh - m_PixelsLow, m_trackerSize.Height - 8);
+                    var r4 = new Rectangle(m_PixelsLow, this.Height - (m_Margin + m_trackerSize.Height - 4), m_PixelsHigh - m_PixelsLow, m_trackerSize.Height - 8);
                     p.Graphics.FillRectangle(new SolidBrush(m_trackLineColor), r4);
                     BorderSimple.Draw(p, r4, BorderStyleSimple.Sunken, Color.Gray);
 
                     //Draw Pointer
-                    var r3 = new Rectangle(ValueToPixels(m_Value) - m_trackerSize.Width / 2, this.Height - m_Margin - m_trackerSize.Height , m_trackerSize.Width, m_trackerSize.Height);
+                    var r3 = new Rectangle(ValueToPixels(m_Value) - m_trackerSize.Width / 2, this.Height - m_Margin - m_trackerSize.Height, m_trackerSize.Width, m_trackerSize.Height);
                     p.Graphics.FillRectangle(new SolidBrush(m_trackerColor), r3);
                     BorderSimple.Draw(p, r3, BorderStyleSimple.Raised, m_trackerColor);
 
@@ -775,14 +775,14 @@ namespace SeeSharpTools.JY.GUI
 
                     Pen TickPen = new Pen(m_TickColor, 1);
 
-                 //   p.Graphics.DrawLine(TickPen, m_PixelsHigh,this.Height- m_Margin - m_TickMajorLength - m_trackerSize.Width, m_PixelsLow, this.Height - m_Margin - m_TickMajorLength - m_trackerSize.Width);
+                    //   p.Graphics.DrawLine(TickPen, m_PixelsHigh,this.Height- m_Margin - m_TickMajorLength - m_trackerSize.Width, m_PixelsLow, this.Height - m_Margin - m_TickMajorLength - m_trackerSize.Width);
 
 
                     foreach (var item in m_ListTickMajor)
                     {
-                        p.Graphics.DrawLine(TickPen, ValueToPixels(item.LocationValue),this.Height - m_Margin - m_trackerSize.Height, ValueToPixels(item.LocationValue),this.Height- m_Margin - m_trackerSize.Height - m_TickMajorLength);
+                        p.Graphics.DrawLine(TickPen, ValueToPixels(item.LocationValue), this.Height - m_Margin - m_trackerSize.Height, ValueToPixels(item.LocationValue), this.Height - m_Margin - m_trackerSize.Height - m_TickMajorLength);
 
-                        var r = new Rectangle(ValueToPixels(item.LocationValue) - item.TextSize.Width / 4,this.Height - m_Margin*2 - m_TickMajorLength-m_trackerSize.Height - m_LabelSpace - m_MaxTickTextHeight/2, item.TextSize.Width, item.TextSize.Height);
+                        var r = new Rectangle(ValueToPixels(item.LocationValue) - item.TextSize.Width / 4, this.Height - m_Margin * 2 - m_TickMajorLength - m_trackerSize.Height - m_LabelSpace - m_MaxTickTextHeight / 2, item.TextSize.Width, item.TextSize.Height);
 
                         p.Graphics.DrawString(Math.Round(item.LocationValue, m_decimals).ToString("F" + m_decimals.ToString()), this.Font, new SolidBrush(m_TextColor), r);
                     }
@@ -790,7 +790,7 @@ namespace SeeSharpTools.JY.GUI
 
                     foreach (var item in m_ListTickMinor)
                     {
-                        p.Graphics.DrawLine(TickPen, ValueToPixels(item.LocationValue),this.Height - m_TickMajorLength - m_trackerSize.Height - m_Margin, ValueToPixels(item.LocationValue),this.Height- m_TickMajorLength - m_trackerSize.Height - m_Margin + m_TickMinorLength);
+                        p.Graphics.DrawLine(TickPen, ValueToPixels(item.LocationValue), this.Height - m_TickMajorLength - m_trackerSize.Height - m_Margin, ValueToPixels(item.LocationValue), this.Height - m_TickMajorLength - m_trackerSize.Height - m_Margin + m_TickMinorLength);
                     }
                 }
             }
@@ -851,8 +851,8 @@ namespace SeeSharpTools.JY.GUI
             {
                 double num = (value - m_Minimum) / (m_Maximum - m_Minimum);
 
-                num2 = (double)this.m_PixelsLow + num * (double)(m_PixelsHigh-m_PixelsLow);
-                
+                num2 = (double)this.m_PixelsLow + num * (double)(m_PixelsHigh - m_PixelsLow);
+
             }
             if (num2 > 32768.0)
             {
@@ -920,7 +920,7 @@ namespace SeeSharpTools.JY.GUI
             }
             this.m_MajorStepSize = increment;
             this.m_MajorCount = (int)num;
-            return ( this.m_MajorCount <= this.m_MaxTicks);
+            return (this.m_MajorCount <= this.m_MaxTicks);
         }
         /// <summary>
         /// 重新绘制
@@ -959,7 +959,7 @@ namespace SeeSharpTools.JY.GUI
             }
             else
             {
-                return m_Maximum- num * (m_Maximum - m_Minimum) ;
+                return m_Maximum - num * (m_Maximum - m_Minimum);
             }
 
             //}
@@ -980,5 +980,5 @@ namespace SeeSharpTools.JY.GUI
     }
 
 
-   
+
 }

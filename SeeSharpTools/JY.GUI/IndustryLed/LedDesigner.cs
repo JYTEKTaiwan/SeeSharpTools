@@ -1,13 +1,13 @@
 ﻿using System;
-using System.ComponentModel.Design;
-using System.Windows.Forms.Design;
-using System.Drawing;
 using System.ComponentModel;
+using System.ComponentModel.Design;
+using System.Drawing;
+using System.Windows.Forms.Design;
 
 namespace SeeSharpTools.JY.GUI
 {
     [System.Security.Permissions.PermissionSet(System.Security.Permissions.SecurityAction.Demand, Name = "FullTrust")]
-    internal class LedDesigner: ControlDesigner
+    internal class LedDesigner : ControlDesigner
     {
         private DesignerActionListCollection actionLists;
 
@@ -135,12 +135,12 @@ namespace SeeSharpTools.JY.GUI
                 GetPropertyByName("Value").SetValue(colUserControl, value);
             }
         }
-        
+
         public LED.InteractionStyle Interacton
         {
             get
             {
-                return colUserControl.Interacton ;
+                return colUserControl.Interacton;
             }
             set
             {

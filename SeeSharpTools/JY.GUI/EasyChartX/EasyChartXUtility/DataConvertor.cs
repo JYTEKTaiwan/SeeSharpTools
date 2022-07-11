@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace SeeSharpTools.JY.GUI.EasyChartXUtility
 {
@@ -27,7 +26,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
         // 将一维数组转换为double数组
         internal double[] Convert(Array data, int size)
         {
-            if (data.GetValue(0).GetType().Name.Equals(typeof (double).Name))
+            if (data.GetValue(0).GetType().Name.Equals(typeof(double).Name))
             {
                 return data as double[];
             }

@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Concurrent;
+﻿using SeeSharpTools.JY.GUI.EasyChartXUtility;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using SeeSharpTools.JY.GUI.EasyChartXUtility;
 
 namespace SeeSharpTools.JY.GUI.EasyChartXData
 {
@@ -17,7 +15,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXData
 
         //为了将二维数组拷贝到一维数组，进而进行转换的buffer。用来提升二维数组保存到list的效率
         private double[] _transBuf;
-//        public List<string> YStrData { get; private set; } 
+        //        public List<string> YStrData { get; private set; } 
 
         public PlotBuffer PlotBuf { get; }
 
@@ -25,13 +23,13 @@ namespace SeeSharpTools.JY.GUI.EasyChartXData
         public double XIncrement { get; private set; }
         public double XMinInterval { get; private set; }
 
-//        public DateTime XStartTime { get; private set; }
-//        public double SampleRate { get; private set; }
-//        public string TimeFormat { get; private set; }
+        //        public DateTime XStartTime { get; private set; }
+        //        public double SampleRate { get; private set; }
+        //        public string TimeFormat { get; private set; }
 
         // 每条线当前绘图中的最大值最小值
-        private readonly List<double> _viewStart = new List<double>(Constants.DefaultDataSeriesCount); 
-        private readonly List<double> _viewEnd = new List<double>(Constants.DefaultDataSeriesCount); 
+        private readonly List<double> _viewStart = new List<double>(Constants.DefaultDataSeriesCount);
+        private readonly List<double> _viewEnd = new List<double>(Constants.DefaultDataSeriesCount);
         private readonly List<int> _sparseRatio = new List<int>(Constants.DefaultDataSeriesCount);
         // 数据校验参数类
         private readonly DataCheckParameters _dataCheckParams;
@@ -56,13 +54,13 @@ namespace SeeSharpTools.JY.GUI.EasyChartXData
         public void SaveData(IList<double> xData, IList<double> yData, int xSize, int ySize)
         {
             DataInfo.XDataInputType = XDataInputType.Array;
-//            DataInfo.XDataType = XDataType.Number;
+            //            DataInfo.XDataType = XDataType.Number;
             DataInfo.Size = xSize <= ySize ? xSize : ySize;
             DataInfo.LineNum = ySize / DataInfo.Size;
 
             XData = SaveDataToBuf(XData, xData);
             YData = SaveDataToBuf(YData, yData);
-            
+
             CheckInvalidData();
 
             _transBuf = null;
@@ -82,7 +80,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXData
         public void SaveData(double xStart, double xIncrement, IList<double> yData, int xSize, int ySize)
         {
             DataInfo.XDataInputType = XDataInputType.Increment;
-//            DataInfo.XDataType = XDataType.Number;
+            //            DataInfo.XDataType = XDataType.Number;
             XStart = xStart;
             XIncrement = xIncrement;
             DataInfo.Size = xSize <= ySize ? xSize : ySize;
@@ -91,7 +89,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXData
             MinXValue = xStart;
 
             XMinInterval = xIncrement > Constants.MinLegalInterval ? xIncrement : Constants.MinLegalInterval;
-            
+
             DataInfo.LineNum = ySize / DataInfo.Size;
 
             XData?.Clear();
@@ -179,7 +177,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXData
                     InitViewRange();
                 }
         */
-        public static void FillMultiDataEntity(IList<IList<double>> xData, IList<IList<double>> yData, 
+        public static void FillMultiDataEntity(IList<IList<double>> xData, IList<IList<double>> yData,
             List<DataEntity> dataEntities, DataCheckParameters dataCheckParams, bool isShallowCopy = false)
         {
             int seriesCount = xData.Count;
@@ -197,7 +195,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXData
 
             for (int i = 0; i < seriesCount; i++)
             {
-//                dataEntities[i].SaveData(xData[i], yData[i], isShallowCopy);
+                //                dataEntities[i].SaveData(xData[i], yData[i], isShallowCopy);
                 dataEntities[i].SaveData(xData[i], yData[i], xData.Count, yData.Count);
             }
         }
@@ -213,7 +211,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXData
 
             if (null == _invalidXData)
             {
-                _invalidXData = (XDataInputType.Array == DataInfo.XDataInputType) ? 
+                _invalidXData = (XDataInputType.Array == DataInfo.XDataInputType) ?
                     new Dictionary<int, double>(Constants.InvalidDataBufCapacity) : null;
             }
             else
@@ -284,7 +282,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXData
             switch (DataInfo.XDataInputType)
             {
                 case XDataInputType.Increment:
-                    return XStart + index*XIncrement;
+                    return XStart + index * XIncrement;
                 case XDataInputType.Array:
                     if (_dataCheckParams.IsCheckDisabled())
                     {
@@ -363,8 +361,8 @@ namespace SeeSharpTools.JY.GUI.EasyChartXData
             else
             {
                 double logRange = Math.Log10(xEnd) - Math.Log10(xStart);
-                PlotBuf.CurrentXStart = Math.Pow(10, Math.Log10(xStart) - logRange*Constants.ScaleDataExpandRatio);
-                PlotBuf.CurrentXEnd = Math.Pow(10, Math.Log10(xEnd) + logRange*Constants.ScaleDataExpandRatio);
+                PlotBuf.CurrentXStart = Math.Pow(10, Math.Log10(xStart) - logRange * Constants.ScaleDataExpandRatio);
+                PlotBuf.CurrentXEnd = Math.Pow(10, Math.Log10(xEnd) + logRange * Constants.ScaleDataExpandRatio);
             }
 
             // 如果超出数据边界则清空绘图区
@@ -384,7 +382,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXData
 
             bool isNeedRefreshPlot = false;
 
-            if (PlotBuf.CurrentXStart - MinXValue < Constants.MinDoubleValue && 
+            if (PlotBuf.CurrentXStart - MinXValue < Constants.MinDoubleValue &&
                 MaxXValue - PlotBuf.CurrentXEnd < Constants.MinDoubleValue)
             {
                 isNeedRefreshPlot = PlotBuf.FillPlotDataToBuffer(forceRefresh, isLogView);
@@ -407,7 +405,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXData
         private bool FillIncrementPlotDataInRange(bool forceRefresh, bool isLogView)
         {
             int startIndex = (int)((PlotBuf.CurrentXStart - XStart) / XIncrement);
-            int endIndex = (int) ((PlotBuf.CurrentXEnd - XStart)/XIncrement);
+            int endIndex = (int)((PlotBuf.CurrentXEnd - XStart) / XIncrement);
             if (startIndex >= DataInfo.Size || endIndex < 0)
             {
                 if (forceRefresh)
@@ -465,7 +463,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXData
             }
             return PlotBuf.FillPlotDataToBuffer(startIndexes, counts, forceRefresh, isLogView);
         }
-        
+
         public bool IsEqual(DataEntity dataEntity)
         {
             if (dataEntity.DataInfo.XDataInputType != DataInfo.XDataInputType)
@@ -498,8 +496,8 @@ namespace SeeSharpTools.JY.GUI.EasyChartXData
                     nearIndexes = FindIncrementNearIndex(ref xValue, ref yValue, seriesIndex);
                     break;
                 case XDataInputType.Array:
-                    nearIndexes = double.IsNaN(yValue) ? 
-                        FindArrayNearIndexByXValue(ref xValue, out yValue, seriesIndex) : 
+                    nearIndexes = double.IsNaN(yValue) ?
+                        FindArrayNearIndexByXValue(ref xValue, out yValue, seriesIndex) :
                         FindArrayNearIndex(ref xValue, ref yValue, seriesIndex);
                     break;
                 default:
@@ -511,7 +509,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXData
 
         private int FindIncrementNearIndex(ref double xValue, ref double yValue, int seriesIndex)
         {
-            int nearIndex = (int) Math.Round((xValue - XStart)/XIncrement);
+            int nearIndex = (int)Math.Round((xValue - XStart) / XIncrement);
             if (nearIndex < 0)
             {
                 nearIndex = 0;
@@ -549,7 +547,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXData
 
         private int FindArrayNearIndex(ref double xValue, ref double yValue, int seriesIndex)
         {
-            double minDiff = XMinInterval*4;
+            double minDiff = XMinInterval * 4;
             List<int> nearestIndexes = new List<int>(5);
             double minDValue = double.MaxValue;
             for (int i = 0; i < DataInfo.Size; i++)
@@ -560,7 +558,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXData
                     continue;
                 }
                 // 如果最小的差值小于当前差值的一半，则原来的临近点全部清除
-                if (diff > 2*minDValue)
+                if (diff > 2 * minDValue)
                 {
                     nearestIndexes.Clear();
                 }
@@ -607,19 +605,19 @@ namespace SeeSharpTools.JY.GUI.EasyChartXData
             }
             return buffer;
         }
-        
+
         public void GetMaxAndMinYValue(out double maxYValue, out double minYValue, int lineIndex)
         {
             if (lineIndex <= -1)
             {
                 Parallel.GetMaxAndMin(YData, out maxYValue, out minYValue);
-//                maxYValue = YData.Max();
-//                minYValue = YData.Min();
+                //                maxYValue = YData.Max();
+                //                minYValue = YData.Min();
             }
             else
             {
                 List<double> yDataList = YData as List<double>;
-                List<double> singleLineData = yDataList.GetRange(lineIndex*DataInfo.Size, DataInfo.Size);
+                List<double> singleLineData = yDataList.GetRange(lineIndex * DataInfo.Size, DataInfo.Size);
                 Parallel.GetMaxAndMin(singleLineData, out maxYValue, out minYValue);
             }
         }
@@ -630,7 +628,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXData
             {
                 buffer.Capacity = size;
             }
-            else if (size < buffer.Capacity/5)
+            else if (size < buffer.Capacity / 5)
             {
                 buffer.Capacity = size;
             }

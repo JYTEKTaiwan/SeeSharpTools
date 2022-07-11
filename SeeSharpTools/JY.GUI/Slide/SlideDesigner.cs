@@ -1,9 +1,8 @@
 ﻿using System;
+using System.ComponentModel;
 using System.ComponentModel.Design;
 using System.Windows.Forms;
 using System.Windows.Forms.Design;
-using SeeSharpTools.JY.GUI;
-using System.ComponentModel;
 
 namespace SeeSharpTools.JY.GUI
 {

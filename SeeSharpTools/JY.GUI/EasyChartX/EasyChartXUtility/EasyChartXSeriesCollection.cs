@@ -1,12 +1,9 @@
-﻿using System;
+﻿using SeeSharpTools.JY.GUI.EasyChartXUtility;
 using System.Collections;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Drawing;
 using System.Linq;
-using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
-using SeeSharpTools.JY.GUI.EasyChartXUtility;
 
 namespace SeeSharpTools.JY.GUI
 {
@@ -104,7 +101,7 @@ namespace SeeSharpTools.JY.GUI
             if (!_designEndFlag)
             {
                 _lineSeries.Clear();
-//                _designStartFlag = true;
+                //                _designStartFlag = true;
             }
             AddInternal(item);
         }
@@ -135,7 +132,7 @@ namespace SeeSharpTools.JY.GUI
                         seriesName = string.Format(SeriesNameFormat, seriesIndex++);
                     } while (_lineSeries.Any(existItem => existItem.Name.Equals(seriesName)));
                     item.Name = seriesName;
-                    item.Color = _seriesPalette[_lineSeries.Count%_seriesPalette.Length];
+                    item.Color = _seriesPalette[_lineSeries.Count % _seriesPalette.Length];
                 }
                 _lineSeries.Add(item);
                 if (_plotSeries.Count >= _lineSeries.Count)
@@ -145,7 +142,7 @@ namespace SeeSharpTools.JY.GUI
             }
         }
 
-//        public bool Contains(object value)
+        //        public bool Contains(object value)
         public bool Contains(EasyChartXSeries item)
         {
             if (null == item)
@@ -157,10 +154,10 @@ namespace SeeSharpTools.JY.GUI
 
         public void Clear()
         {
-//            if (_plotSeries.Count > 0)
-//            {
-//                return;
-//            }
+            //            if (_plotSeries.Count > 0)
+            //            {
+            //                return;
+            //            }
             _lineSeries.Clear();
         }
 
@@ -195,7 +192,7 @@ namespace SeeSharpTools.JY.GUI
             ReAdaptSeriesFromFront(index);
         }
 
-//        public void Remove(object value)
+        //        public void Remove(object value)
         public bool Remove(EasyChartXSeries item)
         {
             int index = _lineSeries.IndexOf(item);
@@ -235,7 +232,7 @@ namespace SeeSharpTools.JY.GUI
             ReAdaptSeriesFromEnd(index);
         }
 
-//        public object this[int index]
+        //        public object this[int index]
         public EasyChartXSeries this[int index]
         {
             get { return _lineSeries[index]; }
@@ -271,6 +268,6 @@ namespace SeeSharpTools.JY.GUI
 
         public bool IsReadOnly => false;
         public bool IsFixedSize => false;
-        
+
     }
 }

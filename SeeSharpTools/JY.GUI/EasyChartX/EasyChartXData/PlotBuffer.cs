@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections;
+﻿using SeeSharpTools.JY.GUI.EasyChartXUtility;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using SeeSharpTools.JY.GUI.EasyChartXUtility;
 
 namespace SeeSharpTools.JY.GUI.EasyChartXData
 {
@@ -128,7 +126,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXData
                 List<double> yData = _dataEntity.YData as List<double>;
                 if (XDataInputType.Increment == _dataEntity.DataInfo.XDataInputType)
                 {
-                    double xValue = startIndex*_dataEntity.XIncrement + _dataEntity.XStart;
+                    double xValue = startIndex * _dataEntity.XIncrement + _dataEntity.XStart;
                     for (int i = 0; i < _plotSize; i++)
                     {
                         XPlotBuffer[i] = xValue;
@@ -219,7 +217,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXData
                     for (int segmentIndex = 0; segmentIndex < segmentCount; segmentIndex++)
                     {
                         int plotCount = counts[segmentIndex];
-                        double xDataValue = _dataEntity.XStart + _dataEntity.XIncrement*startIndexes[segmentIndex];
+                        double xDataValue = _dataEntity.XStart + _dataEntity.XIncrement * startIndexes[segmentIndex];
                         for (int index = 0; index < plotCount; index++)
                         {
                             int pointBufIndex = startIndexes[segmentIndex] + index;
@@ -282,7 +280,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXData
             int totalCounts = counts.Sum();
             int segmentCount = startIndexes.Count;
             int plotSize;
-            int newSparseRatio = GetSparseRatio(totalCounts+segmentCount, out plotSize);
+            int newSparseRatio = GetSparseRatio(totalCounts + segmentCount, out plotSize);
             bool isNeedRefreshPlot = IsNeedRefreshPlot(newSparseRatio, forceRefresh);
             int pointIndex = 0;
             if (isNeedRefreshPlot)
@@ -311,14 +309,14 @@ namespace SeeSharpTools.JY.GUI.EasyChartXData
                         }
                     }
                     _plotSize += plotCount;
-//                    // 每段之间要互相断开
-//                    XPlotBuffer[pointIndex] = 0;
-//                    foreach (IList<double> plotBuffer in YPlotBuffer)
-//                    {
-//                        plotBuffer[pointIndex] = Double.NaN;
-//                    }
-//                    pointIndex++;
-//                    _plotSize += plotCount + 1;
+                    //                    // 每段之间要互相断开
+                    //                    XPlotBuffer[pointIndex] = 0;
+                    //                    foreach (IList<double> plotBuffer in YPlotBuffer)
+                    //                    {
+                    //                        plotBuffer[pointIndex] = Double.NaN;
+                    //                    }
+                    //                    pointIndex++;
+                    //                    _plotSize += plotCount + 1;
                 }
 
                 // TODO Not Right, Fix Later
@@ -426,14 +424,14 @@ namespace SeeSharpTools.JY.GUI.EasyChartXData
 
         public IList<double> GetXPlotDataCollection()
         {
-//            if (ReferenceEquals(XPlotBuffer, _xPlotBuffer))
-//            {
-//                return _xPlotBuffer.GetRange(0, _plotSize);
-//            }
-//            else
-//            {
-//                return XPlotBuffer;
-//            }
+            //            if (ReferenceEquals(XPlotBuffer, _xPlotBuffer))
+            //            {
+            //                return _xPlotBuffer.GetRange(0, _plotSize);
+            //            }
+            //            else
+            //            {
+            //                return XPlotBuffer;
+            //            }
             return (XPlotBuffer as List<double>).GetRange(0, _plotSize);
         }
 
@@ -465,14 +463,14 @@ namespace SeeSharpTools.JY.GUI.EasyChartXData
 
         private static int GetSparseRatio(int count, out int plotCount)
         {
-//            int sparseRatio = (int) Math.Ceiling((double) count/ Constants.MaxPointsInSingleSeries);
+            //            int sparseRatio = (int) Math.Ceiling((double) count/ Constants.MaxPointsInSingleSeries);
             int sparseRatio = 1;
-            while ((double) count > (Constants.MaxPointsInSingleSeries*sparseRatio))
+            while ((double)count > (Constants.MaxPointsInSingleSeries * sparseRatio))
             {
                 sparseRatio *= 2;
             }
 
-            plotCount = (count + sparseRatio - 1)/sparseRatio;
+            plotCount = (count + sparseRatio - 1) / sparseRatio;
             return sparseRatio;
         }
 

@@ -1,9 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Drawing;
 using System.Drawing.Design;
 using System.Windows.Forms;
-using System.Windows.Forms.Design;
 
 namespace SeeSharpTools.JY.GUI.EasyChartXEditor
 {
@@ -28,8 +26,8 @@ namespace SeeSharpTools.JY.GUI.EasyChartXEditor
             // 强制变更，以将变更写入文件
             PropertyDescriptor backColorProperty = TypeDescriptor.GetProperties(control)["BackColor"];
             backColorProperty.SetValue(control, control.BackColor);
-            
-            return CollectionPropertyEditorForm<TabCursor>.EditValue(descriptor.Name, tabCursor, () => { tabCursor.Add(new TabCursor());  }, true);
+
+            return CollectionPropertyEditorForm<TabCursor>.EditValue(descriptor.Name, tabCursor, () => { tabCursor.Add(new TabCursor()); }, true);
         }
     }
 }

@@ -1,9 +1,9 @@
-﻿using System;
+﻿using SeeSharpTools.JY.GUI.StripChartXUtility;
+using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms.DataVisualization.Charting;
-using SeeSharpTools.JY.GUI.StripChartXUtility;
 
 namespace SeeSharpTools.JY.GUI
 {
@@ -39,7 +39,7 @@ namespace SeeSharpTools.JY.GUI
             this._parentChart = parentStripChart;
             this._parentPlotArea = basePlotArea;
             this._baseAxis = baseAxis;
-            
+
             this._viewMax = baseAxis.ScaleView.ViewMaximum;
             this._viewMin = baseAxis.ScaleView.ViewMinimum;
 
@@ -82,7 +82,7 @@ namespace SeeSharpTools.JY.GUI
             // 为了避免在未绘图时重新绘图因为Interval==0导致的异常
             if (IsXAxis())
             {
-//                _baseAxis.Interval = Constants.ClearXInterval;
+                //                _baseAxis.Interval = Constants.ClearXInterval;
             }
             else if (IsYAxis())
             {
@@ -103,7 +103,7 @@ namespace SeeSharpTools.JY.GUI
             Description("Get the name of axis.")
         ]
         public string Name { get; private set; }
-        
+
         private bool _autoScale;
         /// <summary>
         /// Specify whether auto scale enabled
@@ -122,7 +122,7 @@ namespace SeeSharpTools.JY.GUI
                 {
                     return false;
                 }
-                bool isMaxAndMinValid = (!double.IsNaN(_specifiedMax) && !double.IsNaN(_specifiedMin) && 
+                bool isMaxAndMinValid = (!double.IsNaN(_specifiedMax) && !double.IsNaN(_specifiedMin) &&
                     (_specifiedMax - _specifiedMin > Constants.MinLegalInterval));
                 return _autoScale || !isMaxAndMinValid;
             }
@@ -584,7 +584,7 @@ namespace SeeSharpTools.JY.GUI
         private int _majorGridCount;
         public int MajorGridCount
         {
-            get { return _majorGridCount;}
+            get { return _majorGridCount; }
             set
             {
                 // 值不对或X轴，该值不生效
@@ -931,7 +931,7 @@ namespace SeeSharpTools.JY.GUI
             }
             else
             {
-                interval = (Math.Log10(viewMax) - Math.Log10(viewMin))/_majorGridCount;
+                interval = (Math.Log10(viewMax) - Math.Log10(viewMin)) / _majorGridCount;
             }
             _baseAxis.Interval = interval;
 

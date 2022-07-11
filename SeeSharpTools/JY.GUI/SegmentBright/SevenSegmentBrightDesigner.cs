@@ -1,13 +1,13 @@
 ﻿using System;
-using System.ComponentModel.Design;
-using System.Windows.Forms.Design;
-using System.Drawing;
 using System.ComponentModel;
+using System.ComponentModel.Design;
+using System.Drawing;
+using System.Windows.Forms.Design;
 
 namespace SeeSharpTools.JY.GUI
 {
     [System.Security.Permissions.PermissionSet(System.Security.Permissions.SecurityAction.Demand, Name = "FullTrust")]
-    internal class SevenSegmentBrightDesigner: ControlDesigner
+    internal class SevenSegmentBrightDesigner : ControlDesigner
     {
         private DesignerActionListCollection actionLists;
 

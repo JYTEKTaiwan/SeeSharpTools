@@ -56,7 +56,8 @@ namespace SeeSharpTools.JY.GUI
         [Category("Behavior")]
         public bool Value
         {
-            set {
+            set
+            {
                 if (isCheck != value)
                 {
                     isCheck = value;
@@ -133,8 +134,11 @@ namespace SeeSharpTools.JY.GUI
         [Description("Set the style of industry switch.")]
         public SwitchStyles Style
         {
-            set { checkStyle = value;
-                this.Invalidate(); }
+            set
+            {
+                checkStyle = value;
+                this.Invalidate();
+            }
             get { return checkStyle; }
         }
         /// <summary>
@@ -223,7 +227,7 @@ namespace SeeSharpTools.JY.GUI
             }
         }
         #region RockerStyleDraw
-        public void DrawVerticalRocker(Graphics graphics,bool IsChecked)
+        public void DrawVerticalRocker(Graphics graphics, bool IsChecked)
         {
             Color CurrentColor;
             int rotation = 180;
@@ -238,7 +242,7 @@ namespace SeeSharpTools.JY.GUI
             {
                 CurrentColor = _oncolor;
             }
-            DrawRocker(graphics, new Rectangle(new Point(0,0), new Size(this.Width, this.Height)), CurrentColor, rotation, mirror);
+            DrawRocker(graphics, new Rectangle(new Point(0, 0), new Size(this.Width, this.Height)), CurrentColor, rotation, mirror);
         }
         public void DrawHorizontalRocker(Graphics graphics, bool IsChecked)
         {
@@ -533,7 +537,7 @@ namespace SeeSharpTools.JY.GUI
             dPath.Transform(matrix);
         }
         #endregion
-        
+
         #region PushButtonDraw
         public void DrawPushButton(Graphics graphics, bool IsChecked)
         {
@@ -669,14 +673,14 @@ namespace SeeSharpTools.JY.GUI
             }
             else
             {
-                CurrentColor= _oncolor;
+                CurrentColor = _oncolor;
             }
             LinearGradientBrush linearGradientBrush = new LinearGradientBrush(new Point(bounds.Left, bounds.Top), new Point(bounds.Left, bounds.Top + (int)Math.Max((double)(Math.Max(bounds.Width, bounds.Height) / 40), 2.0)), SlideShadingLight, SlideShadingDark);
             DrawSlide(graphics, bounds, linearGradientBrush, offset, rotation, mirror, CurrentColor);
             linearGradientBrush.Dispose();
         }
 
-        internal static void DrawSlide(Graphics graphics, Rectangle bou, LinearGradientBrush stemBrush, int offset, int rotation, bool mirror,Color drawcolor)
+        internal static void DrawSlide(Graphics graphics, Rectangle bou, LinearGradientBrush stemBrush, int offset, int rotation, bool mirror, Color drawcolor)
         {
             GraphicsPath graphicsPath = CreateSlideBase(bou, rotation, mirror);
             GraphicsPath graphicsPath2 = CreateSlideStem(bou, offset, rotation, mirror);

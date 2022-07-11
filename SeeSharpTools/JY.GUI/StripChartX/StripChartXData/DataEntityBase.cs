@@ -1,7 +1,7 @@
-﻿using System;
+﻿using SeeSharpTools.JY.GUI.StripChartXUtility;
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using SeeSharpTools.JY.GUI.StripChartXUtility;
 
 namespace SeeSharpTools.JY.GUI.StripChartXData
 {
@@ -73,18 +73,18 @@ namespace SeeSharpTools.JY.GUI.StripChartXData
 
         public abstract string GetXValue(int xIndex);
         public abstract object GetYValue(int xIndex, int seriesIndex);
-//        protected void RefreshSamplesInChart(int plotSamples)
-//        {
-//            if (SamplesInChart >= ParentManager.DisplayPoints)
-//            {
-//                return;
-//            }
-//            SamplesInChart += plotSamples;
-//            if (SamplesInChart > ParentManager.DisplayPoints)
-//            {
-//                SamplesInChart = ParentManager.DisplayPoints;
-//            }
-//        }
+        //        protected void RefreshSamplesInChart(int plotSamples)
+        //        {
+        //            if (SamplesInChart >= ParentManager.DisplayPoints)
+        //            {
+        //                return;
+        //            }
+        //            SamplesInChart += plotSamples;
+        //            if (SamplesInChart > ParentManager.DisplayPoints)
+        //            {
+        //                SamplesInChart = ParentManager.DisplayPoints;
+        //            }
+        //        }
 
         public virtual void Clear()
         {
@@ -130,7 +130,7 @@ namespace SeeSharpTools.JY.GUI.StripChartXData
                 }
             }
             // 如果新添加的数据Y值范围覆盖到原来的范围，则新的数据的范围就是最终的Y轴范围
-            else if(newDataMax >= _maxYValues[seriesIndex] && newDataMin <= _minYValues[seriesIndex])
+            else if (newDataMax >= _maxYValues[seriesIndex] && newDataMin <= _minYValues[seriesIndex])
             {
                 _maxYValues[seriesIndex] = newDataMax;
                 _minYValues[seriesIndex] = newDataMin;
@@ -228,7 +228,7 @@ namespace SeeSharpTools.JY.GUI.StripChartXData
             // 如果X轴终点相同，稀疏比相同，则直接在前面添加
             if (_lastXEnd == xEnd && _lastXSparseRatio == newSparseRatio)
             {
-                index = bufSize - ((_lastXEnd - _lastXStart)/newSparseRatio + 1) - 1;
+                index = bufSize - ((_lastXEnd - _lastXStart) / newSparseRatio + 1) - 1;
                 xValue = _lastXStart;
             }
             else

@@ -1,9 +1,9 @@
-﻿using System;
+﻿using SeeSharpTools.JY.GUI.EasyChartXUtility;
+using SeeSharpTools.JY.GUI.TabCursorUtility;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
-using SeeSharpTools.JY.GUI.EasyChartXUtility;
-using SeeSharpTools.JY.GUI.TabCursorUtility;
 
 namespace SeeSharpTools.JY.GUI.EasyChartXMarker.Painters
 {
@@ -59,7 +59,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXMarker.Painters
 
         protected abstract void InitializePaintComponent(Color color);
 
-        public void Initialize(Color color, int markerSize, EasyChartXAxis.PlotAxis xAxis, EasyChartXAxis.PlotAxis yAxis, 
+        public void Initialize(Color color, int markerSize, EasyChartXAxis.PlotAxis xAxis, EasyChartXAxis.PlotAxis yAxis,
             EasyChartXPlotArea plotArea)
         {
             this._xAxis = xAxis;
@@ -102,7 +102,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXMarker.Painters
                 Markers[i].YValue = yValues[i];
             }
         }
-        
+
         public void Hide()
         {
             foreach (MarkerControl markerControl in Markers)
@@ -186,16 +186,16 @@ namespace SeeSharpTools.JY.GUI.EasyChartXMarker.Painters
                 _yMin = yAxis.ViewMinimum;
                 rangeChanged = true;
             }
-            _xAxisRatio = _adapter.PlotRealWidth/(_xMax - _xMin);
-            _yAxisRatio = _adapter.PlotRealHeight/(_yMin - _yMax);
+            _xAxisRatio = _adapter.PlotRealWidth / (_xMax - _xMin);
+            _yAxisRatio = _adapter.PlotRealHeight / (_yMin - _yMax);
 
-            int sizeOffset = (MarkerSize - 1)/2;
+            int sizeOffset = (MarkerSize - 1) / 2;
             _xOffset = _adapter.PlotRealX - sizeOffset;
             _yOffset = _adapter.PlotRealY - sizeOffset;
             return rangeChanged;
         }
 
-        public static MarkerPainter CreatePainter(DataMarkerType type, PositionAdapter adapter, Color markerColor, 
+        public static MarkerPainter CreatePainter(DataMarkerType type, PositionAdapter adapter, Color markerColor,
             Control.ControlCollection containers)
         {
             switch (type)
@@ -228,7 +228,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXMarker.Painters
             tipLocation.X += MarkerSize;
             tipLocation.Y += MarkerSize;
             const string markerValueFormat = "X:{0}{1}Y:{2}";
-            parentChart.ShowMarkerValue(string.Format(markerValueFormat, markerControl.XValue, 
+            parentChart.ShowMarkerValue(string.Format(markerValueFormat, markerControl.XValue,
                 Environment.NewLine, markerControl.YValue), tipLocation, true);
         }
 

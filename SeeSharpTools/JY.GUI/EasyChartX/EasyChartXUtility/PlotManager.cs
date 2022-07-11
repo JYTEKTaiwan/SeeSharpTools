@@ -1,11 +1,11 @@
-﻿using System;
+﻿using SeeSharpTools.JY.GUI.EasyChartXData;
+using SeeSharpTools.JY.GUI.EasyChartXEditor;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms.DataVisualization.Charting;
-using SeeSharpTools.JY.GUI.EasyChartXData;
-using SeeSharpTools.JY.GUI.EasyChartXEditor;
 
 namespace SeeSharpTools.JY.GUI.EasyChartXUtility
 {
@@ -45,7 +45,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
 
         public int SeriesCount
         {
-            get { return _plotSeriesCount;}
+            get { return _plotSeriesCount; }
             set
             {
                 if (_plotSeriesCount == value)
@@ -104,7 +104,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
             _plotSeriesCount = ((!CumulativePlot) || (!IsPlotting)) ? lineNum : _plotSeriesCount + lineNum;
             if (_plotSeriesCount > MaxSeriesCount)
             {
-                ySize -= (_plotSeriesCount - MaxSeriesCount) *xSize;
+                ySize -= (_plotSeriesCount - MaxSeriesCount) * xSize;
                 _plotSeriesCount = MaxSeriesCount;
             }
             AdaptPlotDatasCount(1);
@@ -175,7 +175,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
             _plotSeriesCount = ((!CumulativePlot) || (!IsPlotting)) ? lineNum : _plotSeriesCount + lineNum;
             if (_plotSeriesCount > MaxSeriesCount)
             {
-                ySize -= (_plotSeriesCount - MaxSeriesCount) *xSize;
+                ySize -= (_plotSeriesCount - MaxSeriesCount) * xSize;
                 _plotSeriesCount = MaxSeriesCount;
             }
             AdaptPlotDatasCount(1);
@@ -340,33 +340,33 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
                 }
             }
         }
-/*
-        private void RefreshTimeToXLabel(int seriesIndex)
-        {
-            if (seriesIndex < 0)
-            {
-                for (int index = 0; index < PlotSeries.Count; index++)
+        /*
+                private void RefreshTimeToXLabel(int seriesIndex)
                 {
-                    RefreshTimeToXLabel(index);
+                    if (seriesIndex < 0)
+                    {
+                        for (int index = 0; index < PlotSeries.Count; index++)
+                        {
+                            RefreshTimeToXLabel(index);
+                        }
+                    }
+                    else
+                    {
+                        int lineIndex;
+                        DataEntity dataEntity = GetDataEntityBySeriesIndex(seriesIndex, out lineIndex);
+                        IList<string> xTimeBuffer = dataEntity.Buffer.XTimeBuffer;
+                        if (null == xTimeBuffer)
+                        {
+                            return;
+                        }
+                        for (int i = 0; i < xTimeBuffer.Count; i++)
+                        {
+                            PlotSeries[seriesIndex].Points[i].AxisLabel = xTimeBuffer[i];
+                        }
+                    }
                 }
-            }
-            else
-            {
-                int lineIndex;
-                DataEntity dataEntity = GetDataEntityBySeriesIndex(seriesIndex, out lineIndex);
-                IList<string> xTimeBuffer = dataEntity.Buffer.XTimeBuffer;
-                if (null == xTimeBuffer)
-                {
-                    return;
-                }
-                for (int i = 0; i < xTimeBuffer.Count; i++)
-                {
-                    PlotSeries[seriesIndex].Points[i].AxisLabel = xTimeBuffer[i];
-                }
-            }
-        }
-*/
-        
+        */
+
         internal void AdaptPlotDatasCount(int plotDataCount)
         {
             // 如果是累积绘图则绘图个数是当前DataEntity个数与待添加DataEntity个数之和
@@ -426,17 +426,17 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
             }
         }
 
-//        internal void AdaptPlotSeriesAndDataEntity()
-//        {
-//            //            if (_isPlot)
-//            //            {
-//            //                AdaptSeriesCount();
-//            //                AdaptPlotDatasCount(0);
-//            //            }
-//            AdaptSeriesCount();
-//            AdaptPlotDatasCount(0);
-//        }
-        
+        //        internal void AdaptPlotSeriesAndDataEntity()
+        //        {
+        //            //            if (_isPlot)
+        //            //            {
+        //            //                AdaptSeriesCount();
+        //            //                AdaptPlotDatasCount(0);
+        //            //            }
+        //            AdaptSeriesCount();
+        //            AdaptPlotDatasCount(0);
+        //        }
+
         // 清空绘图
         internal void Clear()
         {
@@ -529,7 +529,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
             return maxData;
         }
 
-        public void GetMaxAndMinYValue(EasyChartXPlotArea plotArea, out double maxYValue, out double minYValue, 
+        public void GetMaxAndMinYValue(EasyChartXPlotArea plotArea, out double maxYValue, out double minYValue,
             int seriesIndex)
         {
             maxYValue = double.NaN;
@@ -593,7 +593,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
             }
         }
 
-        public void GetMaxAndMinY2Value(EasyChartXPlotArea plotArea, out double maxYValue, out double minYValue, 
+        public void GetMaxAndMinY2Value(EasyChartXPlotArea plotArea, out double maxYValue, out double minYValue,
             int seriesIndex)
         {
             maxYValue = double.NaN;
@@ -642,7 +642,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
 
         public bool HasSeriesInXAxis(EasyChartXAxis.PlotAxis plotAxis, EasyChartXPlotArea plotArea)
         {
-            return PlotSeries.Any(item => item.ChartArea.Equals(plotArea.Name) && item.XAxisType == (AxisType) plotAxis);
+            return PlotSeries.Any(item => item.ChartArea.Equals(plotArea.Name) && item.XAxisType == (AxisType)plotAxis);
         }
 
         public bool HasSeriesInYAxis(EasyChartXPlotArea plotArea, EasyChartXAxis.PlotAxis plotAxis)

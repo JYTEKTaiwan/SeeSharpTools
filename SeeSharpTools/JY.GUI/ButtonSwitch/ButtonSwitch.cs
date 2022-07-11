@@ -931,7 +931,7 @@ namespace SeeSharpTools.JY.GUI
 
             int buttonWidth = _renderer.GetButtonWidth();
             Rectangle buttonRectangle = _renderer.GetButtonRectangle(buttonWidth);
-            
+
             _savedButtonValue = ButtonValue;
 
             if (buttonRectangle.Contains(e.Location))
@@ -980,7 +980,7 @@ namespace SeeSharpTools.JY.GUI
 
             if (_moving)
             {
-                int percentage = (int)((100*(double)ButtonValue)/((double) Width - (double) buttonWidth));
+                int percentage = (int)((100 * (double)ButtonValue) / ((double)Width - (double)buttonWidth));
 
                 if (_checked)
                 {
@@ -1077,7 +1077,7 @@ namespace SeeSharpTools.JY.GUI
                 int buttonWidth = _renderer.GetButtonWidth();
                 _animationTarget = Width - buttonWidth;
             }
-            
+
             base.OnSizeChanged(e);
         }
 
@@ -1110,7 +1110,7 @@ namespace SeeSharpTools.JY.GUI
             }
             else
             {
-                AnimationComplete();       
+                AnimationComplete();
             }
         }
 

@@ -2,9 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
-using System.Drawing.Design;
-using System.Linq;
-using System.Reflection;
 using System.Windows.Forms;
 
 namespace SeeSharpTools.JY.GUI
@@ -26,7 +23,7 @@ namespace SeeSharpTools.JY.GUI
             get { return base.Visible; }
             set { base.Visible = false; }
         }
-        
+
         public ViewController(IContainer container) : base()
         {
             SetControlView();
@@ -61,7 +58,7 @@ namespace SeeSharpTools.JY.GUI
                 {
                     return;
                 }
-                _stateNames = value; 
+                _stateNames = value;
             }
         }
 
@@ -159,10 +156,10 @@ namespace SeeSharpTools.JY.GUI
 
         private void ClearControlStatus()
         {
-//            foreach (var VARIABLE in COLLECTION)
-//            {
-//                
-//            }
+            //            foreach (var VARIABLE in COLLECTION)
+            //            {
+            //                
+            //            }
         }
 
         public void Clear()

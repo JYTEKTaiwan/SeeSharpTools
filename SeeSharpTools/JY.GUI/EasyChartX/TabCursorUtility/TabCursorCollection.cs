@@ -1,11 +1,11 @@
-﻿using System;
+﻿using SeeSharpTools.JY.GUI.TabCursorUtility;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms.DataVisualization.Charting;
-using SeeSharpTools.JY.GUI.TabCursorUtility;
 
 namespace SeeSharpTools.JY.GUI
 {
@@ -37,7 +37,7 @@ namespace SeeSharpTools.JY.GUI
             this.CursorValueFormat = null;
             this.RunTimeEditable = true;
             _flowCursorEnableFlag = false;
-//            this._baseChart.PostPaint += BaseChartOnPostPaint;
+            //            this._baseChart.PostPaint += BaseChartOnPostPaint;
             // TODO to add _cursor code, get from parentchart
         }
 
@@ -73,7 +73,7 @@ namespace SeeSharpTools.JY.GUI
                     if (!_cursors.Any(cursor => cursor.Name.Equals(cursorName)))
                     {
                         item.Name = cursorName;
-                        item.Color = _cursorPalette[(i - 1)%_cursorPalette.Length];
+                        item.Color = _cursorPalette[(i - 1) % _cursorPalette.Length];
                         break;
                     }
                 }
@@ -86,7 +86,7 @@ namespace SeeSharpTools.JY.GUI
             _parentChart.OnTabCursorChanged(item, TabCursorOperation.CursorAdded, null);
         }
 
-        
+
 
         public void Clear()
         {
@@ -226,7 +226,7 @@ namespace SeeSharpTools.JY.GUI
         private void BaseChartOnPostPaint(object sender, ChartPaintEventArgs eventArgs)
         {
             // 如果不是绘制Chart或者无需更新位置时将不执行重绘
-            if (!ReferenceEquals(eventArgs.ChartElement.GetType(), typeof (Chart)) || !_cursors.Any(item => item.Enabled))
+            if (!ReferenceEquals(eventArgs.ChartElement.GetType(), typeof(Chart)) || !_cursors.Any(item => item.Enabled))
             {
                 return;
             }
@@ -261,7 +261,7 @@ namespace SeeSharpTools.JY.GUI
             if (_parentChart.IsPlotting() && cursor.Enabled)
             {
                 cursor.Control.Visible = true;
-                
+
                 _adapter.RefreshPosition();
                 _adapter.MoveCursorToTarget(cursor);
             }
@@ -272,7 +272,7 @@ namespace SeeSharpTools.JY.GUI
             // TODO 暂时Enable变化和Value变化都触发ValueChanged事件，后期再优化
             _parentChart.OnTabCursorChanged(cursor, TabCursorOperation.ValueChanged, null);
         }
-        
+
         internal void RefreshCursorValue(TabCursor cursor)
         {
             _adapter.RefreshCursorValue(cursor);

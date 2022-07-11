@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Reflection;
-using System.Text;
 using System.Windows.Forms;
 
 namespace SeeSharpTools.JY.GUI
@@ -28,7 +22,7 @@ namespace SeeSharpTools.JY.GUI
         private void InitControlList(Form parentForm)
         {
             _controls.Clear();
-            if (null == parentForm ||  0 == parentForm.Controls.Count)
+            if (null == parentForm || 0 == parentForm.Controls.Count)
             {
                 return;
             }
@@ -251,7 +245,7 @@ namespace SeeSharpTools.JY.GUI
 
         private void AddDataToTable(ViewControlElement controlElement)
         {
-            
+
             object[] values = controlElement.GetValue(listBox_stateNames.Text);
             if (null == values)
             {
@@ -313,7 +307,7 @@ namespace SeeSharpTools.JY.GUI
             RefreshControlElementValue(dataGridView_visibleSelect.Rows, 1, e);
         }
 
-        private void RefreshControlElementValue(DataGridViewRowCollection rows, int propertyIndex, 
+        private void RefreshControlElementValue(DataGridViewRowCollection rows, int propertyIndex,
             DataGridViewCellEventArgs eventArgs)
         {
             if (_isInternalRefreshOperation || 1 == eventArgs.ColumnIndex || eventArgs.RowIndex < 0)
@@ -375,7 +369,7 @@ namespace SeeSharpTools.JY.GUI
             for (int i = 0; i < selectView.RowCount; i++)
             {
                 DataGridViewRow rowData = selectView.Rows[i];
-                bool selected = (bool) rowData.Cells[0].Value;
+                bool selected = (bool)rowData.Cells[0].Value;
                 allSelect &= selected;
                 allDeSelect &= !selected;
             }

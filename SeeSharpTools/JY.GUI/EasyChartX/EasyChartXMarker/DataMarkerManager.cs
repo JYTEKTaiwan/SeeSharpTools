@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections;
+﻿using SeeSharpTools.JY.GUI.EasyChartXMarker.Painters;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
-using SeeSharpTools.JY.GUI.EasyChartXMarker.Painters;
 
 namespace SeeSharpTools.JY.GUI.TabCursorUtility
 {
@@ -173,7 +171,7 @@ namespace SeeSharpTools.JY.GUI.TabCursorUtility
             {
                 _parentPlotArea.AxisX.RefreshLabels();
                 // 因为目前副X坐标轴被封闭，所以暂时清理副坐标轴
-//                _parentPlotArea.AxisX2.RefreshLabels();
+                //                _parentPlotArea.AxisX2.RefreshLabels();
             }
         }
     }

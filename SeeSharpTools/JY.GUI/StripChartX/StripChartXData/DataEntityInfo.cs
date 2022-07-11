@@ -1,5 +1,4 @@
 ﻿using System;
-using SeeSharpTools.JY.GUI.StripChartXUtility;
 
 namespace SeeSharpTools.JY.GUI.StripChartXData
 {
@@ -20,7 +19,7 @@ namespace SeeSharpTools.JY.GUI.StripChartXData
 
         public bool Equals(DataEntityInfo src)
         {
-            return this.XType == src.XType && ReferenceEquals(DataType, src.DataType) && 
+            return this.XType == src.XType && ReferenceEquals(DataType, src.DataType) &&
                    this.LineCount == src.LineCount && this.Capacity == src.Capacity;
         }
 

@@ -1,7 +1,7 @@
-﻿using System;
+﻿using SeeSharpTools.JY.GUI.StripChartXUtility;
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using SeeSharpTools.JY.GUI.StripChartXUtility;
 
 namespace SeeSharpTools.JY.GUI.StripChartXData.DataEntities
 {
@@ -20,7 +20,7 @@ namespace SeeSharpTools.JY.GUI.StripChartXData.DataEntities
             _plotManager = plotManager;
             this._startIndex = _plotManager.StartIndex;
             this._nextIndex = _plotManager.StartIndex;
-            
+
             this._plotBuffer = new PlotBuffer<TDataType>(DataInfo.LineCount, DataInfo.Capacity);
 
             _yBuffers = new List<OverLapWrapBuffer<TDataType>>(DataInfo.LineCount);
@@ -124,7 +124,7 @@ namespace SeeSharpTools.JY.GUI.StripChartXData.DataEntities
         public override bool FillYPlotDatas(int beginXIndex, int endXIndex, bool forceRefresh, int seriesIndex, int newSparseRatio, int plotCount)
         {
             // 如果不需要强制更新，且当前起始位置等于上次起始位置、当前结束位置小于等于上次结束位置、新的SparseRatio等于上次的SpaseRatio时无需更新数据。
-            if (!forceRefresh &&　LastYStartIndex[seriesIndex] == beginXIndex && LastYEndIndex[seriesIndex] >= endXIndex && 
+            if (!forceRefresh && LastYStartIndex[seriesIndex] == beginXIndex && LastYEndIndex[seriesIndex] >= endXIndex &&
                 SparseRatio[seriesIndex] == newSparseRatio)
             {
                 return false;

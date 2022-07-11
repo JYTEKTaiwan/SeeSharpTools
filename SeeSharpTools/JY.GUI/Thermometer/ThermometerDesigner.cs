@@ -1,13 +1,13 @@
 ﻿using System;
+using System.ComponentModel;
 using System.ComponentModel.Design;
 using System.Windows.Forms;
 using System.Windows.Forms.Design;
-using System.ComponentModel;
 
 namespace SeeSharpTools.JY.GUI
 {
     [System.Security.Permissions.PermissionSet(System.Security.Permissions.SecurityAction.Demand, Name = "FullTrust")]
-    internal  class ThermometerDesigner : ParentControlDesigner
+    internal class ThermometerDesigner : ParentControlDesigner
     {
         #region Fields
         private readonly DesignerVerbCollection designerVerbs = new DesignerVerbCollection();

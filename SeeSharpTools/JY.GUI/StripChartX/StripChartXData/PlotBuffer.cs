@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections;
+﻿using SeeSharpTools.JY.GUI.StripChartXUtility;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using SeeSharpTools.JY.GUI.StripChartXUtility;
 
 namespace SeeSharpTools.JY.GUI.StripChartXData
 {
@@ -102,7 +98,7 @@ namespace SeeSharpTools.JY.GUI.StripChartXData
                 IList<byte> collection = yBuf as IList<byte>;
                 FillDefaultToListBuffer(collection, (byte)0, Constants.MaxPointsInSingleSeries);
             }
-//            FillDefaultToListBuffer(yBuf, 0, Constants.MaxPointsInSingleSeries);
+            //            FillDefaultToListBuffer(yBuf, 0, Constants.MaxPointsInSingleSeries);
         }
 
         private static void FillDefaultToListBuffer<T>(IList<T> buffer, T value, int count)

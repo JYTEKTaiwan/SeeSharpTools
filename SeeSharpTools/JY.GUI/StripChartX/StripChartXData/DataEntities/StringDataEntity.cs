@@ -1,7 +1,7 @@
-﻿using System;
+﻿using SeeSharpTools.JY.GUI.StripChartXUtility;
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using SeeSharpTools.JY.GUI.StripChartXUtility;
 
 namespace SeeSharpTools.JY.GUI.StripChartXData.DataEntities
 {

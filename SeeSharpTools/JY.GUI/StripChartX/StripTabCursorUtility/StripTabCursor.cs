@@ -1,9 +1,8 @@
-﻿using System;
+﻿using SeeSharpTools.JY.GUI.StripTabCursorUtility;
+using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
-using SeeSharpTools.JY.GUI.StripTabCursorUtility;
-using SeeSharpTools.JY.GUI.StripChartXUtility;
 
 namespace SeeSharpTools.JY.GUI
 {
@@ -38,8 +37,8 @@ namespace SeeSharpTools.JY.GUI
                 _collection.RefreshCursorValue(this);
                 _collection.ShowCursorValue(this, true);
             });
-            this.Control.MouseEnter += (sender, args) => { _collection.ShowCursorValue(this, true);};
-            this.Control.MouseLeave += (sender, args) => { _collection.ShowCursorValue(this, false);};
+            this.Control.MouseEnter += (sender, args) => { _collection.ShowCursorValue(this, true); };
+            this.Control.MouseLeave += (sender, args) => { _collection.ShowCursorValue(this, false); };
         }
 
         const int MaxNameLength = 50;
@@ -57,7 +56,7 @@ namespace SeeSharpTools.JY.GUI
             get { return _name; }
             set
             {
-                if (string.IsNullOrWhiteSpace(value) || _name.Equals(value) || value.Length > MaxNameLength || 
+                if (string.IsNullOrWhiteSpace(value) || _name.Equals(value) || value.Length > MaxNameLength ||
                     (null != _collection && _collection.Any(cursor => cursor.Name.Equals(value))))
                 {
                     return;
@@ -93,7 +92,7 @@ namespace SeeSharpTools.JY.GUI
             get { return _collection.GetXDataIndex(_xRawValue); }
             set
             {
-                _xRawValue = (int) _collection.GetRealXValue(value);
+                _xRawValue = (int)_collection.GetRealXValue(value);
                 _collection.RefreshCursorPosition(this);
             }
         }
@@ -120,7 +119,7 @@ namespace SeeSharpTools.JY.GUI
         ]
         public int SeriesIndex
         {
-            get { return _seriesIndex;}
+            get { return _seriesIndex; }
             set { _seriesIndex = value >= 0 ? value : -1; }
         }
 
@@ -170,5 +169,5 @@ namespace SeeSharpTools.JY.GUI
         }
     }
 
-    
+
 }

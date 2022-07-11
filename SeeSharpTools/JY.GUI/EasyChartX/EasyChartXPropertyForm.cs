@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
+﻿using SeeSharpTools.JY.GUI.EasyChartXUtility;
+using System;
 using System.Windows.Forms;
-using System.Windows.Forms.DataVisualization.Charting;
-using SeeSharpTools.JY.GUI.EasyChartXUtility;
 
 namespace SeeSharpTools.JY.GUI
 {
@@ -175,8 +168,8 @@ namespace SeeSharpTools.JY.GUI
             _changedCtrl.ChartAreaBackColor = beforeEasyChart.ChartAreaBackColor;
             _changedCtrl.LegendBackColor = beforeEasyChart.LegendBackColor;
             _changedCtrl.GradientStyle = beforeEasyChart.GradientStyle;
-//            _changedCtrl.XAxisLogarithmic = beforeEasyChart.XAxisLogarithmic;
-//            _changedCtrl.YAxisLogarithmic = beforeEasyChart.YAxisLogarithmic;
+            //            _changedCtrl.XAxisLogarithmic = beforeEasyChart.XAxisLogarithmic;
+            //            _changedCtrl.YAxisLogarithmic = beforeEasyChart.YAxisLogarithmic;
         }
 
         private void button_Cancel_Click(object sender, EventArgs e)

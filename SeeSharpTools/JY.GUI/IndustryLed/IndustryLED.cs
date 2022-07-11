@@ -63,7 +63,7 @@ namespace SeeSharpTools.JY.GUI
         LinearGradientBrush _brOff;
 
         InteractionStyle _interactionStyle = InteractionStyle.Indicator;
-        
+
         #endregion
 
         #region Properties
@@ -80,7 +80,7 @@ namespace SeeSharpTools.JY.GUI
             {
                 _oncolor = value;
                 _onDarkColor = ControlPaint.Dark(_oncolor);
-           //     _onDarkDarkColor = ControlPaint.DarkDark(_oncolor);
+                //     _onDarkDarkColor = ControlPaint.DarkDark(_oncolor);
                 this.Invalidate();  // Redraw the control
             }
         }
@@ -100,7 +100,7 @@ namespace SeeSharpTools.JY.GUI
             {
                 _offcolor = value;
                 _offDarkColor = ControlPaint.Dark(_offcolor);
-            //    _offDarkDarkColor = ControlPaint.DarkDark(_offcolor);
+                //    _offDarkDarkColor = ControlPaint.DarkDark(_offcolor);
                 this.Invalidate();  // Redraw the control
             }
         }
@@ -151,7 +151,7 @@ namespace SeeSharpTools.JY.GUI
             {
                 _blinkColor = value;
                 _blinkDarkColor = ControlPaint.Dark(_blinkColor);
-            //    _blinkarkDarkColor = ControlPaint.Dark(_blinkDarkColor);
+                //    _blinkarkDarkColor = ControlPaint.Dark(_blinkDarkColor);
                 this.Invalidate();
             }
         }
@@ -255,7 +255,7 @@ namespace SeeSharpTools.JY.GUI
             this.BlinkColor = Color.Lime;
 
 
-        _timer.Interval = _blinkInterval;
+            _timer.Interval = _blinkInterval;
             _timer.Tick += delegate (object o, EventArgs args)
                 {
                     LEDBlink();
@@ -360,7 +360,7 @@ namespace SeeSharpTools.JY.GUI
         private void drawControl(Graphics g, bool on, bool IsBlink)
         {
             Color cDarkOff;
-            Color cDarkOn ;
+            Color cDarkOn;
             // Calculate the dimensions of the bulb
             int width = this.Width - (this.Padding.Left + this.Padding.Right);
             int height = this.Height - (this.Padding.Top + this.Padding.Bottom);
@@ -393,7 +393,7 @@ namespace SeeSharpTools.JY.GUI
         /// <summary>
         /// Renders the control to an image
         /// </summary>
-        private void drawControlRectangular(Graphics g, bool on,bool IsBlink)
+        private void drawControlRectangular(Graphics g, bool on, bool IsBlink)
         {
             Color cDarkOff;
             Color cDarkOn;
@@ -454,7 +454,7 @@ namespace SeeSharpTools.JY.GUI
                 using (PathGradientBrush pathGradientBrush = new PathGradientBrush(graphicsPath))
                 {
                     using (GraphicsPath graphicsPath2 = new GraphicsPath())
-                    {                        
+                    {
                         graphicsPath2.AddEllipse(new Rectangle(this.Padding.Left + this.Width / 12, this.Padding.Top + this.Height / 12, this.Width - 2 * this.Width / 12, this.Height - 2 * this.Height / 12));
                         graphicsPath.AddPath(graphicsPath2, true);
                         pathGradientBrush.CenterColor = Color.White;
@@ -468,7 +468,7 @@ namespace SeeSharpTools.JY.GUI
                         if (IsBlink == true)
                         {
                             cDarkOn = _blinkColor;
-            
+
                         }
                         else
                         {
@@ -639,7 +639,7 @@ namespace SeeSharpTools.JY.GUI
             else
             {
                 // lightColor = (on) ? _oncolor : Color.FromArgb(150, _offDarkColor);
-                lightColor = (on) ? _oncolor :_offcolor;
+                lightColor = (on) ? _oncolor : _offcolor;
                 darkColor = (on) ? _onDarkColor : _offDarkColor;
             }
             // Is the bulb on or off
@@ -653,7 +653,7 @@ namespace SeeSharpTools.JY.GUI
             // Subtract 1 pixel so ellipse doesn't get cut off
             diameter = Math.Max(diameter - 1, 1);
 
-            if (_styles ==  LedStyle.CircularBright)
+            if (_styles == LedStyle.CircularBright)
             {
                 // Draw the background ellipse
                 var rectangle = new Rectangle(this.Padding.Left + 1, this.Padding.Top + 1, this.Width - 2, this.Height - 2);
@@ -682,7 +682,7 @@ namespace SeeSharpTools.JY.GUI
                 g.SetClip(this.ClientRectangle);
                 if (this.Value) g.DrawEllipse(new Pen(Color.FromArgb(85, Color.Black), 1F), rectangle);
             }
-            if (_styles ==  LedStyle.RectangularBright)
+            if (_styles == LedStyle.RectangularBright)
             {
                 // Draw the background ellipse
                 var rectangle = new Rectangle(this.Padding.Left, this.Padding.Top, diameter, diameter);

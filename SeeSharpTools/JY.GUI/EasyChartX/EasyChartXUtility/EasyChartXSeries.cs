@@ -5,15 +5,15 @@ using System.Windows.Forms.DataVisualization.Charting;
 
 namespace SeeSharpTools.JY.GUI
 {
-//    [TypeConverter(typeof(ExpandableObjectConverter))]
-//    [Serializable]
+    //    [TypeConverter(typeof(ExpandableObjectConverter))]
+    //    [Serializable]
     public class EasyChartXSeries
     {
         public EasyChartXSeries()
         {
             _name = "";
             _baseSeries = null;
-//            _name = "Series";
+            //            _name = "Series";
             _color = Color.Red;
             _lineWidth = LineWidth.Thin;
             _type = LineType.FastLine;
@@ -113,8 +113,8 @@ namespace SeeSharpTools.JY.GUI
                 _lineWidth = value;
                 if (null != _baseSeries)
                 {
-                    _baseSeries.BorderWidth = (int) _lineWidth;
-                    _baseSeries.MarkerSize = 3*_baseSeries.BorderWidth + 2;
+                    _baseSeries.BorderWidth = (int)_lineWidth;
+                    _baseSeries.MarkerSize = 3 * _baseSeries.BorderWidth + 2;
                 }
             }
         }
@@ -201,7 +201,7 @@ namespace SeeSharpTools.JY.GUI
                 _marker = value;
                 if (null != _baseSeries)
                 {
-                    _baseSeries.MarkerStyle = (MarkerStyle) _marker;
+                    _baseSeries.MarkerStyle = (MarkerStyle)_marker;
                     // 如果marker不为none，则自动将线型修改为Line
                     _baseSeries.ChartType = (MarkerType.None == _marker) ? (SeriesChartType)_type : SeriesChartType.Line;
                 }
@@ -221,9 +221,9 @@ namespace SeeSharpTools.JY.GUI
             this._baseSeries = baseSeries;
             baseSeries.Name = this._name;
             baseSeries.Color = this._color;
-            baseSeries.BorderWidth = (int) this._lineWidth;
-            baseSeries.ChartType = (SeriesChartType) this._type;
-            baseSeries.MarkerStyle = (MarkerStyle) this._marker;
+            baseSeries.BorderWidth = (int)this._lineWidth;
+            baseSeries.ChartType = (SeriesChartType)this._type;
+            baseSeries.MarkerStyle = (MarkerStyle)this._marker;
             _seriesCollection.RefreshPlotAxis(this);
         }
 
@@ -232,7 +232,7 @@ namespace SeeSharpTools.JY.GUI
         {
             this._baseSeries = null;
         }
-        
+
         // 更新线条显示的坐标轴，如果在分区视图，则始终使用主坐标轴显示。
         // 坐标轴更新在新建线条/分区视图切换/用户修改时需要更新
         // 需要获取isSplitView，所以必须委托SeriesCollection去执行，后期考虑再优化

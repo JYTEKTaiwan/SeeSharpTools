@@ -1,14 +1,12 @@
 ﻿using System;
-using System.Windows.Forms;
+using System.ComponentModel;
 using System.ComponentModel.Design;
 using System.Windows.Forms.Design;
-using System.Drawing;
-using System.ComponentModel;
 
 
 namespace SeeSharpTools.JY.GUI
 {
-    class SwitchArrayDesigner: ControlDesigner
+    class SwitchArrayDesigner : ControlDesigner
     {
         private DesignerActionListCollection actionLists;
 
@@ -61,7 +59,7 @@ namespace SeeSharpTools.JY.GUI
         public uint Dimension
         {
             get { return colUserControl.Dimension; }
-            set { GetPropertyByName("Dimension").SetValue(colUserControl, value); }                
+            set { GetPropertyByName("Dimension").SetValue(colUserControl, value); }
         }
 
         public bool Direction

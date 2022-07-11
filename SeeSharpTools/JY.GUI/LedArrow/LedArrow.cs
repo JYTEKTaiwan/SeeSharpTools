@@ -1,7 +1,7 @@
-﻿using System.Drawing;
-using System.Windows.Forms;
+﻿using System;
 using System.ComponentModel;
-using System;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace SeeSharpTools.JY.GUI
 {
@@ -212,7 +212,7 @@ namespace SeeSharpTools.JY.GUI
                 if (NeedsSizeSwap(_prerotation))
                 {
                     this.Size = new Size(base.Height, base.Width);
-                }                
+                }
                 this.Invalidate();
             }
         }
@@ -269,7 +269,7 @@ namespace SeeSharpTools.JY.GUI
             {
                 LedArrowBlink();
             };
-            
+
         }
 
         private void LedArrow_Resize(object sender, EventArgs e)
@@ -318,8 +318,8 @@ namespace SeeSharpTools.JY.GUI
 
         private void DrawSingleHead(PaintEventArgs p, Brush brush)
         {
-            int num ;
-            
+            int num;
+
             //iColors.FaceColorLight = SystemColors.ControlLightLight;
             //iColors.FaceColorDark = SystemColors.ControlDarkDark;
             var r = new Rectangle(new Point(0, 0), this.Size);
@@ -335,14 +335,14 @@ namespace SeeSharpTools.JY.GUI
                     array[3] = new Point(r.Right, r.Top + num / 2);
                     array[4] = new Point(r.Right - num, r.Top + num);
                     array[5] = new Point(r.Right - num, r.Top + num * 2 / 3);
-                    array[6] = new Point(r.Left, r.Top + num * 2 / 3); 
+                    array[6] = new Point(r.Left, r.Top + num * 2 / 3);
                     break;
                 case DirectionQ.Down:
                     num = this.Width - 1;
                     array[0] = new Point(r.Left + num / 3, r.Top);
                     array[1] = new Point(r.Left + num / 3, r.Bottom - num);
                     array[2] = new Point(r.Left, r.Bottom - num);
-                    array[3] = new Point(r.Right/ 2, r.Bottom);
+                    array[3] = new Point(r.Right / 2, r.Bottom);
                     array[4] = new Point(r.Right, r.Bottom - num);
                     array[5] = new Point(r.Right - num / 3, r.Bottom - num);
                     array[6] = new Point(r.Right - num / 3, r.Top);
@@ -371,7 +371,7 @@ namespace SeeSharpTools.JY.GUI
                     break;
             }
 
-            
+
             p.Graphics.FillPolygon(brush, array);
         }
 
@@ -400,16 +400,16 @@ namespace SeeSharpTools.JY.GUI
                 case DirectionQ.Down:
                 case DirectionQ.Up:
                     num = this.Width - 1;
-                    array[0] = new Point(r.Left+num/2, r.Top );
-                    array[1] = new Point(r.Left, r.Top +num);
-                    array[2] = new Point(r.Left + num/3, r.Top + num);
-                    array[3] = new Point(r.Left + num/3, r.Bottom - num);
-                    array[4] = new Point(r.Left , r.Bottom-num);
-                    array[5] = new Point(r.Left+num/2, r.Bottom);
-                    array[6] = new Point(r.Right, r.Bottom-num);
-                    array[7] = new Point(r.Right - num/3, r.Bottom - num);
-                    array[8] = new Point(r.Right - num/3, r.Top + num );
-                    array[9] = new Point(r.Right , r.Top+num);
+                    array[0] = new Point(r.Left + num / 2, r.Top);
+                    array[1] = new Point(r.Left, r.Top + num);
+                    array[2] = new Point(r.Left + num / 3, r.Top + num);
+                    array[3] = new Point(r.Left + num / 3, r.Bottom - num);
+                    array[4] = new Point(r.Left, r.Bottom - num);
+                    array[5] = new Point(r.Left + num / 2, r.Bottom);
+                    array[6] = new Point(r.Right, r.Bottom - num);
+                    array[7] = new Point(r.Right - num / 3, r.Bottom - num);
+                    array[8] = new Point(r.Right - num / 3, r.Top + num);
+                    array[9] = new Point(r.Right, r.Top + num);
                     break;
                 default:
                     break;
@@ -445,7 +445,7 @@ namespace SeeSharpTools.JY.GUI
                 }
                 else
                 {
-                     brush = new SolidBrush(_offcolor);
+                    brush = new SolidBrush(_offcolor);
                 }
             }
             //选择形状，单向还是双向
@@ -456,7 +456,7 @@ namespace SeeSharpTools.JY.GUI
             else
             {
 
-                 DrawDualHead(e, brush);
+                DrawDualHead(e, brush);
             }
 
 

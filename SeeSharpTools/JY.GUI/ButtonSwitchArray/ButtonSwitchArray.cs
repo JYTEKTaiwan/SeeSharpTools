@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
-using System.Data;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace SeeSharpTools.JY.GUI
@@ -43,7 +41,7 @@ namespace SeeSharpTools.JY.GUI
         }
 
         #endregion
-        
+
         #region Public Properties
 
         /// <summary>
@@ -300,7 +298,7 @@ namespace SeeSharpTools.JY.GUI
             SendEvent(arg);
         }
 
-     
+
         #endregion
     }
 }

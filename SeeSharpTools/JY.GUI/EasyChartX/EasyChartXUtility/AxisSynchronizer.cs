@@ -45,7 +45,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
                 {
                     _slaveAxis.GetSpecifiedRange(out slaveMaxValue, out slaveMinValue);
                 }
-                
+
                 if (_slaveAxis.IsLogarithmic)
                 {
                     slaveMaxValue = Math.Log10(slaveMaxValue);
@@ -61,7 +61,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
 
                 this.NeedSync = true;
                 this._shrinkRatio = (slaveMaxValue - slaveMinValue) / (masterMaxValue - masterMinValue);
-                this._offset = slaveMinValue - this._shrinkRatio* masterMinValue;
+                this._offset = slaveMinValue - this._shrinkRatio * masterMinValue;
 
                 this.SlaveMaxValue = slaveMaxValue;
                 this.SlaveMinValue = slaveMinValue;
@@ -92,13 +92,13 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
             {
                 double masterViewMax = _masterAxis.ViewMaximum;
                 double masterViewMin = _masterAxis.ViewMinimum;
-//                if (_masterAxis.IsLogarithmic)
-//                {
-//                    masterViewMax = Math.Pow(10, masterViewMax);
-//                    masterViewMin = Math.Pow(10, masterViewMin);
-//                }
-                double maxValue = _shrinkRatio* masterViewMax + _offset;
-                double minValue = _shrinkRatio* masterViewMin + _offset;
+                //                if (_masterAxis.IsLogarithmic)
+                //                {
+                //                    masterViewMax = Math.Pow(10, masterViewMax);
+                //                    masterViewMin = Math.Pow(10, masterViewMin);
+                //                }
+                double maxValue = _shrinkRatio * masterViewMax + _offset;
+                double minValue = _shrinkRatio * masterViewMin + _offset;
                 if (_slaveAxis.IsLogarithmic)
                 {
                     maxValue = Math.Pow(10, maxValue);

@@ -12,10 +12,10 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
         internal bool UseMainAreaConfig { get; set; }
         internal StripChartXPlotAreaCollection SplitPlotAreas { get; }
 
-//        private double _maxXRange;
-//        private double _minXRange;
-//        public double MinXInterval { get; set; }
-//        public double MinYInterval { get; set; }
+        //        private double _maxXRange;
+        //        private double _minXRange;
+        //        public double MinXInterval { get; set; }
+        //        public double MinYInterval { get; set; }
 
         private bool _isSplitView;
 
@@ -230,11 +230,11 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
         {
             MainPlotArea.ChartArea.Position.Auto = true;
 
-//            MainPlotArea.XPosition = 0;
-//            MainPlotArea.YPosition = 0;
-//
-//            MainPlotArea.Width = (_parentChart.LegendVisible) ? 100 - _plotChart.Legends[0].Position.Width : 100;
-//            MainPlotArea.Height = 100;
+            //            MainPlotArea.XPosition = 0;
+            //            MainPlotArea.YPosition = 0;
+            //
+            //            MainPlotArea.Width = (_parentChart.LegendVisible) ? 100 - _plotChart.Legends[0].Position.Width : 100;
+            //            MainPlotArea.Height = 100;
         }
 
         internal void ArrangeSplitPlotAreas()
@@ -249,12 +249,12 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
             {
                 return;
             }
-            float columnIntervalWidth = (colCount - 1)*_columnInterval*100/_parentChart.Width;
-            float rowintervalWidth = ((rowCount - 1) * _rowInterval)*100 /_parentChart.Height;
+            float columnIntervalWidth = (colCount - 1) * _columnInterval * 100 / _parentChart.Width;
+            float rowintervalWidth = ((rowCount - 1) * _rowInterval) * 100 / _parentChart.Height;
 
             // 总的高度减去边界的高度
             float totalChartHeight = 100 - Constants.YBoundRatio;
-            float singlePlotAreaWidth = (totalChartWidth - columnIntervalWidth)/colCount;
+            float singlePlotAreaWidth = (totalChartWidth - columnIntervalWidth) / colCount;
             float singlePlotAreaHeight = (totalChartHeight - rowintervalWidth) / rowCount;
             switch (LayoutDirection)
             {
@@ -275,8 +275,8 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
             float rowIntervalRatio = _rowInterval * 100 / _parentChart.Height;
 
             // 起始位置为边界宽度的一半
-            float xPosition = Constants.XBoundRatio/2;
-            float yPosition = Constants.YBoundRatio/2;
+            float xPosition = Constants.XBoundRatio / 2;
+            float yPosition = Constants.YBoundRatio / 2;
             for (int i = 0; i < _plotManager.SeriesCount; i++)
             {
                 SplitPlotAreas[i].XPosition = xPosition;
@@ -286,7 +286,7 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
                 if (0 == (i + 1) % colCount)
                 {
                     // 起始位置为边界宽度的一半
-                    xPosition = Constants.XBoundRatio/2;
+                    xPosition = Constants.XBoundRatio / 2;
                     yPosition += singlePlotAreaHeight + rowIntervalRatio;
                 }
                 else
@@ -302,8 +302,8 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
             float rowIntervalRatio = _rowInterval * 100 / _parentChart.Height;
 
             // 起始位置为边界宽度的一半
-            float xPosition = Constants.XBoundRatio/2;
-            float yPosition = Constants.YBoundRatio/2;
+            float xPosition = Constants.XBoundRatio / 2;
+            float yPosition = Constants.YBoundRatio / 2;
             for (int i = 0; i < _plotManager.SeriesCount; i++)
             {
                 SplitPlotAreas[i].XPosition = xPosition;
@@ -313,7 +313,7 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
                 if (0 == (i + 1) % rowCount)
                 {
                     // 起始位置为边界宽度的一半
-                    yPosition = Constants.YBoundRatio/2;
+                    yPosition = Constants.YBoundRatio / 2;
                     xPosition += singlePlotAreaWidth + columnIntervalRatio;
                 }
                 else
@@ -348,16 +348,16 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
             switch (LayoutDirection)
             {
                 case LayoutDirection.LeftToRight:
-                    colCount = (int) dim1;
-                    rowCount = (int) dim2;
+                    colCount = (int)dim1;
+                    rowCount = (int)dim2;
                     break;
                 case LayoutDirection.TopToBottom:
-                    colCount = (int) dim2;
-                    rowCount = (int) dim1;
+                    colCount = (int)dim2;
+                    rowCount = (int)dim1;
                     break;
                 default:
-                    colCount = (int) dim1;
-                    rowCount = (int) dim2;
+                    colCount = (int)dim1;
+                    rowCount = (int)dim2;
                     break;
             }
         }
@@ -440,43 +440,43 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
 
             double maxYRange = double.NaN;
             double minYRange = double.NaN;
-            
+
             if (SplitPlotAreas[areaIndex].AxisY.AutoScale)
             {
                 _plotManager.GetMaxAndMinYValue(SplitPlotAreas[areaIndex], out maxYRange, out minYRange, areaIndex);
             }
             SplitPlotAreas[areaIndex].AdaptPrimaryAxes(maxXValue, minXValue, maxYRange, minYRange);
 
-//            SplitPlotAreas[areaIndex].AxisX.RefreshLabels();
+            //            SplitPlotAreas[areaIndex].AxisX.RefreshLabels();
             SplitPlotAreas[areaIndex].AxisY.ClearLabels();
             // 在分区视图时不会在副坐标轴显示数据
             // 默认不同步，如果需要打开在AdaptSecondaryAxes方法中打开
-//            SplitPlotAreas[areaIndex].YAxisSync.NeedSync = false;
-//            if (_plotManager.HasSeriesInYAxis(SplitPlotAreas[areaIndex], EasyChartXAxis.PlotAxis.Secondary))
-//            {
-//                double maxY2Range;
-//                double minY2Range;
-//                if (MainPlotArea.AxisY2.AutoScale)
-//                {
-//                    if (double.IsNaN(maxYRange))
-//                    {
-//                        maxY2Range = maxYRange;
-//                        minY2Range = minYRange;
-//                    }
-//                    else
-//                    {
-//                        _plotManager.GetMaxAndMinY2Value(SplitPlotAreas[areaIndex], out maxY2Range, out minY2Range, areaIndex);
-//                    }
-//                }
-//                else
-//                {
-//                    SplitPlotAreas[areaIndex].AxisY2.GetSpecifiedRange(out maxY2Range, out minY2Range);
-//                }
-//
-//                SplitPlotAreas[areaIndex].AdaptSecondaryAxes(maxXRange, minXRange, maxY2Range, minY2Range);
-//                //            SplitPlotAreas[areaIndex].AxisX2.RefreshLabels();
-//                SplitPlotAreas[areaIndex].AxisY2.RefreshLabels();
-//            }
+            //            SplitPlotAreas[areaIndex].YAxisSync.NeedSync = false;
+            //            if (_plotManager.HasSeriesInYAxis(SplitPlotAreas[areaIndex], EasyChartXAxis.PlotAxis.Secondary))
+            //            {
+            //                double maxY2Range;
+            //                double minY2Range;
+            //                if (MainPlotArea.AxisY2.AutoScale)
+            //                {
+            //                    if (double.IsNaN(maxYRange))
+            //                    {
+            //                        maxY2Range = maxYRange;
+            //                        minY2Range = minYRange;
+            //                    }
+            //                    else
+            //                    {
+            //                        _plotManager.GetMaxAndMinY2Value(SplitPlotAreas[areaIndex], out maxY2Range, out minY2Range, areaIndex);
+            //                    }
+            //                }
+            //                else
+            //                {
+            //                    SplitPlotAreas[areaIndex].AxisY2.GetSpecifiedRange(out maxY2Range, out minY2Range);
+            //                }
+            //
+            //                SplitPlotAreas[areaIndex].AdaptSecondaryAxes(maxXRange, minXRange, maxY2Range, minY2Range);
+            //                //            SplitPlotAreas[areaIndex].AxisX2.RefreshLabels();
+            //                SplitPlotAreas[areaIndex].AxisY2.RefreshLabels();
+            //            }
         }
 
         private double GetMinYInterval(StripChartXPlotArea plotArea)
@@ -485,7 +485,7 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
             {
                 return 1E-3;
             }
-            return (plotArea.AxisY.Maximum - plotArea.AxisY.Minimum)/ Constants.AutoYIntervalPrecision;
+            return (plotArea.AxisY.Maximum - plotArea.AxisY.Minimum) / Constants.AutoYIntervalPrecision;
         }
 
         public void Clear()
@@ -530,6 +530,6 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
                 splitPlotArea.ApplyConfig(MainPlotArea);
             }
         }
-        
+
     }
 }

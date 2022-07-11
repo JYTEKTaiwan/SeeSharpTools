@@ -21,11 +21,11 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
                 GetLogarithmRoundRange(ref maxYValue, ref minYValue, yMajorGridCount);
             }
         }
-        
+
         private static void GetLinearRoundRange(ref double maxYValue, ref double minYValue, int yMajorGridCount)
         {
             double range = (maxYValue - minYValue);
-            double expandRange = range*Constants.YAutoExpandRatio;
+            double expandRange = range * Constants.YAutoExpandRatio;
 
             // range小于最小范围
             if (range <= Constants.MinDoubleValue)
@@ -37,20 +37,20 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
             {
                 double roundSegment = Math.Pow(10, Math.Floor(Math.Log10(range) - Constants.RangeRoundOffset));
                 // 如果最大值在0和-1 * expandRange之间，配置最大值为0
-                if (maxYValue <= Constants.MinDoubleValue && maxYValue >= -1*expandRange)
+                if (maxYValue <= Constants.MinDoubleValue && maxYValue >= -1 * expandRange)
                 {
                     maxYValue = 0;
-                    minYValue = FloorRound(minYValue - expandRange, yMajorGridCount*roundSegment);
+                    minYValue = FloorRound(minYValue - expandRange, yMajorGridCount * roundSegment);
                 }
                 // 如果最小值在1 * expandRange和0之间，配置最小值为0
-                else if (minYValue <= expandRange && minYValue >= -1*Constants.MinDoubleValue)
+                else if (minYValue <= expandRange && minYValue >= -1 * Constants.MinDoubleValue)
                 {
                     maxYValue = CeilRound(maxYValue + expandRange, yMajorGridCount * roundSegment);
                     minYValue = 0;
                 }
-                else if (maxYValue > Constants.MinDoubleValue && minYValue < -1*Constants.MinDoubleValue)
+                else if (maxYValue > Constants.MinDoubleValue && minYValue < -1 * Constants.MinDoubleValue)
                 {
-                    int maxRatio = (int) Math.Round((maxYValue/range)* yMajorGridCount);
+                    int maxRatio = (int)Math.Round((maxYValue / range) * yMajorGridCount);
                     if (0 >= maxRatio)
                     {
                         maxRatio = 1;
@@ -59,19 +59,19 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
                     {
                         maxRatio = 5;
                     }
-                    double maxSingleIntervalSize = CeilRound((maxYValue + expandRange)/maxRatio, roundSegment);
-                    double minSingleIntervalSize = CeilRound((expandRange - minYValue)/(yMajorGridCount - maxRatio),
+                    double maxSingleIntervalSize = CeilRound((maxYValue + expandRange) / maxRatio, roundSegment);
+                    double minSingleIntervalSize = CeilRound((expandRange - minYValue) / (yMajorGridCount - maxRatio),
                         roundSegment);
                     double internvalSize = maxSingleIntervalSize > minSingleIntervalSize
                         ? maxSingleIntervalSize
                         : minSingleIntervalSize;
-                    maxYValue = maxRatio*internvalSize;
-                    minYValue = (maxRatio - yMajorGridCount) *internvalSize;
+                    maxYValue = maxRatio * internvalSize;
+                    minYValue = (maxRatio - yMajorGridCount) * internvalSize;
                 }
                 else
                 {
-                    double midRoundValue = CeilRound((maxYValue + minYValue)/2, roundSegment);
-                    double roundRange = CeilRound(range/2 + expandRange, roundSegment* yMajorGridCount / 2);
+                    double midRoundValue = CeilRound((maxYValue + minYValue) / 2, roundSegment);
+                    double roundRange = CeilRound(range / 2 + expandRange, roundSegment * yMajorGridCount / 2);
                     // 因为MidRound是向上取整，所以最小值有可能低于这个范围，所以可能需要对该值进行修正
                     while (minYValue < midRoundValue - roundRange)
                     {
@@ -111,7 +111,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXUtility
         // 获取range对应的取整对齐的数字
         private static double CeilRound(double data, double roundSegment)
         {
-            return Math.Ceiling(data/roundSegment)*roundSegment;
+            return Math.Ceiling(data / roundSegment) * roundSegment;
         }
 
         private static double FloorRound(double data, double roundSegment)

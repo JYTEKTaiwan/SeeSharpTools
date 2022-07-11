@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
-using System.Runtime.Serialization;
 using System.Text;
 using System.Windows.Forms;
-using System.Windows.Forms.DataVisualization.Charting;
 
 namespace SeeSharpTools.JY.GUI
 {
@@ -16,8 +12,8 @@ namespace SeeSharpTools.JY.GUI
     {
         private readonly Control _control;
         public string Name { get; set; }
-        public static string[] PropertyNames = {"Enabled", "Visible"};
-        public static object[] DefaultValue = {true, true};
+        public static string[] PropertyNames = { "Enabled", "Visible" };
+        public static object[] DefaultValue = { true, true };
         private readonly Dictionary<string, object[]> _values;
 
         public bool IsEmpty
@@ -121,7 +117,7 @@ namespace SeeSharpTools.JY.GUI
                     {
                         case 0:
                         case 1:
-                            value =  true.ToString().Equals(valueStr);
+                            value = true.ToString().Equals(valueStr);
                             break;
                         default:
                             break;
@@ -191,7 +187,7 @@ namespace SeeSharpTools.JY.GUI
                     _values[state][i] = null;
                 }
             }
-            _values[state][GetPropertyIndex(propertyName)] = 
+            _values[state][GetPropertyIndex(propertyName)] =
                 (null != value) ? FromStrToValue(propertyName, value.ToString()) : null;
         }
 
@@ -227,18 +223,18 @@ namespace SeeSharpTools.JY.GUI
                     continue;
                 }
                 // TODO 反射会影响效率，暂时使用写死的
-//                Type controlType = _control.GetType();
-//
-//                PropertyInfo propertyInfo = controlType.GetProperty(PropertyNames[i],
-//                    BindingFlags.Instance | BindingFlags.Public);
-//                propertyInfo?.SetValue(_control, values[i], null);
+                //                Type controlType = _control.GetType();
+                //
+                //                PropertyInfo propertyInfo = controlType.GetProperty(PropertyNames[i],
+                //                    BindingFlags.Instance | BindingFlags.Public);
+                //                propertyInfo?.SetValue(_control, values[i], null);
                 switch (propertyIndex)
                 {
                     case 0:
-                        _control.Enabled = (bool) values[propertyIndex];
+                        _control.Enabled = (bool)values[propertyIndex];
                         break;
                     case 1:
-                        _control.Visible = (bool) values[propertyIndex];
+                        _control.Visible = (bool)values[propertyIndex];
                         break;
                     default:
                         break;
@@ -257,7 +253,7 @@ namespace SeeSharpTools.JY.GUI
                 }
                 for (int i = 0; i < PropertyNames.Length; i++)
                 {
-                    cloneObj.SetValue(key, PropertyNames[i], _values[key][i]);   
+                    cloneObj.SetValue(key, PropertyNames[i], _values[key][i]);
                 }
             }
             return null;

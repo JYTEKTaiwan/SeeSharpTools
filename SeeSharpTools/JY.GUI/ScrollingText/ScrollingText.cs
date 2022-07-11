@@ -1,9 +1,6 @@
 using System;
-using System.Collections;
 using System.ComponentModel;
 using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Data;
 using System.Windows.Forms;
 
 namespace SeeSharpTools.JY.GUI
@@ -48,7 +45,7 @@ namespace SeeSharpTools.JY.GUI
         {
             set
             {
-                if (value>=1&&value<=1000)
+                if (value >= 1 && value <= 1000)
                 {
                     timer.Interval = value;
                 }

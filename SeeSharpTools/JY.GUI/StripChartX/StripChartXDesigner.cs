@@ -1,7 +1,7 @@
 ﻿using System;
+using System.ComponentModel;
 using System.ComponentModel.Design;
 using System.Windows.Forms.Design;
-using System.ComponentModel;
 
 namespace SeeSharpTools.JY.GUI
 {
@@ -41,7 +41,7 @@ namespace SeeSharpTools.JY.GUI
 
         private void OpenProperty()
         {
-            
+
             var parentControl = (StripChartX)colUserControl;
             var chartProperty = new StripChartXPropertyForm((StripChartX)parentControl);
             chartProperty.ShowDialog();
@@ -93,12 +93,12 @@ namespace SeeSharpTools.JY.GUI
 
             //Define static section header entries.
             items.Add(new DesignerActionHeaderItem("Appearance"));
-//            items.Add(new DesignerActionPropertyItem("SeriesNames",
-//                                 "SeriesNames", "Appearance",
-//                                 "Set the names of series."));
-//            items.Add(new DesignerActionPropertyItem("SeriesColor",
-//                                 "SeriesColor", "Appearance",
-//                                 "Set the color of series."));
+            //            items.Add(new DesignerActionPropertyItem("SeriesNames",
+            //                                 "SeriesNames", "Appearance",
+            //                                 "Set the names of series."));
+            //            items.Add(new DesignerActionPropertyItem("SeriesColor",
+            //                                 "SeriesColor", "Appearance",
+            //                                 "Set the color of series."));
             items.Add(new DesignerActionMethodItem(this, "OpenProperty", "property"));
 
 

@@ -126,7 +126,7 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
             get { return _plotManager.FitType; }
             set { _plotManager.FitType = value; }
         }
-        
+
         #region Split View layout configuire
 
         /// <summary>

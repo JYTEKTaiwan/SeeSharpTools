@@ -2,7 +2,7 @@
 {
     internal static class Constants
     {
-        
+
         // 小数点位数或者小数点以上位数大于该值后使用数学计数法显示
         public const int MinDecimalOfScientificNotition = 6;
         // 用来配置Y轴范围舍进比率的常数
@@ -19,7 +19,7 @@
         public const double ClearXInterval = 200;
         // Clear时Y轴主网格间隔
         public const double ClearYInterval = 0.5;
-//        public const string DefaultTimeFormat = "hh:mm:ss:fff";
+        //        public const string DefaultTimeFormat = "hh:mm:ss:fff";
         // 非对数绘图时X轴主网格的个数
         public const int MaxXGridCount = 10;
         // 非对数绘图时Y轴主网格的个数
@@ -63,7 +63,7 @@
         // Y轴不取消缩放时最大支持的范围差比例
         public const double MaxDiffToKeepYScaleview = 5;
         // 最小的float差
-        public const float MinFloatDiff = (float) 1E-20;
+        public const float MinFloatDiff = (float)1E-20;
         // 默认的Y轴最大最小值
         public const double DefaultYMax = 3.5;
         public const double DefaultYMin = 0.5;

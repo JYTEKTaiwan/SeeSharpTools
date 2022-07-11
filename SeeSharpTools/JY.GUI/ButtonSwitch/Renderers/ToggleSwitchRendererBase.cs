@@ -14,7 +14,7 @@ namespace SeeSharpTools.JY.GUI
         #region Constructor
 
         protected ToggleSwitchRendererBase()
-        {}
+        { }
 
         internal void SetToggleSwitch(ButtonSwitch toggleSwitch)
         {

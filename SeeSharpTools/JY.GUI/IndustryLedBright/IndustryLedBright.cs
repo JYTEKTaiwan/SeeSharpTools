@@ -195,8 +195,8 @@ namespace SeeSharpTools.JY.GUI
         /// </summary>
         [Category("Appearance")]
         public Color BlinkDarkDarkColor { get; protected set; }
-     
-        
+
+
         /// <summary>
         /// Set the interaction of led
         /// </summary>

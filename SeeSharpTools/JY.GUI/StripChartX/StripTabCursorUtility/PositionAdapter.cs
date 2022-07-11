@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using SeeSharpTools.JY.GUI.StripChartXUtility;
+using System;
 using System.Drawing;
 using System.Windows.Forms.DataVisualization.Charting;
-using SeeSharpTools.JY.GUI.StripChartXUtility;
 
 namespace SeeSharpTools.JY.GUI.StripTabCursorUtility
 {
@@ -19,10 +18,10 @@ namespace SeeSharpTools.JY.GUI.StripTabCursorUtility
         public double PlotRealY { get; private set; }
         public double PlotRealWidth { get; private set; }
         public int PlotRealHeight { get; private set; }
-        
+
         private double _maxX;
         private double _minX;
-        
+
         public PositionAdapter(Chart baseChart, StripChartXPlotArea plotArea)
         {
             this._baseChart = baseChart;
@@ -87,22 +86,22 @@ namespace SeeSharpTools.JY.GUI.StripTabCursorUtility
             CalculatePointPosition();
             return true;
         }
-        
+
         private void CalculatePointPosition()
         {
             //根据InnerLocation计算的绘图区的宽度有一定的误差，需要通过参数修正
             const int plotAreaWidthOffset = -1;
-            float chartAreaWidth = _areaPosition.Width* _chartSize.Width/100;
-            float chartAreaHeight = _areaPosition.Height* _chartSize.Height/100;
-            PlotRealX = Math.Round((_areaPosition.X * _chartSize.Width + _plotPosition.X * chartAreaWidth)/100);
-            PlotRealY = Math.Round(_areaPosition.Y*_chartSize.Height + _plotPosition.Y*chartAreaHeight)/100;
-            PlotRealWidth = Math.Round(chartAreaWidth * _plotPosition.Width/100) + plotAreaWidthOffset;
-            PlotRealHeight = (int) Math.Round(chartAreaHeight*_plotPosition.Height/100);
+            float chartAreaWidth = _areaPosition.Width * _chartSize.Width / 100;
+            float chartAreaHeight = _areaPosition.Height * _chartSize.Height / 100;
+            PlotRealX = Math.Round((_areaPosition.X * _chartSize.Width + _plotPosition.X * chartAreaWidth) / 100);
+            PlotRealY = Math.Round(_areaPosition.Y * _chartSize.Height + _plotPosition.Y * chartAreaHeight) / 100;
+            PlotRealWidth = Math.Round(chartAreaWidth * _plotPosition.Width / 100) + plotAreaWidthOffset;
+            PlotRealHeight = (int)Math.Round(chartAreaHeight * _plotPosition.Height / 100);
         }
 
         public void MoveCursorToTarget(StripTabCursor cursor)
         {
-            double cursorPosition = (cursor.XRawValue - _minX)/(_maxX - _minX);
+            double cursorPosition = (cursor.XRawValue - _minX) / (_maxX - _minX);
             if (cursorPosition < 0 || double.IsNaN(cursorPosition))
             {
                 cursorPosition = 0;
@@ -113,7 +112,7 @@ namespace SeeSharpTools.JY.GUI.StripTabCursorUtility
             }
 
             // 减去控件宽度的一半保证游标控件中间对齐到位置
-            int cursorXPosition = (int) Math.Round(PlotRealX + cursorPosition*PlotRealWidth) - (cursor.Control.Width - 1)/2;
+            int cursorXPosition = (int)Math.Round(PlotRealX + cursorPosition * PlotRealWidth) - (cursor.Control.Width - 1) / 2;
             int cursorYPosition = (int)PlotRealY;
             if (cursor.Control.Location.X != cursorXPosition || cursor.Control.Location.Y != cursorYPosition)
             {
@@ -129,8 +128,8 @@ namespace SeeSharpTools.JY.GUI.StripTabCursorUtility
         {
             // 游标真实位置需要加上cursor视图和控件本身像素差的偏移
             int cursorPosition = cursor.Control.Location.X + StripTabCursorControl.ViewPixelOffset;
-            double valueRatio = (cursorPosition - PlotRealX)/PlotRealWidth;
-            double value = (_maxX - _minX)*valueRatio+_minX;
+            double valueRatio = (cursorPosition - PlotRealX) / PlotRealWidth;
+            double value = (_maxX - _minX) * valueRatio + _minX;
             if (value > _maxX)
             {
                 value = _maxX;
@@ -139,7 +138,7 @@ namespace SeeSharpTools.JY.GUI.StripTabCursorUtility
             {
                 value = _minX;
             }
-            cursor.XRawValue = (int) Math.Round(value);
+            cursor.XRawValue = (int)Math.Round(value);
         }
     }
 }

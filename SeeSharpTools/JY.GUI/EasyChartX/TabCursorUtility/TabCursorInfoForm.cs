@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Drawing.Text;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace SeeSharpTools.JY.GUI.TabCursorUtility
@@ -52,7 +48,7 @@ namespace SeeSharpTools.JY.GUI.TabCursorUtility
                 chartAbsoluteX += currentControl.Location.X;
                 chartAbsoluteY += currentControl.Location.Y;
             }
-            int formPositionX = chartAbsoluteX + parentChart.Width - this.Width/2;
+            int formPositionX = chartAbsoluteX + parentChart.Width - this.Width / 2;
             int formPositionY = chartAbsoluteY + parentChart.Height - this.Height;
             Rectangle workingArea = Screen.GetWorkingArea(this);
             if (formPositionX + this.Width > workingArea.Width + workingArea.X)
@@ -125,7 +121,7 @@ namespace SeeSharpTools.JY.GUI.TabCursorUtility
                 double yValue = cursor.YValue;
                 string yValueStr = double.IsNaN(yValue) ? string.Empty : yValue.ToString();
                 dataGridView_cursorInfo.Rows.Add(cursor.Enabled, ColorButtonText, cursor.Name, seriesName, cursor.Value, yValueStr);
-                DataGridViewRow row = dataGridView_cursorInfo.Rows[dataGridView_cursorInfo.Rows.Count-1];
+                DataGridViewRow row = dataGridView_cursorInfo.Rows[dataGridView_cursorInfo.Rows.Count - 1];
                 row.Cells[CursorColorIndex].Style.BackColor = cursor.Color;
                 row.Cells[CursorColorIndex].Style.SelectionBackColor = cursor.Color;
             }
@@ -176,11 +172,11 @@ namespace SeeSharpTools.JY.GUI.TabCursorUtility
             TabCursor changeCursor = _cursors[e.RowIndex];
             switch (e.ColumnIndex)
             {
-//                case CursorEnableIndex:
-//                    changeCursor.Enabled = (bool)changedValue;
-//                    break;
-//                case CursorColorIndex:
-//                    break;
+                //                case CursorEnableIndex:
+                //                    changeCursor.Enabled = (bool)changedValue;
+                //                    break;
+                //                case CursorColorIndex:
+                //                    break;
                 case CursorNameIndex:
                     if (null != changedValue && _cursors.All(cursor => !cursor.Name.Equals(changedValue)))
                     {
@@ -220,10 +216,10 @@ namespace SeeSharpTools.JY.GUI.TabCursorUtility
             switch (e.ColumnIndex)
             {
                 case CursorEnableIndex:
-//                    dataGridView_cursorInfo.EndEdit();
+                    //                    dataGridView_cursorInfo.EndEdit();
                     changeCursor.Enabled = !changeCursor.Enabled;
                     dataGridView_cursorInfo.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = changeCursor.Enabled;
-//                    dataGridView_cursorInfo.EndEdit();
+                    //                    dataGridView_cursorInfo.EndEdit();
                     break;
                 case CursorColorIndex:
                     ColorDialog loColorForm = new ColorDialog();
@@ -235,10 +231,10 @@ namespace SeeSharpTools.JY.GUI.TabCursorUtility
                         row.Cells[CursorColorIndex].Style.SelectionBackColor = changeCursor.Color;
                     }
                     break;
-//                case CursorNameIndex:
-//                    break;
-//                case CursorValueIndex:
-//                    break;
+                //                case CursorNameIndex:
+                //                    break;
+                //                case CursorValueIndex:
+                //                    break;
                 default:
                     break;
             }

@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace SeeSharpTools.JY.GUI
@@ -36,7 +30,7 @@ namespace SeeSharpTools.JY.GUI
 
         private void buttonOK_Click(object sender, EventArgs e)
         {
-            SetAxisValue(_hitPlotArea.AxisY, double.Parse(textBox_primaryYMax.Text), 
+            SetAxisValue(_hitPlotArea.AxisY, double.Parse(textBox_primaryYMax.Text),
                 double.Parse(textBox_primaryYMin.Text));
             SetAxisValue(_hitPlotArea.AxisY2, double.Parse(textBox_secondaryYMax.Text),
                 double.Parse(textBox_secondaryYMin.Text));

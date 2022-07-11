@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Drawing;
-using System.Windows.Forms.DataVisualization.Charting;
 
 namespace SeeSharpTools.JY.GUI.StripChartXUtility
 {
@@ -62,12 +60,12 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
             {
                 case StripChartX.StripScrollType.Cumulation:
                     // 如果是累积模式，X轴的起始位置就是当前的位置，终止位置时当前位置加1。
-                    xMin = -1*samplesInChart;
+                    xMin = -1 * samplesInChart;
                     xMax = maxXValue;
                     break;
                 case StripChartX.StripScrollType.Scroll:
                     // 如果是滚动模式，X轴的起始位置取决于当前点数是否达到DisplayPoints，终止位置为当前结束位置加1
-                    xMin = -1*_plotManager.DisplayPoints;
+                    xMin = -1 * _plotManager.DisplayPoints;
                     xMax = maxXValue;
                     break;
                 default:
@@ -85,7 +83,7 @@ namespace SeeSharpTools.JY.GUI.StripChartXUtility
 
         public int GetXDataStartIndex()
         {
-            return -1*_plotManager.DataEntity.SamplesInChart;
+            return -1 * _plotManager.DataEntity.SamplesInChart;
         }
 
         public int GetXDataEndIndex()

@@ -2,11 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.IO;
-using System.Xml;
 using System.Reflection;
 using System.Windows.Forms;
-using System.Drawing.Drawing2D;
+using System.Xml;
 
 namespace SeeSharpTools.JY.GUI
 {
@@ -19,7 +19,7 @@ namespace SeeSharpTools.JY.GUI
     /// </summary>
     public enum LedMatrixItemDirection
     {
-        Up ,///<!--Up-->
+        Up,///<!--Up-->
         Down,///<!--Down-->
         Left,///<!--Left-->
         Right ///<!--Right-->
@@ -509,7 +509,7 @@ namespace SeeSharpTools.JY.GUI
 
             // Place the leds on the control
             SetMatrixSize(m_iNbLedLines, m_iNbLedRows);
-            this.Size = new Size(400,180);
+            this.Size = new Size(400, 180);
             // Set the font collection
             LoadFontCollectionFromResource("SeeSharpTools.JY.GUI.Resources.LedMatrixSymbolFile.xml");
             //  SeeSharpTools.JY.GUI.Resources.LedMatrixSymbolFile.xml

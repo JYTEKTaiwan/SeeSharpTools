@@ -1,12 +1,11 @@
-﻿using System;
+﻿using SeeSharpTools.JY.GUI.EasyChartXUtility;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms.DataVisualization.Charting;
-using SeeSharpTools.JY.GUI.EasyChartXUtility;
 
 namespace SeeSharpTools.JY.GUI
 {
-//    [TypeConverter(typeof(ExpandableObjectConverter))]
+    //    [TypeConverter(typeof(ExpandableObjectConverter))]
     public class EasyChartXCursor
     {
         private readonly EasyChartX _parentChart;
@@ -49,7 +48,7 @@ namespace SeeSharpTools.JY.GUI
             Browsable(true),
             Category("Design"),
             Description("Set or get whether cursor is enabled."),
-//            NotifyParentProperty(true)
+        //            NotifyParentProperty(true)
         ]
         public CursorMode Mode
         {
@@ -169,7 +168,7 @@ namespace SeeSharpTools.JY.GUI
                 }
             }
         }
-        
+
 
         internal void RefreshCursor()
         {
@@ -178,7 +177,7 @@ namespace SeeSharpTools.JY.GUI
                 _baseCursor.LineColor = Color.Transparent;
                 _baseCursor.IsUserEnabled = false;
                 _baseCursor.IsUserSelectionEnabled = false;
-//                _baseAxis.ScaleView.Zoomable = false;
+                //                _baseAxis.ScaleView.Zoomable = false;
                 return;
             }
             switch (_mode)
@@ -187,19 +186,19 @@ namespace SeeSharpTools.JY.GUI
                     _baseCursor.LineColor = Color.Transparent;
                     _baseCursor.IsUserEnabled = false;
                     _baseCursor.IsUserSelectionEnabled = false;
-//                    _baseAxis.ScaleView.Zoomable = false;
+                    //                    _baseAxis.ScaleView.Zoomable = false;
                     break;
-                    case CursorMode.Cursor:
+                case CursorMode.Cursor:
                     _baseCursor.LineColor = _color;
                     _baseCursor.IsUserEnabled = true;
                     _baseCursor.IsUserSelectionEnabled = false;
-//                    _baseAxis.ScaleView.Zoomable = false;
+                    //                    _baseAxis.ScaleView.Zoomable = false;
                     break;
                 case CursorMode.Zoom:
                     _baseCursor.LineColor = _color;
                     _baseCursor.IsUserEnabled = true;
                     _baseCursor.IsUserSelectionEnabled = true;
-//                    _baseAxis.ScaleView.Zoomable = true;
+                    //                    _baseAxis.ScaleView.Zoomable = true;
                     break;
                 default:
                     break;
@@ -245,12 +244,12 @@ namespace SeeSharpTools.JY.GUI
                 _baseAxis.ScaleView.SmallScrollMinSize = _interval;
             }
         }
-//
-//        internal void SetVisible(bool visible)
-//        {
-//            _baseCursor.LineColor = visible ? _color : Color.Transparent;
-//        }
-        
+        //
+        //        internal void SetVisible(bool visible)
+        //        {
+        //            _baseCursor.LineColor = visible ? _color : Color.Transparent;
+        //        }
+
         public enum CursorMode
         {
             /// <summary>

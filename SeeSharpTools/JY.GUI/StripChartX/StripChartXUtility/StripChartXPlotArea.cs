@@ -1,10 +1,10 @@
-﻿using System;
+﻿using SeeSharpTools.JY.GUI.StripChartXUtility;
+using System;
 using System.ComponentModel;
 using System.ComponentModel.Design;
 using System.Drawing;
 using System.Drawing.Design;
 using System.Windows.Forms.DataVisualization.Charting;
-using SeeSharpTools.JY.GUI.StripChartXUtility;
 
 namespace SeeSharpTools.JY.GUI
 {
@@ -13,7 +13,7 @@ namespace SeeSharpTools.JY.GUI
         internal ChartArea ChartArea { get; }
 
         private readonly StripChartX _parentChart;
-//        private readonly AxisSynchronizer _xAxisSync;
+        //        private readonly AxisSynchronizer _xAxisSync;
         internal AxisSynchronizer YAxisSync { get; }
 
         internal StripChartXPlotArea(StripChartX parentChart, ChartArea chartArea)
@@ -52,7 +52,7 @@ namespace SeeSharpTools.JY.GUI
             _cursors[0] = _xCursor;
             _cursors[1] = _yCursor;
 
-//            _xAxisSync = new AxisSynchronizer(_axisX, _axisX2);
+            //            _xAxisSync = new AxisSynchronizer(_axisX, _axisX2);
             YAxisSync = new AxisSynchronizer(_axisY, _axisY2);
         }
 
@@ -312,7 +312,7 @@ namespace SeeSharpTools.JY.GUI
 
             _axisY.SetYAxisRangeValue(maxYValue, minYValue);
             _axisY.RefreshAxisRange();
-            
+
             CancelScaleViewIfRangeNotFit(lastMaxX, lastMinX, lastMaxY, lastMinY);
 
             if (_axisX.AutoZoomReset)
@@ -343,7 +343,7 @@ namespace SeeSharpTools.JY.GUI
             YAxisSync.InitSyncParam(maxYValue, minYValue);
             YAxisSync.SyncAxis();
 
-//            _axisX2.RefreshXLabelFormat();
+            //            _axisX2.RefreshXLabelFormat();
             _axisX2.RefreshGridsAndLabels();
             _axisY2.RefreshGridsAndLabels();
         }
@@ -357,11 +357,11 @@ namespace SeeSharpTools.JY.GUI
             _yCursor.SetInterval(yMinInternval);
 
             //如果是小数则根据interval限制最多显示的小数点位数
-//            _axisX.SetLabelFormat(xMinInterval);
-//            _axisY.SetLabelFormat(yMinInternval);
+            //            _axisX.SetLabelFormat(xMinInterval);
+            //            _axisY.SetLabelFormat(yMinInternval);
 
-//            _axisX2.SetLabelFormat(xMinInterval);
-//            _axisY2.SetLabelFormat(yMinInternval);
+            //            _axisX2.SetLabelFormat(xMinInterval);
+            //            _axisY2.SetLabelFormat(yMinInternval);
         }
 
         // TODO 新增属性后需要同步

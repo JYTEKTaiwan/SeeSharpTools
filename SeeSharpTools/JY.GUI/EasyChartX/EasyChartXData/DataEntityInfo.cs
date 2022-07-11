@@ -7,7 +7,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXData
         public int Size { get; set; }
         public bool IsDeepCopy { get; set; }
         public XDataInputType XDataInputType { get; set; }
-//        public XDataType XDataType { get; set; }
+        //        public XDataType XDataType { get; set; }
         public int LineNum { get; set; }
 
         public DataEntityInfo()
@@ -15,7 +15,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXData
             this.Size = 0;
             this.IsDeepCopy = true;
             this.XDataInputType = XDataInputType.Array;
-//            this.XDataType = XDataType.Number;
+            //            this.XDataType = XDataType.Number;
             this.LineNum = 0;
         }
 
@@ -28,7 +28,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXData
 
         public bool IsNeedAdaptXBuffer(DataEntityInfo latestInfo)
         {
-//            return NotNeedDeepCopyXPlotBuffer() ^ latestInfo.NotNeedDeepCopyXPlotBuffer();
+            //            return NotNeedDeepCopyXPlotBuffer() ^ latestInfo.NotNeedDeepCopyXPlotBuffer();
             // TODO 为了保证稳定性，暂时强制配置
             return true;
         }
@@ -56,7 +56,7 @@ namespace SeeSharpTools.JY.GUI.EasyChartXData
             this.IsDeepCopy = src.IsDeepCopy;
             this.XDataInputType = src.XDataInputType;
             this.LineNum = src.LineNum;
-//            this.XDataType = src.XDataType;
+            //            this.XDataType = src.XDataType;
         }
     }
 }

@@ -47,7 +47,7 @@ namespace SeeSharpTools.JY.GUI
             //update groupbox of TextStyle
             foreach (Tank.TextStyleType TankTextStyle in Enum.GetValues(typeof(Tank.TextStyleType)))
             {
-             //   Tank.TextStyleType.
+                //   Tank.TextStyleType.
                 comboBoxTextStyle.Items.Add(TankTextStyle);
                 comboBoxTextStyle.Text = _changedCtrl.TextStyle.ToString();
             }

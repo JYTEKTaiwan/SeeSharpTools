@@ -9,7 +9,7 @@ namespace SeeSharpTools.JY.GUI.Common.i18n
     {
 
         internal const string Name = "GUI";
-        
+
         internal const string DefaultNameSpace = "SeeSharpTools.JY.GUI";
 
         private static string _getTargetName(object taskObj)
@@ -66,6 +66,6 @@ namespace SeeSharpTools.JY.GUI.Common.i18n
         {
             return Encoding.UTF8;
         }
-        
+
     }
 }

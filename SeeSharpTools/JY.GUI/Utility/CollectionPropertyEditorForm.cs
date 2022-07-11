@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
 using System.Reflection;
-using System.Text;
 using System.Windows.Forms;
 
 namespace SeeSharpTools.JY.GUI
@@ -158,7 +153,7 @@ namespace SeeSharpTools.JY.GUI
                 listBox_members.Items.Add(nameProperty.GetValue(_configInst[newItemIndex], null));
                 listBox_members.SelectedIndex = newItemIndex;
             }
-            
+
         }
 
         private void button_delete_Click(object sender, EventArgs e)

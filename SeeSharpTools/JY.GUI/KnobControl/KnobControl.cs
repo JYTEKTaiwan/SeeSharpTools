@@ -2,8 +2,8 @@ using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.Windows.Forms;
 using System.Drawing.Text;
+using System.Windows.Forms;
 
 
 namespace SeeSharpTools.JY.GUI
@@ -20,7 +20,7 @@ namespace SeeSharpTools.JY.GUI
     [Designer(typeof(KnobDesigner))]
     [ToolboxBitmap(typeof(KnobControl), "KnobControl.KnobControl.bmp")]
     public class KnobControl : UserControl
-	{
+    {
 
         #region Enum
         #endregion
@@ -57,7 +57,7 @@ namespace SeeSharpTools.JY.GUI
         private Image OffScreenImage;
         private Graphics gOffScreen;
         //Changes by Shao Tianyu
-        private int decimals =3;
+        private int decimals = 3;
         private int valuedecimals = 3;
         private int numberofDevision = 10;
         private int sizeofInsetCircle = 12;
@@ -75,17 +75,18 @@ namespace SeeSharpTools.JY.GUI
         [Description("Gets or sets the min value.")]
         [Category("Layout")]
         [DefaultValue(0)]
-        public double Min 
-		{
-			get{return _minimum;}
-			set{
+        public double Min
+        {
+            get { return _minimum; }
+            set
+            {
                 _minimum = (_minimum > _maximum) ? _maximum : value;
 
                 if (_minimum >= Value)
                 {
                     Value = _minimum;
                 }
-                
+
                 _scaleChange = (_maximum - _minimum) / numberofDevision;
                 this.Refresh();
             }
@@ -98,10 +99,11 @@ namespace SeeSharpTools.JY.GUI
         [Description("Gets or sets the max value.")]
         [Category("Layout")]
         [DefaultValue(100)]
-        public double Max 
-		{
-			get{return _maximum;}
-			set{
+        public double Max
+        {
+            get { return _maximum; }
+            set
+            {
                 _maximum = (_maximum < _minimum) ? _minimum : value;
 
                 if (_maximum <= Value)
@@ -112,7 +114,7 @@ namespace SeeSharpTools.JY.GUI
                 _scaleChange = (_maximum - _minimum) / numberofDevision;
                 this.Refresh();
             }
-		}
+        }
         /// <summary>
         /// Current Value of knob control
         /// </summary>
@@ -207,7 +209,7 @@ namespace SeeSharpTools.JY.GUI
                     this.Refresh();
                 }
 
-               
+
             }
         }
         [Browsable(true)]
@@ -291,15 +293,15 @@ namespace SeeSharpTools.JY.GUI
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
-		{
-			// 
-			// KnobControl
-			// 
-			this.ImeMode = System.Windows.Forms.ImeMode.On;
+        {
+            // 
+            // KnobControl
+            // 
+            this.ImeMode = System.Windows.Forms.ImeMode.On;
             this.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Resize += new System.EventHandler(this.KnobControl_Resize);
 
-		}
+        }
 
 
         #endregion
@@ -325,7 +327,7 @@ namespace SeeSharpTools.JY.GUI
 
         protected override void OnPaint(PaintEventArgs e)
         {
-     //       Color foreColor = System.Drawing.Color.Black;
+            //       Color foreColor = System.Drawing.Color.Black;
             Brush brush = new SolidBrush(ForeColor);
             string text;
             StringFormat stringFormat;
@@ -357,17 +359,17 @@ namespace SeeSharpTools.JY.GUI
             Point Arrow = this.getKnobPosition();
 
             // Draw pointer arrow that shows knob position 
-            DrawInsetCircle(ref gOffScreen, new Rectangle(Arrow.X - 3, Arrow.Y - 3, sizeofInsetCircle, sizeofInsetCircle), new Pen( this.BackColor));
+            DrawInsetCircle(ref gOffScreen, new Rectangle(Arrow.X - 3, Arrow.Y - 3, sizeofInsetCircle, sizeofInsetCircle), new Pen(this.BackColor));
 
             //---------------------------------------------
             // darw small and large scale             _scaleChange/ (_Maximum - _Minimum)     
             //---------------------------------------------
             if (this._showValueText)
             {
-             //   int legth = 10;
-                for (double i = Min; i <= Max+ _scaleChange / (_maximum - _minimum); i += this._scaleChange)
+                //   int legth = 10;
+                for (double i = Min; i <= Max + _scaleChange / (_maximum - _minimum); i += this._scaleChange)
                 {
-                    gOffScreen.DrawLine(new Pen(this.ForeColor), getMarkerPoint(0, i-Min), getMarkerPoint(0+ tickWidth, i-Min));
+                    gOffScreen.DrawLine(new Pen(this.ForeColor), getMarkerPoint(0, i - Min), getMarkerPoint(0 + tickWidth, i - Min));
                     text = Math.Round(i, decimals).ToString();
                     // gOffScreen.DrawString(text, font, brush, getMarkerPoint((text.Length * 3 + tickWidth + 9), i - Min).X, getMarkerPoint((text.Length * 3 + tickWidth + 9), i - Min).Y, stringFormat);
                     gOffScreen.DrawString(text, font, brush, getMarkerPoint((text.Length * 3 + tickWidth), i - Min).X, getMarkerPoint((text.Length * 3 + tickWidth), i - Min).Y, stringFormat);
@@ -492,35 +494,35 @@ namespace SeeSharpTools.JY.GUI
 
         private void setDimensions()
         {
-			// get smaller from height and width
-			int size = this.Width ;
-			if (this.Width > this.Height)
-			{
-				size = this.Height;
-			}
-			// allow 10% gap on all side to determine size of knob    
-			this.rKnob = new Rectangle((int)(size*0.25),(int)(size*0.25),(int)(size*0.50),(int)(size*0.50));
-			
-			this.rScale = new Rectangle(2,2,size-2,size-2);
+            // get smaller from height and width
+            int size = this.Width;
+            if (this.Width > this.Height)
+            {
+                size = this.Height;
+            }
+            // allow 10% gap on all side to determine size of knob    
+            this.rKnob = new Rectangle((int)(size * 0.25), (int)(size * 0.25), (int)(size * 0.50), (int)(size * 0.50));
 
-			this.pKnob = new Point(rKnob.X + rKnob.Width/2, rKnob.Y + rKnob.Height/2);
-			// create offscreen image                                 
-			this.OffScreenImage = new Bitmap(this.Width,this.Height);
-			// create offscreen graphics                              
-			this.gOffScreen = Graphics.FromImage(OffScreenImage);	
+            this.rScale = new Rectangle(2, 2, size - 2, size - 2);
 
-			// create LinearGradientBrush for creating knob            
-			bKnob = new System.Drawing.Drawing2D.LinearGradientBrush(
-			rKnob, getLightColor(knobColor,55), getDarkColor(knobColor, 55),LinearGradientMode.ForwardDiagonal);
-			// create LinearGradientBrush for knobPoint                
-			bKnobPoint = new System.Drawing.Drawing2D.LinearGradientBrush(
-				rKnob, getLightColor(this.BackColor,55), getDarkColor(this.BackColor,55),LinearGradientMode.ForwardDiagonal);
+            this.pKnob = new Point(rKnob.X + rKnob.Width / 2, rKnob.Y + rKnob.Height / 2);
+            // create offscreen image                                 
+            this.OffScreenImage = new Bitmap(this.Width, this.Height);
+            // create offscreen graphics                              
+            this.gOffScreen = Graphics.FromImage(OffScreenImage);
+
+            // create LinearGradientBrush for creating knob            
+            bKnob = new System.Drawing.Drawing2D.LinearGradientBrush(
+            rKnob, getLightColor(knobColor, 55), getDarkColor(knobColor, 55), LinearGradientMode.ForwardDiagonal);
+            // create LinearGradientBrush for knobPoint                
+            bKnobPoint = new System.Drawing.Drawing2D.LinearGradientBrush(
+                rKnob, getLightColor(this.BackColor, 55), getDarkColor(this.BackColor, 55), LinearGradientMode.ForwardDiagonal);
         }
 
         private void KnobControl_Resize(object sender, System.EventArgs e)
         {
-			setDimensions();
-			Refresh();
+            setDimensions();
+            Refresh();
         }
 
         /// <summary>
@@ -528,14 +530,14 @@ namespace SeeSharpTools.JY.GUI
         /// </summary>
         /// <returns>Point that describes current knob position</returns>
         private Point getKnobPosition()
-		{
-			double degree = 270* (this.Value-Min)/(this.Max-this.Min);
-			degree = (degree +135)*Math.PI /180;
+        {
+            double degree = 270 * (this.Value - Min) / (this.Max - this.Min);
+            degree = (degree + 135) * Math.PI / 180;
 
-			Point Pos = new Point(0,0);
-			Pos.X = (int)(Math.Cos(degree)*(rKnob.Width/2-10)  + rKnob.X + rKnob.Width/2);
-			Pos.Y = (int)(Math.Sin(degree)*(rKnob.Width/2-10)  + rKnob.Y + rKnob.Height/2);
-			return Pos;
+            Point Pos = new Point(0, 0);
+            Pos.X = (int)(Math.Cos(degree) * (rKnob.Width / 2 - 10) + rKnob.X + rKnob.Width / 2);
+            Pos.Y = (int)(Math.Sin(degree) * (rKnob.Width / 2 - 10) + rKnob.Y + rKnob.Height / 2);
+            return Pos;
         }
 
         /// <summary>
@@ -544,12 +546,12 @@ namespace SeeSharpTools.JY.GUI
         /// <param name="length">distance from center</param>
         /// <param name="Value">value that is to be marked</param>
         /// <returns>Point that describes marker position</returns>
-        private Point getMarkerPoint(int length,double Value)
-		{
-			double degree = 270* Value/(this.Max-this.Min);
-			degree = (degree +135)*Math.PI /180;
+        private Point getMarkerPoint(int length, double Value)
+        {
+            double degree = 270 * Value / (this.Max - this.Min);
+            degree = (degree + 135) * Math.PI / 180;
 
-			Point Pos = new Point(0,0);
+            Point Pos = new Point(0, 0);
 
             Pos.X = (int)(Math.Cos(degree) * (rKnob.Width / 2 + length) + rKnob.X + rKnob.Width / 2);
             Pos.Y = (int)(Math.Sin(degree) * (rKnob.Width / 2 + length) + rKnob.Y + rKnob.Height / 2);
@@ -571,7 +573,7 @@ namespace SeeSharpTools.JY.GUI
                 degree = (double)(pKnob.Y - p.Y) / (double)(pKnob.X - p.X);
                 degree = Math.Atan(degree);
                 degree = (degree) * (180 / Math.PI) + 45;
-                v = (double)(degree * (this.Max - this.Min) / 270+Min);
+                v = (double)(degree * (this.Max - this.Min) / 270 + Min);
 
             }
             else if (p.X > pKnob.X)
@@ -579,7 +581,7 @@ namespace SeeSharpTools.JY.GUI
                 degree = (double)(p.Y - pKnob.Y) / (double)(p.X - pKnob.X);
                 degree = Math.Atan(degree);
                 degree = 225 + (degree) * (180 / Math.PI);
-                v = (double)(degree * (this.Max - this.Min) / 270+Min);
+                v = (double)(degree * (this.Max - this.Min) / 270 + Min);
 
             }
             if (v > Max) v = Max;
@@ -623,13 +625,13 @@ namespace SeeSharpTools.JY.GUI
                 this.Width = this.Height;
                 oldWidth = this.Width;
             }
-         //    requiresRedraw = true;
+            //    requiresRedraw = true;
             this.Invalidate();
         }
         #endregion
 
         #region Threading
-        private  Color getDarkColor(Color c, byte d)
+        private Color getDarkColor(Color c, byte d)
         {
             byte r = 0;
             byte g = 0;
@@ -642,7 +644,7 @@ namespace SeeSharpTools.JY.GUI
             Color c1 = Color.FromArgb(r, g, b);
             return c1;
         }
-        private  Color getLightColor(Color c, byte d)
+        private Color getLightColor(Color c, byte d)
         {
             byte r = 255;
             byte g = 255;
@@ -695,8 +697,8 @@ namespace SeeSharpTools.JY.GUI
         /// </summary>
         [Description("Event raised during the time when knobcontrol is being rotated by mouse.")]
         public event ValueChangingEventHandler ValueChanging;
-		#region Component Designer generated code
-		#endregion
-	}
+        #region Component Designer generated code
+        #endregion
+    }
 
 }

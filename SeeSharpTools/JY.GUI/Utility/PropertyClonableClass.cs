@@ -42,7 +42,7 @@ namespace SeeSharpTools.JY.GUI
             foreach (string propertyName in propertiesData.Keys)
             {
                 PropertyInfo property = type.GetProperty(propertyName, BindingFlags.Instance | BindingFlags.Public);
-                if (property.GetType().IsSubclassOf(typeof (PropertyClonableClass)))
+                if (property.GetType().IsSubclassOf(typeof(PropertyClonableClass)))
                 {
                     PropertyClonableClass value = property.GetValue(this, null) as PropertyClonableClass;
                     value.AppllyPropertiesData(propertiesData[propertyName] as Dictionary<string, object>);
